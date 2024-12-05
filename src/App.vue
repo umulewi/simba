@@ -4,9 +4,15 @@
   <div id="app">
     
     <HeaderComponent />
+
     <AppHeader />
+    <WhoWeare />
+    <OurProducts/>
+    <!-- <TeamComponent/> -->
     <AppBody />
     <AppFooter />
+    
+   
     
     
   </div>
@@ -19,6 +25,10 @@ import HeaderComponent from "./components/HeaderComponent.vue";
 import AppHeader from "./components/AppHeader.vue";
 import AppBody from "./components/AppBody.vue";
 import AppFooter from "./components/AppFooter.vue";
+import WhoWeare from "./components/WhoWeare.vue";
+import OurProducts from "./components/OurProducts.vue";
+// import TeamComponent from "./components/TeamComponent.vue";
+
 // import AppFooter from "./components/HeaderComponent.vue";
 // import HeaderComponent from "./components/HeaderComponent.vue";
 
@@ -26,7 +36,7 @@ import AppFooter from "./components/AppFooter.vue";
 export default {
   name: "App",
   components: {
-    AppHeader,AppBody,AppFooter,HeaderComponent,
+    AppHeader,AppBody,AppFooter,HeaderComponent,WhoWeare,OurProducts,
     // HeaderComponent,
   },
 };

@@ -1,7 +1,11 @@
+
+
+
+
 <template>
-    <header class="app-body">
+    <header class="app-TeamComponent">
       <h1>{{ title }}</h1>
-      <div>body content</div>
+      <div>Who we are content</div>
     </header>
   </template>
 
@@ -9,21 +13,19 @@
 
 
 
-
-
 <script>
 export default {
-  name: "AppBody",
+  name: "TeamComponent",
   data() {
     return {
-      title: "My Application body",
+      title: "who we are",
     };
   },
 };
 </script>
 <style scoped>
-.app-body {
-  background-color: blue;
+.app-TeamComponent {
+  background-color: teal;
   color: white;
   padding: 1rem;
   text-align: center;

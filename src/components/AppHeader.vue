@@ -2,7 +2,7 @@
   <div class="navbar navbar-expand-lg bg-light navbar-light">
     <div class="container-fluid">
       <!-- Logo -->
-      <!-- <img :src="require('@/assets/img/logo.png')" class="logo" alt="Logo" /> -->
+      <img src="@/assets/img/simba2.jpg" class="logo" alt="Logo">
 
       <!-- Toggler for mobile view -->
       <button

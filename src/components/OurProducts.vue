@@ -1,7 +1,11 @@
+
+
+
+
 <template>
-    <header class="app-body">
+    <header class="app-OurProducts">
       <h1>{{ title }}</h1>
-      <div>body content</div>
+      <div>Our products Contents</div>
     </header>
   </template>
 
@@ -9,21 +13,19 @@
 
 
 
-
-
 <script>
 export default {
-  name: "AppBody",
+  name: "Our-products",
   data() {
     return {
-      title: "My Application body",
+      title: "Our Products",
     };
   },
 };
 </script>
 <style scoped>
-.app-body {
-  background-color: blue;
+.app-OurProducts {
+  background-color: green;
   color: white;
   padding: 1rem;
   text-align: center;
