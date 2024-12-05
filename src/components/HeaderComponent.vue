@@ -2,9 +2,9 @@
   <div class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
       <!-- Logo -->
-      <a href="index.html" class="navbar-brand">
+      <router-link to="/" class="navbar-brand">
         <img src="@/assets/img/logo.png" alt="Logo" class="logo" />
-      </a>
+      </router-link>
 
       <!-- Toggler for mobile view -->
       <button
@@ -23,21 +23,19 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="index.html" class="nav-link">Home</a>
+            <router-link to="/" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
-            <a href="about.html" class="nav-link">About</a>
-          </li>
-        
-          <li class="nav-item">
-            <a href="our_products" class="nav-link">Our products</a>
+            <router-link to="/about" class="nav-link">About</router-link>
           </li>
           <li class="nav-item">
-            <a href="where_to_buy" class="nav-link">Where to Buy</a>
+            <router-link to="/product" class="nav-link">Our Products</router-link>
           </li>
           <li class="nav-item">
-            <a href="contact.html" class="nav-link">Contact</a>
-           
+            <router-link to="/buy" class="nav-link">Where to Buy</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/contact" class="nav-link">Contact</router-link>
           </li>
         </ul>
       </div>
@@ -47,12 +45,11 @@
 
 <script>
 export default {
-  name: "StickyNavbar",
+  name: "HeaderComponent",
 };
 </script>
 
 <style scoped>
-/* Add your custom CSS here if needed */
 .navbar {
   background-color: #f8f9fa;
 }
@@ -68,11 +65,10 @@ export default {
 .nav-link {
   font-size: 1rem;
   margin-right: 1rem;
+  color: #000;
 }
 
 .nav-link.active {
   color: #007bff;
 }
 </style>
-
-
