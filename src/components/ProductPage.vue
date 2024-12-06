@@ -1,5 +1,5 @@
 <template>
-  <div class="image-container" style="position: relative; width: 100%; height: 350px;">
+  <div class="image-container" style="position: relative; width: 100%; height: 250px;">
   <img src="@/assets/img/bg1.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
   <!-- Overlay text -->
   <div class="overlay-text" style="

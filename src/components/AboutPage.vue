@@ -37,6 +37,7 @@
         </div>
       </div>
     </div>
+   <OurTeam></OurTeam>
     <div class="container rounded mt-5">
       <div class="text-center mb-4">
         <h1 class="fw-bold" style="color: #243163;">Why Choose Us</h1>
@@ -141,8 +142,14 @@
 </template>
 
 <script>
+// Import the Team component
+import OurTeam from './OurTeam.vue';
+
 export default {
   name: 'AboutPage',
+  components: {
+    OurTeam,  // Register the Team component
+  },
   mounted() {
     const revel = document.querySelectorAll('.revel');
     const dsply = document.querySelectorAll('.dsply');
