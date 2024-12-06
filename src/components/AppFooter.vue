@@ -3,7 +3,9 @@
     <div class="footer-grid">
       <!-- Simba Description -->
       <div class="footer-section">
+        
         <h3>Simba</h3>
+       
         <p>
           Simba is a leading company offering quality products and services. Our goal is to provide the best solutions to our clients across various sectors.
         </p>
@@ -42,7 +44,7 @@
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <p>&copy; 2024 Simba. All rights reserved.</p>
+      <p>&copy; 2024 Simba. All rights reserved Developed by <a href="https://sansongrp.com/" target="_blank"> Sansons Group</a></p>
     </div>
   </footer>
 </template>
@@ -55,9 +57,10 @@ export default {
 
 <style scoped>
 .footer-container {
-  background-color: #333;
+  background-color: #243163;
   color: #fff;
-  padding: 2rem 0;
+  padding: 3rem 2rem;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .footer-grid {
@@ -72,14 +75,23 @@ export default {
   flex-direction: column;
 }
 
-.footer-section h3 {
-  font-size: 1.5rem;
+.logo-container {
   margin-bottom: 1rem;
+}
+
+
+
+.footer-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  
 }
 
 .footer-section p {
   font-size: 1rem;
   color: #ccc;
+  line-height: 1.6;
 }
 
 .footer-section ul {
@@ -88,41 +100,48 @@ export default {
 }
 
 .footer-section ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .footer-section ul li a {
   color: #fff;
   text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
+  color: #243163;
   text-decoration: underline;
 }
 
 .social-media-icons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .social-icon {
   display: inline-block;
-  background-color: #444;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.8rem;
   color: #fff;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  transition: background-color 0.3s ease;
 }
 
 .social-icon:hover {
-  background-color: #555;
+  background-color: #243163;
 }
 
 .footer-bottom {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #ccc;
+  margin-top: 2rem;
+}
+
+.footer-bottom p {
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -133,6 +152,18 @@ export default {
 
   .social-media-icons {
     justify-content: center;
+  }
+
+  .footer-section h3 {
+    font-size: 1.4rem;
+  }
+
+  .footer-section p {
+    font-size: 0.9rem;
+  }
+
+  .social-icon {
+    font-size: 1.4rem;
   }
 }
 </style>
