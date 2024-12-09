@@ -1,45 +1,45 @@
 <template>
   <header class="app-who-we-are">
-    <div class="text-center">
+    <div class="text-center fade-in">
       <h1 class="fw-bold" style="color: #243163;">WHO WE ARE</h1>
     </div>
     <div class="container d-flex justify-content-center align-items-center w-100">
       <div class="row align-items-center">
         <!-- Logo Section for Large Screens (First on large screens) -->
-        <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block">
+        <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block slide-in-left">
           <img src="@/assets/img/who.jpg" class="logo img-fluid" alt="Logo">
         </div>
 
         <!-- About Us Section -->
-        <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start">
+        <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start slide-in-right">
           <h1 class="display-5" style="color:#243163;">SIMBA STATION</h1>
           <p class="subtitle">
             At Simba Station, we bring the joy of creativity and productivity to life with our premium stationery. Discover the finest notebooks, high-quality paper, and essential tools to help you organize, create, and achieve your goals. From students to professionals, our products are designed to meet every need with affordability and style.
           </p>
 
           <!-- Features Section -->
-          <div class="row mt-4">
+          <div class="row mt-4 fade-in">
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon"></i>
+                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Quality notebooks</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon"></i>
+                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Premium papers</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon"></i>
+                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Essential stationery</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon"></i>
+                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Affordable products</span>
               </div>
             </div>
@@ -47,7 +47,7 @@
         </div>
 
         <!-- Logo Section for Small Screens (Below the text on small screens) -->
-        <div class="col-12 d-block d-lg-none order-last text-center mt-4">
+        <div class="col-12 d-block d-lg-none order-last text-center mt-4 fade-in">
           <img src="@/assets/img/who.jpg" class="logo img-fluid" alt="Logo">
         </div>
       </div>
@@ -71,19 +71,76 @@ export default {
   background-color: #243163;
   color: white;
   border-radius: 50%;
+  animation: bounce 2s infinite;
 }
 
 .logo {
-  max-width: 100%; /* Ensure the image takes full width */
+  max-width: 100%;
   height: auto;
+  animation: fade-in 1.5s ease-in;
 }
+
 .subtitle {
- 
   color: #666;
   margin-bottom: 2rem;
   max-width: 800px;
   margin-left: auto;
-  margin-right: auto; /* Center-align the subtitle */
+  margin-right: auto;
   line-height: 1.6;
+}
+
+.fade-in {
+  animation: fade-in 1.5s ease-in;
+}
+
+.slide-in-left {
+  animation: slide-in-left 1s ease-out;
+}
+
+.slide-in-right {
+  animation: slide-in-right 1s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 </style>

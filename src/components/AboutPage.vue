@@ -1,11 +1,11 @@
 <template>
-  <div class="image-container" style="position: relative; width: 100%; height: 350px;">
+  <div class="image-container" style="position: relative; width: 100%; height: 250px;">
   <img src="@/assets/img/bg1.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
   <!-- Overlay text -->
   <div class="overlay-text" style="
       
   ">
-    <p>
+    <p style="margin-top: 9px;">
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
       
       ABOUT US.
@@ -271,21 +271,19 @@ i{
 
 
 .overlay-text {
-      
-      position: absolute;
-      top: 40%;
-      left: 20%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 1.5rem;
-      text-align: center;
-      font-weight: bold;
-      width: 30%;
-    }
-
+  position: absolute;
+  top: 50%;
+  left: 20%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  width: 30%;
+}
   /* Media query for small devices */
   @media screen and (max-width: 768px) {
     .overlay-text {
@@ -302,13 +300,19 @@ i{
 
   @media screen and (max-width: 480px) {
     .overlay-text {
-      font-size: 0.8rem; /* Further reduce font size for very small screens */
-      padding: 5px 10px; /* Reduce padding */
-      width: 50%; 
-      margin-left: 2rem;
-            
+  position: absolute;
+  top: 50%;
+  left: 30%; 
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  width: 50%;
     }
-
     .image-container {
       height: 20px; /* Optional: Adjust the height for very small screens */
     }

@@ -1,5 +1,10 @@
 <template>
   <section class="app-OurProducts">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
     <div class="container">
       <!-- Title -->
       <h1 class="title">{{ title }}</h1>
@@ -58,6 +63,47 @@ export default {
   padding: 3rem 1rem; 
   color: #333;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.background-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  background: rgba(36, 49, 99, 0.1);
+  border-radius: 50%;
+  transform: scale(1);
+}
+
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -50px;
+  left: -100px;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -150px;
+}
+
+.shape-3 {
+  width: 200px;
+  height: 200px;
+  top: 200px;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .title {
@@ -127,7 +173,6 @@ export default {
   color: #555;
   line-height: 1.5;
 }
-
 
 @media (max-width: 768px) {
   .product-card {

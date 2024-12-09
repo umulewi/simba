@@ -210,20 +210,19 @@ export default {
   }
 }
 .overlay-text {
-      
-      position: absolute;
-      top: 40%;
-      left: 20%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 1.5rem;
-      text-align: center;
-      font-weight: bold;
-      width: 30%;
-    }
+  position: absolute;
+  top: 50%;
+  left: 20%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  width: 30%;
+}
 
   /* Media query for small devices */
   @media screen and (max-width: 768px) {
@@ -241,11 +240,18 @@ export default {
 
   @media screen and (max-width: 480px) {
     .overlay-text {
-      font-size: 0.8rem; /* Further reduce font size for very small screens */
-      padding: 5px 10px; /* Reduce padding */
-      width: 50%; 
-      margin-left: 2rem;
-            
+  position: absolute;
+  top: 50%;
+  left: 30%; 
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  width: 50%;
     }
 
     .image-container {
