@@ -19,24 +19,32 @@
 
     <!-- About Us Section -->
     <div class="container mt-5">
-      <div class="row">
-        <div class="col-lg-6 col-12">
-          <img src="@/assets/img/about2.jpg" alt="Logo" class="w-100" />
-        </div>
-        <div class="col-lg-6 col-12 mt-4">
-          <h3 class="fw-bold">About</h3>
-          <h1 class="fw-bold" style="color:#243163;">Simba Stationery</h1> 
-          <p style="display: justify;">
-            Welcome to Simba Stationery, your one-stop shop for all things paper, pens, and office supplies. Whether you are a student, a teacher, or a business professional, we have everything you need to stay organized, creative, and productive.
-          </p>
-          <br />
-          <h5 style="color:#243163;" class="fw-bold">Our Story</h5>
-          <p>
-            Founded with a passion for providing high-quality stationery products, Simba Stationery has been serving the community for years. Our mission is simple: to offer the best in school and office supplies with exceptional customer service. From humble beginnings, we've grown into one of the leading stationery suppliers, serving customers across the region.
-          </p>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-lg-6 col-12">
+      <img src="@/assets/img/about2.jpg" alt="Logo" class="w-100" />
     </div>
+    <div class="col-lg-6 col-12 mt-3">
+      
+      <h1 class="fw-bold" style="color:#243163;">hyrdo stationery</h1> 
+      <p style="display: justify;">
+        Welcome to Simba Stationery, your one-stop shop for all things paper, pens, and office supplies. Whether you are a student, a teacher, or a business professional, we have everything you need to stay organized, creative, and productive.
+      </p>
+      <br />
+      
+      <br />
+      <h5 style="color:#243163;" class="fw-bold">Our History</h5>
+      <p>
+        Simba Stationery was established in [Year of establishment], with a vision to bring quality stationery products to our local community. Over the years, we've expanded our product offerings, including a wide range of office supplies, school materials, and personalized stationery. As we continue to grow, we are committed to offering only the highest quality products and ensuring our customers receive the best service possible.
+      </p>
+      <br />
+      <h5 style="color:#243163;" class="fw-bold">Our Mission</h5>
+      <p>
+        Our mission is to be the go-to provider for all your stationery needs, offering high-quality products at affordable prices. We are dedicated to delivering excellent customer service and ensuring that every purchase meets the needs of our customers. Our goal is to empower individuals, schools, and businesses by providing the tools necessary to succeed in their daily tasks and creative endeavors.
+      </p>
+    </div>
+  </div>
+</div>
+
    <OurTeam></OurTeam>
     <div class="container rounded mt-5">
       <div class="text-center mb-4">

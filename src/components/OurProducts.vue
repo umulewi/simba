@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <router-link to="/product" class="nav-button" style="margin-top: 2rem;">Explore More Products</router-link>
+        <router-link to="/products" class="nav-button" style="margin-top: 1rem;">Explore More Products</router-link>
       </div>
     </div>
   </section>
