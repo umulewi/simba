@@ -5,6 +5,7 @@ import AboutPage from './components/AboutPage.vue';
 import ContactPage from './components/ContactPage.vue';
 import ProductPage from './components/ProductPage.vue';
 import BuyPage from './components/BuyPage.vue';
+import TestimonialsPage from './components/TestimonialsPage.vue'
 
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
   { path: '/contact', component: ContactPage, meta: { title: 'Contact Us - Simba Stationery' } },
   { path: '/product', component: ProductPage, meta: { title: 'Products - Simba Stationery' } },
   { path: '/outlets', component: BuyPage, meta: { title: 'Our  outlets - Simba Stationery' } },
+  { path: '/Testimonials', component: TestimonialsPage, meta: { title: 'Testimonials - Simba Stationery' } },
 ];
 
 
