@@ -12,7 +12,7 @@ const routes = [
   { path: '/about', component: AboutPage, meta: { title: 'About Us - Simba Stationery' } },
   { path: '/contact', component: ContactPage, meta: { title: 'Contact Us - Simba Stationery' } },
   { path: '/product', component: ProductPage, meta: { title: 'Products - Simba Stationery' } },
-  { path: '/buy', component: BuyPage, meta: { title: 'Buy Now - Simba Stationery' } },
+  { path: '/outlets', component: BuyPage, meta: { title: 'Our  outlets - Simba Stationery' } },
 ];
 
 

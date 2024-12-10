@@ -76,7 +76,7 @@ export default {
 
 .nav-button:hover {
   background-color: #243163; 
-  color: yellow;
+  color: #ffe338; 
   transform: scale(1.05); 
 }
 

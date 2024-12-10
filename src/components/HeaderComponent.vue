@@ -30,7 +30,7 @@
             <router-link to="/product" class="nav-link">Our Products</router-link>
           </li>
           <li class="nav-item" @click="closeNavbar">
-            <router-link to="/buy" class="nav-link">Outlets</router-link>
+            <router-link to="/outlets" class="nav-link">Outlets</router-link>
           </li>
           <li class="nav-item" @click="closeNavbar">
             <router-link to="/testimonials" class="nav-link">Testimonials</router-link>

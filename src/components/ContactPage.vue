@@ -1,13 +1,18 @@
 <template>
-    <div class="image-container" style="position: relative; width: 100%; height: 250px;">
-      <img src="@/assets/img/bg1.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
-    <div class="overlay-text" style="">
-    <p style="margin-top: 9px;">
-      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-     Contact Us.
-    </p>
+ <div class="image-container" style="position: relative; width: 100%; height: 250px;">
+    <img 
+      src="@/assets/img/bg1.jpg" 
+      alt="Logo" 
+      class="" 
+      style="width: 100%; height: 100%; object-fit: cover;">
+    <!-- Overlay text -->
+    <div class="overlay-text zoom-in">
+      <p>
+        <i class="fa-solid fa-arrow-right-from-bracket" ></i>
+        PRODUCTS.
+      </p>
+    </div>
   </div>
-</div>
 <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -78,7 +83,7 @@
 }
 
 
-  .overlay-text {
+.overlay-text {
   position: absolute;
   top: 50%;
   left: 20%; /* Center horizontally */
@@ -91,32 +96,52 @@
   text-align: center;
   font-weight: bold;
   width: 30%;
-
+  animation: zoomEffect 0.6s ease-out;
 }
 
-/* Media query for tablets and small devices */
+/* Zoom effect */
+@keyframes zoomEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Media query for small devices */
 @media screen and (max-width: 768px) {
   .overlay-text {
     font-size: 1rem; /* Reduce font size */
-    width: 40%; /* Increase width for readability */
+    width: 40%;
+    left: 20%;
   }
 
   .image-container {
-    height: 200px; /* Adjust height */
+    height: 10px; /* Optional: Adjust the height of the container */
   }
 }
 
-/* Media query for very small screens */
 @media screen and (max-width: 480px) {
   .overlay-text {
-    font-size: 0.9rem; /* Smaller font for small screens */
-    width: 70%; /* Wider text box */
-    padding: 8px 15px; /* Adjust padding */
+    position: absolute;
+    top: 50%;
+    left: 30%; 
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+    width: 50%;
   }
 
   .image-container {
-    height: 150px; /* Further reduce height */
+    height: 20px; /* Optional: Adjust the height for very small screens */
   }
 }
 
 </style>
+

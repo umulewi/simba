@@ -1,6 +1,10 @@
 <template>
   <div class="image-container" style="position: relative; width: 100%; height: 250px;">
-  <img src="@/assets/img/bg1.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
+    <img 
+      src="@/assets/img/bg1.jpg" 
+      alt="Logo" 
+      class="zoom-in" 
+      style="width: 100%; height: 100%; object-fit: cover;">
   <!-- Overlay text -->
   <div class="overlay-text" style="
       
@@ -21,7 +25,11 @@
     <div class="container mt-5">
   <div class="row">
     <div class="col-lg-6 col-12">
-      <img src="@/assets/img/about2.jpg" alt="Logo" class="w-100" />
+      <img 
+      src="@/assets/img/bg1.jpg" 
+      alt="Logo" 
+      class="zoom-in" 
+      style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div class="col-lg-6 col-12 mt-3">
       
