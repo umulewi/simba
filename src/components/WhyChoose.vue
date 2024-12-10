@@ -2,7 +2,7 @@
   <header class="app-Why">
     <div class="container text-center mt-4">
       <div class="row">
-        <h1 class="fw-bold" style="color: #243163;">Why Choose Us</h1>
+        <h1 class="fw-bold" style="color: #243163;">WHY CHOOSE US</h1>
         <p class="mt-3 text-muted">We are committed to providing exceptional services and products that meet the needs of our customers. With a proven track record of success and a dedicated team of experts, we ensure that every interaction with us is seamless and rewarding. Our customers' satisfaction is our top priority, and we strive to exceed expectations by offering innovative solutions, unparalleled expertise, and a passion for excellence. Choose us because we value your trust and are devoted to delivering quality and reliability every step of the way.</p>
       </div>
     </div>

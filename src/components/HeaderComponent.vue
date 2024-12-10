@@ -1,7 +1,7 @@
 <template>
   <div class="navbar navbar-expand-lg navbar-light sticky-top">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand">
+      <router-link to="/" class="navbar-brand" style="background-color: #e6e7e8;">
         <img src="@/assets/img/logo.png" alt="Logo" class="logo" style="width: 7rem;height: 109rem;">
       </router-link>
 
@@ -97,6 +97,25 @@ export default {
   color:#ffe338;
   background-color:#243163;
   border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+  .nav-link:hover {
+  background-color: #243163;
+  width: 10rem;
+  color: #ffe338; 
+  border-radius: 0px; 
+}
+
+
+.router-link-active {
+  font-weight: bold;
+  color:#ffe338;
+  background-color:#243163;
+  width: 10rem;
+  border-radius: 5px;
+}
 }
 </style>
 

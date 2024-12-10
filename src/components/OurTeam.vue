@@ -2,7 +2,7 @@
   <section class="bg-light text-dark py-5">
     <div class="container">
       <div class="text-center mb-5">
-        <h1 class="fw-bold" style="color: #243163;">Meet Our Talented Team</h1>
+        <h1 class="fw-bold" style="color: #243163;"> MEET OUR TALENTED TEAM</h1>
         <p class="text-muted">
           Our team is composed of skilled professionals dedicated to driving innovation and delivering excellence in every project we undertake. Get to know the people who make it all happen.
         </p>

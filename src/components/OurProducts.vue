@@ -23,6 +23,7 @@
             </div>
           </div>
         </div>
+        <router-link to="/product" class="nav-button" style="margin-top: 2rem;">Explore More Products</router-link>
       </div>
     </div>
   </section>
@@ -58,6 +59,33 @@ export default {
 </script>
 
 <style scoped>
+.nav-button {
+  display: block; 
+  width: 20rem; 
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #243163; 
+  color: #fff; 
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.nav-button:hover {
+  background-color: #243163; 
+  color: yellow;
+  transform: scale(1.05); 
+}
+
+.nav-button:active {
+  background-color: #243163;
+  transform: scale(0.95); 
+}
+
+/* */
 .app-OurProducts {
   background-color: #f9f9f9; 
   padding: 3rem 1rem; 

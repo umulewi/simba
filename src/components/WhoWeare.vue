@@ -12,7 +12,7 @@
 
         <!-- About Us Section -->
         <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start slide-in-right">
-          <h1 class="display-5" style="color:#243163;">SIMBA STATION</h1>
+          <h1 class="display-5" style="color:#243163;">OVER VIEW</h1>
           <p class="subtitle">
             At Simba Station, we bring the joy of creativity and productivity to life with our premium stationery. Discover the finest notebooks, high-quality paper, and essential tools to help you organize, create, and achieve your goals. From students to professionals, our products are designed to meet every need with affordability and style.
           </p>
@@ -43,13 +43,13 @@
                 <span>Affordable products</span>
               </div>
             </div>
+            <router-link to="/about" class="nav-button" style="margin-top: 3rem;">Discover More About Us</router-link>
+
           </div>
         </div>
+        
 
         <!-- Logo Section for Small Screens (Below the text on small screens) -->
-        <div class="col-12 d-block d-lg-none order-last text-center mt-4 fade-in">
-          <img src="@/assets/img/who.jpg" class="logo img-fluid" alt="Logo">
-        </div>
       </div>
     </div>
   </header>
@@ -62,10 +62,35 @@ export default {
 </script>
 
 <style scoped>
-.app-who-we-are {
-  padding: 2rem;
+
+.nav-button {
+  display: block; 
+  width: 20rem; 
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #243163; 
+  color: #fff; 
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
+  text-decoration: none; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
 }
+
+.nav-button:hover {
+  background-color: #243163; 
+  color: yellow;
+  transform: scale(1.05); 
+}
+
+.nav-button:active {
+  background-color: #243163;
+  transform: scale(0.95); 
+}
+
+
+
 
 .feature-icon {
   background-color: #243163;
@@ -144,3 +169,7 @@ export default {
   }
 }
 </style>
+
+
+
+
