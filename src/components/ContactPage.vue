@@ -4,7 +4,7 @@
     <div class="overlay-text" style="">
     <p style="margin-top: 9px;">
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      Our contact.
+     Contact Us.
     </p>
   </div>
 </div>

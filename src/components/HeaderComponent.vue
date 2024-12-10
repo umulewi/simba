@@ -30,7 +30,13 @@
             <router-link to="/product" class="nav-link">Our Products</router-link>
           </li>
           <li class="nav-item" @click="closeNavbar">
-            <router-link to="/buy" class="nav-link">Where to Buy</router-link>
+            <router-link to="/buy" class="nav-link">Outlets</router-link>
+          </li>
+          <li class="nav-item" @click="closeNavbar">
+            <router-link to="/testimonials" class="nav-link">Testimonials</router-link>
+          </li>
+          <li class="nav-item" @click="closeNavbar">
+            <router-link to="/blogs" class="nav-link">Blogs</router-link>
           </li>
           <li class="nav-item" @click="closeNavbar">
             <router-link to="/contact" class="nav-link">Contact</router-link>
@@ -73,14 +79,24 @@ export default {
   font-size: 1rem;
   margin-right: 1rem;
   color: black;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: all 0.3s ease-in-out;
 }
+
+
+.nav-link:hover {
+  background-color: #243163;
+  color: #ffe338; 
+  border-radius: 5px; 
+}
+
 
 .router-link-active {
-  color: #243163;
+  font-weight: bold;
+  color:#ffe338;
+  background-color:#243163;
+  border-radius: 5px;
 }
-.class{
-  width:12rem;
-}
-
-
 </style>
+

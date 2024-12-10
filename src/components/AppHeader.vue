@@ -7,9 +7,10 @@
         :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
       >
         <div class="slide" v-for="(image, index) in images" :key="index">
-          <img :src="image.src" alt="Slide" />
+          <img :src="image.src" alt="Slide" class="animated-image" />
           <div class="content-overlay">
-            <h1>{{ image.content }}</h1>
+            <h1 class="animated-content">{{ image.content }}</h1>
+            <p>{{ image.description }}</p>
           </div>
         </div>
       </div>
@@ -21,6 +22,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: "AutoSlidingSlider",
@@ -28,8 +30,21 @@ export default {
     return {
       currentSlide: 0,
       images: [
-        { src: require("@/assets/img/bg1.jpg"), content: "Content for Image 1" },
-        { src: require("@/assets/img/bg1.jpg"), content: "Content for Image 2" },
+        {
+          src: require("@/assets/img/bg4.jpg"),
+          content: "Explore Premium Notebooks",
+          description: "Top-quality notebooks for your office and school needs.",
+        },
+        {
+          src: require("@/assets/img/bg4.jpg"),
+          content: "Best Writing Instruments",
+          description: "Pens, pencils, and markers that inspire creativity.",
+        },
+        {
+          src: require("@/assets/img/bg4.jpg"),
+          content: "Office Supplies Made Easy",
+          description: "Everything you need to organize your workspace.",
+        },
       ],
     };
   },
@@ -43,7 +58,7 @@ export default {
         (this.currentSlide - 1 + this.images.length) % this.images.length; // Loop to the last slide
     },
     startAutoSlide() {
-      this.slideInterval = setInterval(this.nextSlide, 2000); // Slide every 2 seconds
+      this.slideInterval = setInterval(this.nextSlide, 3000); // Slide every 3 seconds
     },
     stopAutoSlide() {
       clearInterval(this.slideInterval); // Stop sliding
@@ -57,6 +72,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .container-fluid {
@@ -75,7 +91,6 @@ export default {
 .slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 100%;
 }
 
 .slide {
@@ -86,24 +101,31 @@ export default {
   align-items: center;
 }
 
-.slide img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
+.animated-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .content-overlay {
   position: absolute;
-  top: 50%;
+
   left: 50%;
-  margin-top:-10rem;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: red;
+  color: white;
   font-size: 24px;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
+  animation: slideUp 1s ease-in-out;
+}
+
+.animated-content {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  animation: zoomIn 1s ease-in-out;
 }
 
 .prev,
@@ -128,30 +150,60 @@ export default {
   right: 10px;
 }
 
-
 @media (max-width: 768px) {
   .prev,
   .next {
-    font-size: 20px; 
-    padding: 8px;   
+    font-size: 10px;
+    padding: 8px;
   }
 
   .slider-container {
-    height: 30vh; 
+    height: 20vh;
   }
+
   .content-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top:0rem;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: blue;
-  font-size: 24px;
-  background-color: rgba(0, 0, 0, 0.5); 
-  padding: 20px;
-  border-radius: 10px;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10rem;
+    width: 20rem;
+  }
+
+  .animated-content {
+    font-size: 1.5rem;
+  }
 }
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>
+
 
