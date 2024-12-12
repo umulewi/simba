@@ -4,7 +4,7 @@
       <h1 class="fw-bold" style="color: #243163;">Who we are </h1>
     </div>
     <div class="container d-flex justify-content-center align-items-center w-100">
-      <div class="row align-items-center">
+      <div class="row align-items-center" style="height: 600px;">
         <!-- Logo Section for Large Screens (First on large screens) -->
         <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block slide-in-left">
           <img src="@/assets/img/who.jpg" class="logo img-fluid" alt="Logo">
@@ -20,25 +20,25 @@
           <div class="row mt-4 fade-in">
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 fs-0 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Quality notebooks</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Premium papers</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2  p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Essential stationery</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-3 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce"></i>
                 <span>Affordable products</span>
               </div>
             </div>
@@ -48,9 +48,9 @@
         </div>
         
 
-        <!-- Logo Section for Small Screens (Below the text on small screens) -->
+       
       </div>
-    </div>
+    </div><br><br>
   </header>
 </template>
 

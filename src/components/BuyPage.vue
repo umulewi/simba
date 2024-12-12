@@ -8,22 +8,22 @@
     <div class="overlay-text">
       <p style="margin-top: 9px;">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        Get Our Product.
+        Outlets.
       </p>
     </div>
   </div><br>
   
   <header class="app-who-we-are">
     <div class="text-center mb-4">
-      <h1 class="fw-bold" style="color: #243163;">LOCATIONS WHERE OUR PRODUCTS ARE AVAILABLE</h1>
-      <p class="text-muted" style="transition-delay: 0.5s;">Our products are accessible at various locations, ensuring convenience and accessibility for all our valued customers. Please explore the nearest store or partner to make your purchase.</p>
+      <h1 class="fw-bold" style="color: #243163;">Locations Where Our products are available</h1>
+      <p class="subtitle" style="transition-delay: 0.5s;">Our products are accessible at various locations, ensuring convenience and accessibility for all our valued customers. Please explore the nearest store or partner to make your purchase.</p>
     </div>
 
     <div class="container d-flex flex-column align-items-center w-100">
       <!-- Kigali Special Economic Zone -->
       <div class="row align-items-center mb-5">
         <div class="col-lg-7 col-sm-12 text-center text-lg-start order-1 order-lg-2">
-          <h1 style="color:#243163;">KIGALI SPECIAL ECONOMIC ZONE</h1>
+          <h1 style="color:#243163;">Kigali Special Economic Zone</h1>
           <p style="text-align: justify;">
             Located opposite AFRI, our store at Kigali Special Economic Zone is your go-to spot for high-quality stationery and office supplies. Experience premium service and discover our wide range of products suited for every need.
           </p>
@@ -44,7 +44,7 @@
       <!-- Downtown Location -->
       <div class="row align-items-center mb-5">
         <div class="col-lg-5 col-sm-12 mt-5 text-center text-lg-start order-1 order-lg-1">
-          <h1 style="color:#243163;">DOWN TOWN</h1>
+          <h1 style="color:#243163;">Downtown</h1>
           <p style="text-align: justify;">
             Our downtown location near Nyarugenge Market is perfect for quick access to our wide range of products. Whether you’re shopping for home, school, or office needs, we’ve got you covered!
           </p>
@@ -172,5 +172,14 @@ export default {
 
 .card-img-top {
   border-bottom: 1px solid #ddd;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Center-align the subtitle */
+  line-height: 1.6;
 }
 </style>

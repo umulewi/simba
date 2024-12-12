@@ -7,11 +7,11 @@
       style="width: 100%; height: 100%; object-fit: cover;">
       <div class="overlay-text" style="">
         <p style="margin-top: 9px;font-size: 20px;">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>OUR BLOGS.
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>Our Blogs.
         </p>
       </div>
     </div>
-    <section class="bg-white">
+    <section>
         <div class="container py-8">
             <div class="text-center mb-8">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -20,8 +20,7 @@
                 <p class="subtitle">At Simba Stationery, we embrace an agile methodology to continuously refine our offerings. By testing assumptions and actively engaging with our audience, we ensure that we meet the evolving needs of our customers efficiently and effectively.</p>
 
             </div>
-            <div class="row">
-                <!-- First Blog Article -->
+            <div class="row" style="background: #EDF2F8;">
                 <article class="col-md-6 mb-4">
                     <div class="card shadow-sm fixed-height">
                         <div class="card-body">
@@ -41,8 +40,6 @@
                         </div>
                     </div>
                 </article>
-    
-                <!-- Second Blog Article -->
                 <article class="col-md-6 mb-4">
                     <div class="card shadow-sm fixed-height">
                         <div class="card-body">
@@ -107,7 +104,6 @@
             </div>
         </div>
     </section>
-    
     </template>
     
     <style scoped>
@@ -115,7 +111,7 @@
         text-decoration: none;
     }
     p{
-        font-size: 15px;
+        font-size: 18px;
     }
     .badge {
       display: inline-block;

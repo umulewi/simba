@@ -9,7 +9,7 @@
     <div class="overlay-text zoom-in">
       <p>
         <i class="fa-solid fa-arrow-right-from-bracket" ></i>
-        PRODUCTS.
+        Contact Us.
       </p>
     </div>
   </div>

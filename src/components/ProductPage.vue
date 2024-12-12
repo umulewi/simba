@@ -9,7 +9,7 @@
     <div class="overlay-text zoom-in">
       <p>
         <i class="fa-solid fa-arrow-right-from-bracket" ></i>
-        PRODUCTS.
+        Our Products.
       </p>
     </div>
   </div>
@@ -17,7 +17,8 @@
   <section class="app-OurProducts">
     <div class="container">
       <!-- Title -->
-      <h1 class="title">{{ title }}</h1>
+      <h1 class="fw-bold" style="color: #243163;">{{ title }}</h1>
+     
       <p class="subtitle">
         Explore our carefully curated range of premium stationery, designed to elevate your creativity, productivity, and organizational skills. Whether you're a student, professional, or creative, we have something for you!
       </p>

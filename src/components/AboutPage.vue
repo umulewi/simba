@@ -12,7 +12,7 @@
     <p style="margin-top: 9px;">
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
       
-      ABOUT US.
+      About Us.
     </p>
   </div>
 </div>
@@ -53,54 +53,10 @@
   </div>
 </div>
 
-
-
-
 </div>
 
    <OurTeam></OurTeam>
-    <div class="container rounded mt-5">
-      <div class="text-center mb-4">
-        <h1 class="fw-bold" style="color: #243163;">Why Choose Us</h1>
-        <p class="mt-3 text-muted">At Simba Stationery, we understand the importance of quality supplies for your everyday needs. Whether you're stocking up for school, the office, or home, we offer a wide variety of products to suit every need and budget.</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card shadow-sm p-3 rounded h-100">
-            <img src="@/assets/img/notebooks.jpg" class="card-img-top" alt="School Supplies">
-            <div class="card-body">
-              <h5 class="card-title">School Supplies</h5>
-              <p class="card-text">
-                We offer a wide selection of school supplies, including notebooks, pens, backpacks, and art materials, ensuring students have everything they need to succeed in their studies.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card shadow-sm p-3 rounded h-100">
-            <img src="@/assets/img/notebooks.jpg" class="card-img-top" alt="Office Supplies">
-            <div class="card-body">
-              <h5 class="card-title">Office Supplies</h5>
-              <p class="card-text">
-                From pens to paper, binders to file organizers, our office supplies collection is perfect for businesses of all sizes. We provide everything you need to keep your workplace running smoothly.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card shadow-sm p-3 rounded h-100">
-            <img src="@/assets/img/notebooks.jpg" class="card-img-top" alt="Creative Supplies">
-            <div class="card-body">
-              <h5 class="card-title">Creative Supplies</h5>
-              <p class="card-text">
-                Whether you're into crafting or need materials for creative projects, our selection of markers, colored paper, and other craft supplies will spark your creativity and help you bring your ideas to life.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<OurBrands></OurBrands>
 
     <!-- What We Offer Section -->
     
@@ -159,17 +115,19 @@
       </div>
     </div>
   </div><br>
+
   
 </template>
 
 <script>
 // Import the Team component
 import OurTeam from './OurTeam.vue';
+import OurBrands from './OurBrands.vue';
 
 export default {
   name: 'AboutPage',
   components: {
-    OurTeam,  // Register the Team component
+    OurTeam,OurBrands,  // Register the Team component
   },
   mounted() {
     const revel = document.querySelectorAll('.revel');
@@ -182,6 +140,7 @@ export default {
   },
 };
 //
+
 document.addEventListener('DOMContentLoaded', () => {
   const textElements = document.querySelectorAll('#textElement, #textContent, #history, #mission');
   const imageElement = document.getElementById('imageElement');
@@ -198,17 +157,29 @@ document.addEventListener('DOMContentLoaded', () => {
     threshold: 0.5 // Trigger the animation when 50% of the element is visible
   });
 
-  // Observe text elements
-  textElements.forEach(element => observer.observe(element));
+  // Observe text elements if they exist
+  if (textElements.length) {
+    textElements.forEach(element => observer.observe(element));
+  }
 
-  // Observe the image element
-  observer.observe(imageElement);
+  // Observe the image element if it exists
+  if (imageElement) {
+    observer.observe(imageElement);
+  }
 });
+
 
 </script>
 
 <style scoped>
-
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Center-align the subtitle */
+  line-height: 1.6;
+}
 .zoom-row {
     transition: transform 0.3s ease-in-out; /* Smooth zoom transition for the entire row */
   }

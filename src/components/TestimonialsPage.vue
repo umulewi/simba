@@ -7,14 +7,16 @@
       style="width: 100%; height: 100%; object-fit: cover;">
       <div class="overlay-text" style="">
         <p style="margin-top: 9px;">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>TESTIMONIAL.
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>Testimonial.
         </p>
       </div>
     </div>
 <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h1 class="mb-2 mt-5" style="color: #243163;">TESTIMONIAL</h1>
-        <h3 class="mb-2" style="color: #243163;">What our happy user says!</h3>   
+      <h1 class="mb-2 mt-5" style="color: #243163;">What our happy user says!</h1>
+<p class="subtitle">Our satisfied users love the experience they've had with our product. Here's what they have to say about how it has helped them achieve their goals and improve their daily tasks.</p>
+
+          
     </div>
 </div>
 <div class="outerdiv">
@@ -126,6 +128,14 @@
 </script>
 
 <style>
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap');
 body{
 	margin: 0;

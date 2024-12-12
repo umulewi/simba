@@ -1,167 +1,112 @@
 <template>
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <!-- Address Section -->
-        <div class="col-lg-7">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="footer-contact">
-                <h2>Our Address</h2>
-                <p><i class="fa fa-map-marker-alt"></i>Phase 2, Kigali Special Economic Zone</p>
-                <p><i class="fa fa-phone-alt"></i> +250 788 490 089</p>
-                <p><i class="fa fa-envelope"></i> info@simbastationary.com</p>
-                <div class="footer-social">
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-instagram"></i></a>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-              </div>
-            </div>
-            <!-- Quick Links Section -->
-            <div class="col-md-6">
-              <div class="footer-link">
-                <h2>Quick Links</h2>
-                <a href="index">Home</a>
-                <a href="about">About Us</a>
-                <a href="product">Products</a>
-                <a href="contact">Contact</a>
-                <a href="FQAs">FAQs</a>
-              </div>
-            </div>
+
+
+  <footer class="text-center text-lg-start text-white" style="background-color: #243163">
+    <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+      <div class="me-5">
+        <span>Get connected with Simba Stationery on social networks:</span>
+      </div>
+      <div>
+        <a href="#" class="text-white me-4" target="">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="text-white me-4" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/simba.stationery/" class="text-white me-4" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        
+      </div>
+    </section>
+
+    <section>
+      <div class="container text-center text-md-start mt-5">
+        <div class="row mt-3">
+          <!-- Company Info Section -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Simba Stationery</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+            <p>
+              At Simba Stationery, we provide quality office supplies, stationery, and other essential tools to help you stay organized and productive.
+            </p>
           </div>
-        </div>
-        <!-- Newsletter Section -->
-        <div class="col-lg-5">
-          <div class="footer-newsletter">
-            <h2>Newsletter</h2>
-            <p>Simba is a leading company offering quality products and services. Our goal is to provide the best solutions to our clients across various sectors. </p>
-            <form method="POST" class="subscribe-form">
-              <input name="email" class="form-control" placeholder="Enter your email">
-              <button type="submit" name="subscription" class="btn btn-primary">Subscribe</button>
-            </form>
+
+          <!-- Products Section -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Our Products</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+            <p class="text-white">Notebooks</p>
+            <p class="text-white">Pens & Pencils</p>
+            <p class="text-white">Office Furniture</p>
+            <p class="text-white">Office Stationery</p>
+          </div>
+
+          <!-- Useful Links Section -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Useful Links</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+            <p><a href="./" class="text-white">Home</a></p>
+            <p><a href="about" class="text-white">About  Us</a></p>
+            <p><a href="product" class="text-white">Our Products</a></p>
+            <p><a href="outlets" class="text-white">Outlets</a></p>
+            <p><a href="testimonials" class="text-white">Testimonials</a></p>
+            <p><a href="blogs" class="text-white">Blogs</a></p>
+            <p><a href="contact" class="text-white">Contact</a></p>
+            
+          </div>
+
+          <!-- Contact Information Section -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase fw-bold">Contact Us</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+            <p><i class="fas fa-home mr-3"></i> Kigali Special Economic Zone</p>
+            <p><i class="fas fa-envelope mr-3"></i>info@simbastationery.com</p>
+            <p><i class="fas fa-phone mr-3"></i> +250 788 490 089</p>
+            <p><i class="fas fa-print mr-3"></i> +250 788 490 089</p>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Copyright Section -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2024 Simba Stationery. All rights reserved.<label>Developed By <a href="https://sansongrp.com" target="_blank" style="color:#ffcc00;">Sanson Group</a></label>
+      
+
     </div>
-    <!-- Footer Bottom -->
-    <div class="copyright">
-      <div class="container">
-        <p>Copyright &copy; 2024 <a href="">SIMBA STATIONERY</a>, All Rights Reserved.</p>
-        <p>Developed By <a href="https://sansongrp.com" target="_blank">Sanson Group</a></p>
-      </div>
-    </div>
-    <!-- Back to Top Button -->
-    <button class="back-to-top" @click="scrollToTop">↑</button>
-  </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button @click="scrollToTop" class="back-to-top-btn">
+    ↑
+  </button>
 </template>
 
 <script>
 export default {
-  name: "FooterComponent",
+  name: 'FooterComponent',
   methods: {
     scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    },
-  },
-};
-window.addEventListener('scroll', function () {
-  let backToTopButton = document.querySelector('.back-to-top');
-  if (window.scrollY > 300) {
-    backToTopButton.style.display = 'block';
-  } else {
-    backToTopButton.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
-});
+};
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    document.body.classList.add("scrolled");
+  } else {
+    document.body.classList.remove("scrolled");
+  }
+};
 </script>
 
 <style scoped>
-.footer {
-  background-color: #243163;
-  color: #ffffff;
-  padding: 2rem 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.footer h2 {
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 1rem;
-}
-
-.footer p {
-  font-size: 0.9rem;
-  color: #cccccc;
-  margin: 0.5rem 0;
-}
-
-.footer a {
-  color: #ffffff;
+a {
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.footer a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-.footer-social a {
-  color: #ffffff;
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.footer-social a:hover {
-  color: #ffcc00;
-}
-
-.footer-link a {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.footer-newsletter {
-  text-align: center;
-}
-
-.footer-newsletter .form-control {
-  padding: 0.7rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 5px;
-}
-
-.footer-newsletter .btn {
-  background-color: #ffcc00;
-  color: #1a1a1a;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.footer-newsletter .btn:hover {
-  background-color: #ffffff;
-  color: #ffcc00;
-}
-
-.copyright p {
-  margin: 0.3rem 0;
-  font-size: 0.8rem;
-  color: #cccccc;
-}
-
-/* Back to Top Button Styles */
-.back-to-top {
+.back-to-top-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -174,35 +119,23 @@ window.addEventListener('scroll', function () {
   cursor: pointer;
   display: none;
   transition: background-color 0.3s ease;
+
 }
 
-.back-to-top:hover {
-  background-color: #ffffff;
-  color: #ffcc00;
+.back-to-top-btn:hover {
+  background-color: #6351ce;
 }
 
-@media (max-width: 768px) {
-  .footer h2 {
-    font-size: 1.2rem;
-  }
-
-  .footer p {
-    font-size: 0.8rem;
-  }
-
-  .footer-newsletter {
-    margin-top: 2rem;
-  }
-
-  .footer-newsletter .form-control {
-    width: 90%;
-  }
-
-  .row {
-    flex-direction: column;
-  }
+body {
+  scroll-behavior: smooth;
 }
 
-/* Show button when scrolled down */
+/* Show the button when the user scrolls down */
+body {
+  position: relative;
+}
 
+body.scrolled .back-to-top-btn {
+  display: block;
+}
 </style>

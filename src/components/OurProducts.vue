@@ -95,7 +95,6 @@ export default {
   position: relative;
   overflow: hidden;
 }
-
 .background-shapes {
   position: absolute;
   top: 0;
