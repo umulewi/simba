@@ -9,7 +9,7 @@
       <!-- Title -->
       <h1 class="title">{{ title }}</h1>
       <p class="subtitle">
-        Explore our carefully curated range of premium stationery, designed to elevate your creativity, productivity, and organizational skills. Whether you're a student, professional, or creative, we have something for you!
+        Explore our carefully curated range of premium stationery,Explore our carefully curated range of premium stationeryExplore our carefully curated range of premium stationeryExplore our carefully curated range of premium stationery designed to elevate your creativity, productivity, and organizational skills. Whether you're a student, professional, or creative, we have something for you!
       </p>
 
       <!-- Products Section -->
@@ -87,9 +87,10 @@ export default {
 
 /* */
 .app-OurProducts {
-  background-color: #f9f9f9; 
+  background-color: #727dae; 
+  
   padding: 3rem 1rem; 
-  color: #333;
+  color: white;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -143,7 +144,8 @@ export default {
 }
 
 .subtitle {
-  color: #666;
+  
+  color: white;
   margin-bottom: 2rem;
   max-width: 800px;
   margin-left: auto;

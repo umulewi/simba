@@ -1,9 +1,20 @@
 <template>
+  <div class="image-container" style="position: relative; width: 100%; height: 250px;">
+    <img 
+      src="@/assets/img/bg1.jpg" 
+      alt="Logo" 
+      class="zoom-in" 
+      style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="overlay-text" style="">
+        <p style="margin-top: 9px;">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>TESTIMONIAL.
+        </p>
+      </div>
+    </div>
 <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h1 class="mb-2 mt-5" style="color: #243163;">TESTIMONIAL</h1>
-        <h3 class="mb-2" style="color: #243163;">What our happy user says!</h3>
-          
+        <h3 class="mb-2" style="color: #243163;">What our happy user says!</h3>   
     </div>
 </div>
 <div class="outerdiv">
@@ -57,9 +68,11 @@
 
         </div>
         <div class="review dark">
-          <h2>Reliable and budget-friendly solutions for schools</h2>
+          <h3>Reliable and budget-friendly solutions for schools</h3>
          
-          <p>"Simba Stationery has been a lifesaver for our school. Their bulk pricing options and dependable service make it easy to keep our classrooms fully stocked with the supplies our students need. Their personalized approach to customer service has made a huge difference, ensuring that our orders are always accurate and delivered promptly."</p>
+          <p>"Simba Stationery has truly been a game-changer for our school. Their bulk pricing options and consistent reliability make it effortless to keep our classrooms fully equipped with the supplies our students require. What stands out the most is their personalized customer service, which ensures every order is handled with precision and delivered promptly. Their dedication to understanding our needs and providing tailored solutions has been instrumental in creating a seamless experience for our school operations..
+
+"</p>
 
 
         </div>

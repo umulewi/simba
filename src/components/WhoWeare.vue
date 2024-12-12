@@ -1,7 +1,7 @@
 <template>
   <header class="app-who-we-are">
     <div class="text-center fade-in">
-      <h1 class="fw-bold" style="color: #243163;">WHO WE ARE</h1>
+      <h1 class="fw-bold" style="color: #243163;">Who we are </h1>
     </div>
     <div class="container d-flex justify-content-center align-items-center w-100">
       <div class="row align-items-center">
@@ -9,7 +9,6 @@
         <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block slide-in-left">
           <img src="@/assets/img/who.jpg" class="logo img-fluid" alt="Logo">
         </div>
-
         <!-- About Us Section -->
         <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start slide-in-right">
           <h1 class="display-5" style="color:#243163;">OVER VIEW</h1>

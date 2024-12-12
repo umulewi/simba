@@ -3,10 +3,9 @@
     <div class="container text-center mt-4">
       <div class="row">
         <h1 class="fw-bold" style="color: #243163;">WHY CHOOSE US</h1>
-        <p class="mt-3 text-muted">We are committed to providing exceptional services and products that meet the needs of our customers. With a proven track record of success and a dedicated team of experts, we ensure that every interaction with us is seamless and rewarding. Our customers' satisfaction is our top priority, and we strive to exceed expectations by offering innovative solutions, unparalleled expertise, and a passion for excellence. Choose us because we value your trust and are devoted to delivering quality and reliability every step of the way.</p>
+        <p class="subtitle">We are committed to providing exceptional services and products that meet the needs of our customers. With a proven track record of success and a dedicated team of experts, we ensure that every interaction with us is seamless and rewarding. Our customers' satisfaction is our top priority, and we strive to exceed expectations by offering innovative solutions, unparalleled expertise, and a passion for excellence.</p>
       </div>
     </div>
-
     <div class="container-fluid mt-5">
       <div class="row justify-content-around">
         <!-- Happy Customers -->
@@ -77,13 +76,19 @@ export default {
   color: #243163;
 }
 
+.app-Why {
+  background-color:#1a2639;
+  color:white;
+  
+ 
+}
 .app-Why h4 {
   margin-top: 10px;
-  color: #243163;
+  color: white;
 }
 
 .app-Why p {
-  color: #6c757d;
+  color:white;
   font-size: 1rem;
 }
 
@@ -97,5 +102,13 @@ export default {
 
 .fa-calendar-alt {
   color: #ffc107;
+}
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Center-align the subtitle */
+  line-height: 1.6;
 }
 </style>

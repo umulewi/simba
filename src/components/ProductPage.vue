@@ -144,7 +144,7 @@ export default {
 <style scoped>
 .app-OurProducts {
   background-color: #f9f9f9; 
-  padding: 3rem 1rem; 
+
   color: #333;
   text-align: center;
 }

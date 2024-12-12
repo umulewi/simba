@@ -8,7 +8,7 @@
             <div class="col-md-6">
               <div class="footer-contact">
                 <h2>Our Address</h2>
-                <p><i class="fa fa-map-marker-alt"></i>Phase 2,  Kigali Special Economic Zone</p>
+                <p><i class="fa fa-map-marker-alt"></i>Phase 2, Kigali Special Economic Zone</p>
                 <p><i class="fa fa-phone-alt"></i> +250 788 490 089</p>
                 <p><i class="fa fa-envelope"></i> info@simbastationary.com</p>
                 <div class="footer-social">
@@ -37,7 +37,6 @@
           <div class="footer-newsletter">
             <h2>Newsletter</h2>
             <p>Simba is a leading company offering quality products and services. Our goal is to provide the best solutions to our clients across various sectors. </p>
-           
             <form method="POST" class="subscribe-form">
               <input name="email" class="form-control" placeholder="Enter your email">
               <button type="submit" name="subscription" class="btn btn-primary">Subscribe</button>
@@ -53,18 +52,33 @@
         <p>Developed By <a href="https://sansongrp.com" target="_blank">Sanson Group</a></p>
       </div>
     </div>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" @click="scrollToTop">↑</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "FooterComponent",
+  methods: {
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+  },
 };
+window.addEventListener('scroll', function () {
+  let backToTopButton = document.querySelector('.back-to-top');
+  if (window.scrollY > 300) {
+    backToTopButton.style.display = 'block';
+  } else {
+    backToTopButton.style.display = 'none';
+  }
+});
 </script>
 
 <style scoped>
 .footer {
-  background-color:#243163;
+  background-color: #243163;
   color: #ffffff;
   padding: 2rem 0;
   font-family: Arial, sans-serif;
@@ -140,12 +154,31 @@ export default {
   color: #ffcc00;
 }
 
-
-
 .copyright p {
   margin: 0.3rem 0;
   font-size: 0.8rem;
   color: #cccccc;
+}
+
+/* Back to Top Button Styles */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffcc00;
+  color: #1a1a1a;
+  border: none;
+  padding: 1rem;
+  border-radius: 10%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: #ffffff;
+  color: #ffcc00;
 }
 
 @media (max-width: 768px) {
@@ -169,4 +202,7 @@ export default {
     flex-direction: column;
   }
 }
+
+/* Show button when scrolled down */
+
 </style>

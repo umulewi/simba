@@ -23,34 +23,39 @@
 
     <!-- About Us Section -->
     <div class="container mt-5">
-  <div class="row">
-    <div class="col-lg-6 col-12">
-      <img 
+
+
+<div class="row slide-row">
+  <div class="col-lg-6 col-12">
+    <img 
       src="@/assets/img/bg1.jpg" 
       alt="Logo" 
       class="zoom-in" 
       style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div class="col-lg-6 col-12 mt-3">
-      
-      <h1 class="fw-bold" style="color:#243163;">hyrdo stationery</h1> 
-      <p style="display: justify;">
-        Welcome to Simba Stationery, your one-stop shop for all things paper, pens, and office supplies. Whether you are a student, a teacher, or a business professional, we have everything you need to stay organized, creative, and productive.
-      </p>
-      <br />
-      
-      <br />
-      <h5 style="color:#243163;" class="fw-bold">Our History</h5>
-      <p>
-        Simba Stationery was established in [Year of establishment], with a vision to bring quality stationery products to our local community. Over the years, we've expanded our product offerings, including a wide range of office supplies, school materials, and personalized stationery. As we continue to grow, we are committed to offering only the highest quality products and ensuring our customers receive the best service possible.
-      </p>
-      <br />
-      <h5 style="color:#243163;" class="fw-bold">Our Mission</h5>
-      <p>
-        Our mission is to be the go-to provider for all your stationery needs, offering high-quality products at affordable prices. We are dedicated to delivering excellent customer service and ensuring that every purchase meets the needs of our customers. Our goal is to empower individuals, schools, and businesses by providing the tools necessary to succeed in their daily tasks and creative endeavors.
-      </p>
-    </div>
   </div>
+  <div class="col-lg-6 col-12 mt-3">
+    <h1 class="fw-bold" style="color:#243163;">hyrdo stationery</h1> 
+    <p style="display: justify;">
+      Welcome to Simba Stationery, your one-stop shop for all things paper, pens, and office supplies. Whether you are a student, a teacher, or a business professional, we have everything you need to stay organized, creative, and productive.
+    </p>
+    <br />
+    
+    <br />
+    <h5 style="color:#243163;" class="fw-bold">Our History</h5>
+    <p>
+      Simba Stationery was established in [Year of establishment], with a vision to bring quality stationery products to our local community. Over the years, we've expanded our product offerings, including a wide range of office supplies, school materials, and personalized stationery. As we continue to grow, we are committed to offering only the highest quality products and ensuring our customers receive the best service possible.
+    </p>
+    <br />
+    <h5 style="color:#243163;" class="fw-bold">Our Mission</h5>
+    <p>
+      Our mission is to be the go-to provider for all your stationery needs, offering high-quality products at affordable prices. We are dedicated to delivering excellent customer service and ensuring that every purchase meets the needs of our customers. Our goal is to empower individuals, schools, and businesses by providing the tools necessary to succeed in their daily tasks and creative endeavors.
+    </p>
+  </div>
+</div>
+
+
+
+
 </div>
 
    <OurTeam></OurTeam>
@@ -101,7 +106,7 @@
     
     <!-- Why Choose Us Section -->
     <div class="container mt-5">
-      <div class="row">
+      <div class="row zoom-row">
         <div class="col-lg-6 col-12">
           <h3 class="fw-bold" style="color:#243163;">Benefits</h3>
           <h1 class="fw-bold" style="color:#243163;">Why Choose Us</h1>
@@ -176,9 +181,53 @@ export default {
     });
   },
 };
+//
+document.addEventListener('DOMContentLoaded', () => {
+  const textElements = document.querySelectorAll('#textElement, #textContent, #history, #mission');
+  const imageElement = document.getElementById('imageElement');
+
+  // Create an intersection observer to trigger animation on scroll
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Stop observing after element comes into view
+      }
+    });
+  }, {
+    threshold: 0.5 // Trigger the animation when 50% of the element is visible
+  });
+
+  // Observe text elements
+  textElements.forEach(element => observer.observe(element));
+
+  // Observe the image element
+  observer.observe(imageElement);
+});
+
 </script>
 
 <style scoped>
+
+.zoom-row {
+    transition: transform 0.3s ease-in-out; /* Smooth zoom transition for the entire row */
+  }
+
+  .zoom-row:hover {
+    transform: scale(1.05); /* Zoom the entire row when hovered */
+  }
+
+  .slide-row {
+    opacity: 0;
+    transform: translateY(20px); /* Start from slightly below */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+
+  .slide-row:hover {
+    opacity: 1;
+    transform: translateY(0); /* Slide up to normal position */
+  }
+
 h5{
   color:#243163;
 }

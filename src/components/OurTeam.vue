@@ -3,7 +3,8 @@
     <div class="container">
       <div class="text-center mb-5">
         <h1 class="fw-bold" style="color: #243163;"> MEET OUR TALENTED TEAM</h1>
-        <p class="text-muted">
+        
+        <p class="subtitle">
           Our team is composed of skilled professionals dedicated to driving innovation and delivering excellence in every project we undertake. Get to know the people who make it all happen.
         </p>
       </div>
@@ -15,7 +16,7 @@
               <div>
                 <h5 class="card-title mb-1">{{ member.name }}</h5>
                 <p class="text-muted">{{ member.position }}</p>
-                <p class="card-text">{{ member.description }}</p>
+                
               </div>
               <div class="d-flex justify-content-center gap-3">
                 <a
@@ -46,7 +47,7 @@ export default {
           id: 1,
           name: "Bonnie Green",
           position: "CEO & Web Developer",
-          description: "Bonnie is the visionary behind our platform, driving the technical strategy and spearheading innovation at every step. Her passion for web development ensures our brand remains at the forefront of the industry.",
+          
           image: require('@/assets/img/team1.png'),
           socialLinks: [
             { icon: "linkedin", url: "https://linkedin.com" },
@@ -58,7 +59,7 @@ export default {
           id: 2,
           name: "Michael Johnson",
           position: "Product Manager",
-          description: "Michael ensures the seamless development and delivery of our products, balancing innovation with user needs. His strategic approach guarantees that we deliver high-quality, impactful solutions.",
+          
           image: require('@/assets/img/team2.png'),
           socialLinks: [
             { icon: "linkedin", url: "https://linkedin.com" },
@@ -70,7 +71,7 @@ export default {
           id: 3,
           name: "Sarah Lee",
           position: "Lead Designer",
-          description: "Sarah’s creative expertise shapes the visual identity of our platform. She combines artistic vision with user-centered design principles to craft intuitive and engaging user interfaces.",
+          
           image: require('@/assets/img/team1.png'),
           socialLinks: [
             { icon: "linkedin", url: "https://linkedin.com" },
@@ -131,5 +132,13 @@ export default {
 
 .card-body p {
   margin-bottom: 1rem;
+}
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Center-align the subtitle */
+  line-height: 1.6;
 }
 </style>
