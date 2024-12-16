@@ -6,6 +6,7 @@ import ContactPage from './components/ContactPage.vue';
 import ProductPage from './components/ProductPage.vue';
 import BuyPage from './components/BuyPage.vue';
 import BlogPage from './components/BlogPage.vue';
+import OpenBlog from './components/OpenBlog.vue';
 import TestimonialsPage from './components/TestimonialsPage.vue'
 
 
@@ -16,6 +17,7 @@ const routes = [
   { path: '/product', component: ProductPage, meta: { title: 'Products - Simba Stationery' } },
   { path: '/outlets', component: BuyPage, meta: { title: 'Our  outlets - Simba Stationery' } },
   { path: '/blogs', component: BlogPage, meta: { title: 'Blogs - Simba Stationery' } },
+  { path: '/open', component: OpenBlog, meta: { title: 'Blogs - Simba Stationery' } },
   { path: '/Testimonials', component: TestimonialsPage, meta: { title: 'Testimonials - Simba Stationery' } },
 ];
 

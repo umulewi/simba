@@ -40,6 +40,7 @@
             style="height: 25rem;">
         </div>
       </div>
+   
       
       <!-- Downtown Location -->
       <div class="row align-items-center mb-5">
@@ -109,14 +110,24 @@
           </div>
         </div>
       </div>
+      <BecomeDistributor></BecomeDistributor>
+
+    
+
+
     </div>
   </header>
 </template>
-
 <script>
+import BecomeDistributor from './BecomeDistributor.vue';
+
 export default {
   name: 'BuyPage',
+  components: {
+   BecomeDistributor,  
+ },
 };
+
 </script>
 
 <style scoped>

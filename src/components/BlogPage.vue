@@ -35,7 +35,7 @@
                                     <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" width="30" height="30">
                                     <span class="ml-2 font-weight-medium text-dark">Jese Leos</span>
                                 </div>
-                                <a href="#" class="btn btn-link text-primary font-weight-bold">Read more </a>
+                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,8 @@
                                     <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Green avatar" width="30" height="30">
                                     <span class="ml-2 font-weight-medium text-dark">Bonnie Green</span>
                                 </div>
-                                <a href="#" class="btn btn-link text-primary font-weight-bold">Read more </a>
+                                
+                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
                             </div>
                         </div>
                     </div>
@@ -75,7 +76,7 @@
                                     <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" width="30" height="30">
                                     <span class="ml-2 font-weight-medium text-dark">Jese Leos</span>
                                 </div>
-                                <a href="#" class="btn btn-link text-primary font-weight-bold">Read more </a>
+                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
                             </div>
                         </div>
                     </div>
@@ -96,7 +97,7 @@
                                     <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Green avatar" width="30" height="30">
                                     <span class="ml-2 font-weight-medium text-dark">Bonnie Green</span>
                                 </div>
-                                <a href="#" class="btn btn-link text-primary font-weight-bold">Read more </a>
+                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
                             </div>
                         </div>
                     </div>

@@ -41,6 +41,7 @@
           <li class="nav-item" @click="closeNavbar">
             <router-link to="/contact" class="nav-link">Contact</router-link>
           </li>
+        
         </ul>
       </div>
     </div>
@@ -87,14 +88,15 @@ export default {
 
 .nav-link:hover {
   background-color: #243163;
-  color: #ffe338; 
+  
+  color: #FFE338; 
   border-radius: 5px; 
 }
 
 
 .router-link-active {
   font-weight: bold;
-  color:#ffe338;
+  color: #FFE338; 
   background-color:#243163;
   border-radius: 5px;
 }
@@ -104,14 +106,14 @@ export default {
   .nav-link:hover {
   background-color: #243163;
   width: 10rem;
-  color: #ffe338; 
+  color: #FFE338; 
   border-radius: 0px; 
 }
 
 
 .router-link-active {
   font-weight: bold;
-  color:#ffe338;
+  color: #FFE338; 
   background-color:#243163;
   width: 10rem;
   border-radius: 5px;

@@ -115,7 +115,7 @@ export default {
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
-  font-size: 24px;
+  font-size: 18px;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
@@ -123,7 +123,7 @@ export default {
 }
 
 .animated-content {
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin: 0 0 1rem;
   animation: zoomIn 1s ease-in-out;
 }
@@ -162,14 +162,14 @@ export default {
   }
 
   .content-overlay {
-    font-size: 18px;
+    font-size: 15px;
     padding: 10px;
-    margin-top: 10rem;
+    margin-top: 7rem;
     width: 20rem;
   }
 
   .animated-content {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 

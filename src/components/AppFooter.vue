@@ -71,7 +71,7 @@
 
     <!-- Copyright Section -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-      © 2024 Simba Stationery. All rights reserved.<label>Developed By <a href="https://sansongrp.com" target="_blank" style="color:#ffcc00;">Sanson Group</a></label>
+      © 2024 Simba Stationery. All rights reserved.<label>Developed By <a href="https://sansongrp.com" target="_blank" style="color:#FFE338;">Sanson Group</a></label>
       
 
     </div>
@@ -110,7 +110,7 @@ a {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #ffcc00;
+  background-color: #FFE338;
   color: #1a1a1a;
   border: none;
   padding: 1rem;

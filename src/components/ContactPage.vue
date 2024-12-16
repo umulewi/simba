@@ -15,9 +15,13 @@
   </div>
 <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h1 class="mb-5" style="color: #243163;">Contact For Any Query</h1>
-                </div>
+              <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h1 class="mb-5" style="color: #243163;">Contact For Any Query</h1>
+    <p class="subtitle" style="font-size: 18px; color: #555;">
+        Have any questions or need assistance? Reach out to us, and our team will be happy to provide the information or support you need. We're here to help!
+    </p>
+</div>
+
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="row gy-4">
@@ -59,7 +63,11 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn w-100 py-3" type="submit" name="submit" style="background-color: #243163;color: aliceblue;font-size: 1rem;">Send Message</button>
+                                      <button class="nav-button btn w-100 py-3" type="submit" name="submit" style="background-color: #243163; color: aliceblue; font-size: 1rem;" onmouseover="this.style.backgroundColor='yellow'; this.style.color='black';" onmouseout="this.style.backgroundColor='#243163'; this.style.color='aliceblue';">Send Message</button>
+
+                                    </div>
+                                    <div class="text-center wow fadeInUp mb-3" data-wow-delay="0.1s">
+
                                     </div>
                                 </div>
                             </form>
