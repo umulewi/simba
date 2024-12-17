@@ -7,7 +7,7 @@
       <div class="row align-items-center" style="height: 600px;">
         <!-- Logo Section for Large Screens (First on large screens) -->
         <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block slide-in-left">
-          <img src="@/assets/img/who.jpg" class="logo img-fluid" alt="Logo">
+          <img src="@/assets/img/DSC09621.jpg" class="logo img-fluid" alt="Logo">
         </div>
         <!-- About Us Section -->
         <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start slide-in-right">

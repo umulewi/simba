@@ -34,7 +34,7 @@
         </div>
         <div class="col-lg-5 col-sm-6 text-center order-2 order-lg-1">
           <img 
-            src="@/assets/img/buy1.jpg" 
+            src="@/assets/img/DSC09625.jpg" 
             class="logo img-fluid" 
             alt="Kigali Special Economic Zone Store" 
             style="height: 25rem;">

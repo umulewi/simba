@@ -39,17 +39,17 @@ export default {
         {
           name: "Classic Notebook",
           description: "The perfect companion for your thoughts and ideas. This premium notebook offers smooth pages and a durable cover, ideal for note-taking, journaling, or sketching.",
-          image: require('@/assets/img/bg1.jpg'),
+          image: require('@/assets/img/DSC09527_1.jpg'),
         },
         {
           name: "High-Quality Paper",
           description: "Crafted for a smooth writing experience, our high-quality paper ensures that your ink flows effortlessly. Perfect for students, professionals, and creatives alike.",
-          image: require('@/assets/img/simba_notebooks.jpeg'),
+          image: require('@/assets/img/DSC09560.jpg'),
         },
         {
-          name: "Essential Stationery Kit",
-          description: "Everything you need in one kit. From notebooks to pens, our essential stationery kit is designed to meet all your organizational and creative needs.",
-          image: require('@/assets/img/papers.jpg'),
+          name: "Affordable Pens",
+          description: "A set of reliable pens that write smoothly and last long. Whether you're writing notes, signing documents, or making lists, our pens offer great value without compromising on quality.",
+          image: require('@/assets/img/DSC09534.jpg'),
         },
         
       ],
@@ -57,7 +57,8 @@ export default {
   },
 };
 </script>
-
+Affordable Pens
+A set of reliable pens that write smoothly and last long. Whether you're writing notes, signing documents, or making lists, our pens offer great value without compromising on quality.
 <style scoped>
 .nav-button {
   display: block; 

@@ -87,7 +87,7 @@ export default {
         {
           name: "Classic Notebook",
           description: "The perfect companion for your thoughts and ideas. This premium notebook offers smooth pages and a durable cover, ideal for note-taking, journaling, or sketching.",
-          image: require('@/assets/img/bg1.jpg'),
+          image: require('@/assets/img/DSC09527_1.jpg'),
           category: "simba",
           isNew: true, // Mark as new product
         },
@@ -108,7 +108,7 @@ export default {
         {
           name: "Affordable Pens",
           description: "A set of reliable pens that write smoothly and last long. Whether you're writing notes, signing documents, or making lists, our pens offer great value without compromising on quality.",
-          image: require('@/assets/img/pens.jpg'),
+          image: require('@/assets/img/DSC09545.jpg'),
           category: "dova",
           isNew: false, // Not a new product
         },

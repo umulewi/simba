@@ -28,7 +28,7 @@
 <div class="row slide-row">
   <div class="col-lg-6 col-12">
     <img 
-      src="@/assets/img/bg1.jpg" 
+      src="@/assets/img/DSC09621.jpg" 
       alt="Logo" 
       class="zoom-in" 
       style="width: 100%; height: 100%; object-fit: cover;">
@@ -108,7 +108,7 @@
         </div>
         <div class="col-lg-6 col-12">
           <img
-            src="@/assets/img/about1.jpg"
+            src="@/assets/img/why3.jpg"
             class="w-100"
           />
         </div>
