@@ -19,12 +19,14 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                 <i class="bi bi-question-circle question-icon"></i>
-                What types of school supplies does Simba School Supplies offer?
+                <p> What types of school supplies does Simba School Supplies offer?</p>
+               
               </button>
             </h3>
             <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
               <div class="accordion-body">
-                Simba School Supplies offers a wide range of high-quality notebooks, premium papers, and essential stationery items designed to support both students and educators in their educational journey.
+                <p> Simba School Supplies offers a wide range of high-quality notebooks, premium papers, and essential stationery items designed to support both students and educators in their educational journey.</p>
+               
               </div>
             </div>
           </div><!-- # Faq item-->
@@ -33,12 +35,13 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                 <i class="bi bi-question-circle question-icon"></i>
-                Are the products at Simba School Supplies affordable?
+                <p>Are the products at Simba School Supplies affordable?</p>
               </button>
             </h3>
             <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
               <div class="accordion-body">
-                Yes! At Simba School Supplies, we believe in making quality school supplies affordable and accessible to everyone. We offer competitive prices to empower students and educators alike.
+                <p>Yes! At Simba School Supplies, we believe in making quality school supplies affordable and accessible to everyone. We offer competitive prices to empower students and educators alike.</p>
+                
               </div>
             </div>
           </div><!-- # Faq item-->
@@ -47,12 +50,14 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                 <i class="bi bi-question-circle question-icon"></i>
-                How does Simba School Supplies ensure product quality?
+                <p> How does Simba School Supplies ensure product quality?</p>
+               
               </button>
             </h3>
             <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
               <div class="accordion-body">
-                We source our products from trusted manufacturers who prioritize quality. Our range includes premium notebooks, high-quality papers, and stationery designed to withstand daily use in educational settings.
+                <p> We source our products from trusted manufacturers who prioritize quality. Our range includes premium notebooks, high-quality papers, and stationery designed to withstand daily use in educational settings.</p>
+               
               </div>
             </div>
           </div><!-- # Faq item-->
@@ -61,12 +66,14 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                 <i class="bi bi-question-circle question-icon"></i>
-                Does Simba School Supplies offer custom stationery options?
+                <p>Does Simba School Supplies offer custom stationery options?</p>
+                
               </button>
             </h3>
             <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
               <div class="accordion-body">
-                Yes! We offer customizable stationery options, allowing you to add a personal touch to notebooks and other school supplies for both individuals and schools.
+                <p>Yes! We offer customizable stationery options, allowing you to add a personal touch to notebooks and other school supplies for both individuals and schools.</p>
+                
               </div>
             </div>
           </div><!-- # Faq item-->
@@ -75,12 +82,14 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                 <i class="bi bi-question-circle question-icon"></i>
-                How can Simba School Supplies contribute to the educational experience?
+                <p>How can Simba School Supplies contribute to the educational experience?</p>
+                
               </button>
             </h3>
             <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
               <div class="accordion-body">
-                Simba School Supplies provides essential tools that support learning and creativity. Our high-quality notebooks, papers, and stationery empower students and educators to achieve academic success and express their ideas effectively.
+                <p> Simba School Supplies provides essential tools that support learning and creativity. Our high-quality notebooks, papers, and stationery empower students and educators to achieve academic success and express their ideas effectively.</p>
+               
               </div>
             </div>
           </div><!-- # Faq item-->
@@ -89,12 +98,14 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-6">
                 <i class="bi bi-question-circle question-icon"></i>
-                Does Simba School Supplies offer bulk purchasing options for schools?
+                <p>Does Simba School Supplies offer bulk purchasing options for schools?</p>
+                
               </button>
             </h3>
             <div id="faq-content-6" class="accordion-collapse collapse" data-bs-parent="#faqlist">
               <div class="accordion-body">
-                Yes! We provide bulk purchasing options for schools and institutions. This allows educational establishments to purchase supplies in large quantities at discounted rates, making it more cost-effective for them.
+                <p>Yes! We provide bulk purchasing options for schools and institutions. This allows educational establishments to purchase supplies in large quantities at discounted rates, making it more cost-effective for them.</p>
+                
               </div>
             </div>
           </div><!-- # Faq item-->
@@ -159,15 +170,19 @@
   </script>
   
   <style scoped>
+
   .faq {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     height: 100%;
+    font-size: 15px;
     background-color: #fafafa;
   }
-  
+  .p{
+    font-size: 16px;
+  }
   .f-container {
     width: 100%;
     max-width: 800px;
@@ -197,7 +212,7 @@
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 1.1rem;
+    font-size: 18px;
   }
   
   .fc-question h5 {
@@ -206,6 +221,7 @@
   
   .fc-answer {
     display: none;
+    font-size: 18px;
     padding: 10px 15px;
     background-color: #fafafa;
     border: 1px solid #e2e2e2;

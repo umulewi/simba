@@ -25,7 +25,7 @@
         <div class="row mt-3">
           <!-- Company Info Section -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold">Simba Stationery</h6>
+            <h6 class="text-uppercase fw-bold" style="color: white; font-weight: bold;">Simba Stationery</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
             <p>
               At Simba Stationery, we provide quality office supplies, stationery, and other essential tools to help you stay organized and productive.
@@ -34,7 +34,7 @@
 
           <!-- Products Section -->
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold">Our Products</h6>
+            <h6 class="text-uppercase fw-bold" style="color: white; font-weight: bold;">Our Products</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
             <p class="text-white">Notebooks</p>
             <p class="text-white">Pens & Pencils</p>
@@ -44,7 +44,7 @@
 
           <!-- Useful Links Section -->
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold">Useful Links</h6>
+            <h6 class="text-uppercase fw-bold" style="color: white; font-weight: bold;">Useful Links</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
             <p><a href="./" class="text-white">Home</a></p>
             <p><a href="about" class="text-white">About  Us</a></p>
@@ -58,7 +58,7 @@
 
           <!-- Contact Information Section -->
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <h6 class="text-uppercase fw-bold">Contact Us</h6>
+            <h6 class="text-uppercase fw-bold" style="color: white; font-weight: bold;">Contact Us</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
             <p><i class="fas fa-home mr-3"></i> Kigali Special Economic Zone</p>
             <p><i class="fas fa-envelope mr-3"></i>info@simbastationery.com</p>

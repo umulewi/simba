@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- Header -->
-    <HeaderComponent />
+    <!-- Header (Only visible if noHeaderFooter is not true) -->
+    <HeaderComponent v-if="!isDashboard" />
 
     <!-- NavComponent (Always included across all routes) -->
-    <NavComponent />
+    <NavComponent v-if="!isDashboard" />
 
     <!-- Scroll Progress Bar (Visible across all routes when scrolling) -->
     <div class="scroll-bar" :style="{ width: progressBarWidth + '%' }"></div>
@@ -12,11 +12,10 @@
     <!-- Dynamic Route View -->
     <router-view />
 
-    <!-- Footer -->
-    <AppFooter />
+    <!-- Footer (Only visible if noHeaderFooter is not true) -->
+    <AppFooter v-if="!isDashboard" />
   </div>
 </template>
-
 
 <script>
 import "./assets/styles.css";
@@ -27,7 +26,6 @@ export default {
   name: "App",
   components: {
     HeaderComponent,
-    
     AppFooter,
   },
   data() {
@@ -37,6 +35,10 @@ export default {
     };
   },
   computed: {
+    // Check if the current route has the 'noHeaderFooter' meta flag
+    isDashboard() {
+      return this.$route.meta.noHeaderFooter;
+    },
     progressBarWidth() {
       return (this.scrollPosition / (this.scrollHeight - window.innerHeight)) * 100;
     },
@@ -56,16 +58,14 @@ export default {
 };
 </script>
 
-
 <style>
 .scroll-bar {
   height: 5px;
-  background-color: red;
+  background-color: blue;
   position: fixed;
   top: 64px; /* Adjust this value based on your header height */
   left: 0;
   z-index: 999;
   transition: width 0.1s ease-in-out;
 }
-
 </style>

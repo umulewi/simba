@@ -111,6 +111,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
+  font-size: 18px;
 }
 
 .fade-in {

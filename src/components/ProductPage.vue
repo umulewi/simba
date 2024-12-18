@@ -161,7 +161,8 @@ export default {
 .subtitle {
   color: #666;
   margin-bottom: 2rem;
-  max-width: 800px;
+  max-width: 1000px;
+  font-size: 18px;
   margin-left: auto;
   margin-right: auto; /* Center-align the subtitle */
   line-height: 1.6;

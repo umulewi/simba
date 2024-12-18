@@ -144,10 +144,10 @@ A set of reliable pens that write smoothly and last long. Whether you're writing
 }
 
 .subtitle {
-  
   color: white;
   margin-bottom: 2rem;
-  max-width: 800px;
+  max-width: 1200px;
+  font-size: 16px;
   margin-left: auto;
   margin-right: auto; /* Center-align the subtitle */
   line-height: 1.6;

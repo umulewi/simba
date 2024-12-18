@@ -130,15 +130,17 @@ export default {
   margin-bottom: 1rem;
 }
 
+
+
 .subtitle {
   color: #666;
   margin-bottom: 2rem;
-  max-width: 800px;
+  max-width: 1200px;
+  font-size: 16px;
   margin-left: auto;
   margin-right: auto; /* Center-align the subtitle */
   line-height: 1.6;
 }
-
 .bg-light::before,
 .bg-light::after {
   content: '';

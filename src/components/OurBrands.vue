@@ -88,11 +88,13 @@
 .subtitle {
   color: #666;
   margin-bottom: 2rem;
-  max-width: 800px;
+  font-size: 16px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto; /* Center-align the subtitle */
   line-height: 1.6;
 }
+
 
 h5 {
   color: #243163;

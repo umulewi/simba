@@ -31,17 +31,17 @@ export default {
       currentSlide: 0,
       images: [
         {
-          src: require("@/assets/img/DSC09527_1.jpg"),
+          src: require("@/assets/img/slide-1.jpg"),
           content: "Explore Premium Notebooks",
           description: "Top-quality notebooks for your office and school needs.",
         },
         {
-          src: require("@/assets/img/DSC09560.jpg"),
+          src: require("@/assets/img/slide-2.jpg"),
           content: "Best Writing Instruments",
           description: "Pens, pencils, and markers that inspire creativity.",
         },
         {
-          src: require("@/assets/img/DSC09625.jpg"),
+          src: require("@/assets/img/slide33.jpg"),
           content: "Office Supplies Made Easy",
           description: "Everything you need to organize your workspace.",
         },
@@ -87,7 +87,7 @@ export default {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 50%;
+  height: 30rem;
   
 }
 
@@ -97,10 +97,6 @@ export default {
   object-fit: contain; /* Ensures the entire image is visible within the container */
   background-color: #000; /* Optional: Set a background color to fill empty spaces */
 }
-
-
-
-
 
 
 
@@ -116,10 +112,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
-
-
-
 
 
 .content-overlay {
