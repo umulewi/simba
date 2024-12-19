@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 app.use('/uploads/landing', express.static(path.join(__dirname, 'uploads/landing')));
 app.use('/uploads/about', express.static(path.join(__dirname, 'uploads/about')));
 app.use('/uploads/team', express.static(path.join(__dirname, 'uploads/team')));
+app.use('/uploads/product', express.static(path.join(__dirname, 'uploads/product')));
 
 // Database Connection
 const db = mysql.createConnection({
@@ -44,7 +45,7 @@ if (!fs.existsSync(baseUploadDir)) {
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         let uploadDir;
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
             //add landing
         if (req.originalUrl.includes('/upload/landing')) {   
             uploadDir = path.join(baseUploadDir, 'landing');   
@@ -53,6 +54,7 @@ const storage = multer.diskStorage({
         else if (req.originalUrl.includes('/update_landing')) {
             uploadDir = path.join(baseUploadDir, 'landing');
         }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
         //add about us
         else if (req.originalUrl.includes('/upload/about')) {
             uploadDir = path.join(baseUploadDir, 'about');
@@ -61,6 +63,7 @@ const storage = multer.diskStorage({
         else if (req.originalUrl.includes('/update_about')) {
             uploadDir = path.join(baseUploadDir, 'about');
         }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
         //add team
         else if (req.originalUrl.includes('/upload/team')) {   
             uploadDir = path.join(baseUploadDir, 'team');   
@@ -69,6 +72,16 @@ const storage = multer.diskStorage({
         else if (req.originalUrl.includes('/update_team')) {   
             uploadDir = path.join(baseUploadDir, 'team');   
         } 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+      else if (req.originalUrl.includes('/upload/product')) {   
+        uploadDir = path.join(baseUploadDir, 'product');   
+    } 
+    //update
+    else if (req.originalUrl.includes('/update_product')) {   
+        uploadDir = path.join(baseUploadDir, 'product');   
+    } 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
         else {
             // Default directory if necessary
             uploadDir = path.join(baseUploadDir, 'default');
@@ -271,7 +284,6 @@ app.post('/upload/team', upload.single('image'), (req, res) => {
     });
 });
 
-
 // Fetch team page Route
 app.get('/select_team', (req, res) => {
     const query = 'SELECT * FROM team';
@@ -320,8 +332,75 @@ app.put('/update_team/:id', upload.single('image'), (req, res) => {
     });
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////PRODUCT ROUTES
+
+//add  new producr
+app.post('/upload/product', upload.single('image'), (req, res) => {
+    const { name, description } = req.body;
+    const imageName = req.file ? req.file.filename : null;
+    if (!name || !description || !imageName) {
+        return res.status(400).json({ message: 'All fields are required, including the image' });
+    }
+    const query = 'INSERT INTO product (name, description, image) VALUES (?, ?, ?)';
+    db.query(query, [name, description, imageName], (err) => {
+        if (err) {
+            console.error('Error inserting into database:', err);
+            return res.status(500).json({ message: 'Error saving data' });
+        }
+        res.json({ 
+            message: 'New product added successfully', 
+            imagePath: `/uploads/product/${imageName}` 
+        });
+    });
+});
+
+//fetch product
+app.get('/select_product', (req, res) => {
+    const query = 'SELECT * FROM product';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data from database:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
 
 
+
+// delete product
+app.delete("/delete_product/:id", (req, res) => {
+    const { id } = req.params;
+    const query = "DELETE FROM product WHERE id = ?";
+    db.query(query, [id], (err, result) => {
+      if (err) {
+        console.error("Error deleting data:", err);
+        return res.status(500).json({ message: "Database error" });
+      }
+      res.json({ message: "Team member deleted successfully!" });
+    });
+  });
+
+//update
+app.put('/update_product/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    let imageName = req.file ? req.file.filename : null;
+    // Only update image if new image is uploaded, otherwise use current image.
+    const query = 'SELECT image FROM product WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        const currentImage = result[0]?.image;
+        if (!imageName) {
+            imageName = currentImage; // Keep the old image if no new one is uploaded
+        }
+        const updateQuery = 'UPDATE product SET name = ?, description = ?, image = ? WHERE id = ?';
+        db.query(updateQuery, [name, description, imageName, id], (err) => {
+            if (err) return res.status(500).json({ message: 'Error updating data' });
+            res.json({ message: 'product updated successfully', imagePath: `/uploads/product/${imageName}` });
+        });
+    });
+});
 
 
 

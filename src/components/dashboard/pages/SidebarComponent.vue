@@ -61,6 +61,7 @@ export default {
         { name: "Landing Page", link: "/dashboard/landing", icon: "ti ti-layout-dashboard" },
         { name: "About Us", link: "/dashboard/about", icon: "ti ti-layout-dashboard" },
         { name: "Our Team", link: "/dashboard/team", icon: "ti ti-users" },
+        { name: "Our Products", link: "/dashboard/product", icon: "ti ti-users" },
         { name: "View Trainings", link: "/view_trainings", icon: "ti ti-device-desktop-analytics" },
         { name: "Register", link: "/register_user", icon: "ti ti-user-plus" },
       ],
@@ -74,10 +75,7 @@ export default {
       return this.$route.path === link; // Check if the current route matches the menu item link
     },
   },
-  mounted() {
-    // Replace with dynamic session email fetching (e.g., from localStorage or Vuex)
-    this.sessionEmail = "umulewi@gmail.com"; 
-  },
+
 };
 </script>
 

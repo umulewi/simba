@@ -40,7 +40,7 @@
           <div v-if="editingTeam && editingTeam.image && !image">
             <p>Current Image:</p>
             <img
-              :src="`http://localhost:3000/uploads/team/${editingTeam.image}`"
+              :src="`http://localhost:3000/uploads/product/${editingTeam.image}`"
               alt="Current Image"
               style="width: 100px; height: auto; border-radius: 5px;"
             />
@@ -86,11 +86,10 @@
                   </span>
                 </h6>
               </td>
-              <td>{{ index + 1 }}</td>
               <td>
                 <img
                   v-if="team.image"
-                  :src="`http://localhost:3000/uploads/Team/${team.image}`"
+                  :src="`http://localhost:3000/uploads/product/${team.image}`"
                   alt="Landing Image"
                   style="width: 100px; height: auto; border-radius: 5px;"
                 />

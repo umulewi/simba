@@ -64,7 +64,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="landing in landing_page" :key="landing.id">
+              <tr v-for="(landing,index) in landing_page" :key="landing.id">
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">
+                    <span class="badge rounded-3 fw-semibold" style="background-color:#003966;color:#ffe338;font-weight: bold;">
+                      {{ index + 1 }}
+                    </span>
+                  </h6>
+                </td>
                 <td class="border px-4 py-2">{{ landing.id }}</td>
                 <td class="border px-4 py-2">
                   <!-- Display Image -->

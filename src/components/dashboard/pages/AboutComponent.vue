@@ -53,7 +53,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="about in aboutUs" :key="about.id">
+                
+                <tr v-for="(about,index) in aboutUs" :key="about.id">
+                    <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">
+                            <span class="badge rounded-3 fw-semibold" style="background-color:#003966;color:#ffe338;font-weight: bold;">
+                                {{ index + 1 }}
+                            </span>
+                        </h6>
+                    </td>
                   <td class="border px-4 py-2">{{ about.id }}</td>
                   <td class="border px-4 py-2">
                     <img v-if="about.image" :src="`http://localhost:3000/uploads/about/${about.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />

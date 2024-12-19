@@ -15,6 +15,7 @@ import IndexComponent from './components/dashboard/pages/IndexComponent.vue';
 import LandingPage from './components/dashboard/pages/LandingPage.vue';
 import AboutComponent from './components/dashboard/pages/AboutComponent.vue';
 import TeamComponent from './components/dashboard/pages/TeamComponent.vue';
+import ProductComponent from './components/dashboard/pages/ProductComponent.vue';
 
 // Components for login
 import LoginComponent from './components/dashboard/LoginComponent.vue';
@@ -61,6 +62,16 @@ const routes = [
     component: TeamComponent, 
     meta: { 
       title: 'Team - Simba Stationery', 
+      noHeaderFooter: true,
+      requiresAuth: true 
+    }
+  },
+
+  { 
+    path: '/dashboard/product', 
+    component: ProductComponent, 
+    meta: { 
+      title: 'product - Simba Stationery', 
       noHeaderFooter: true,
       requiresAuth: true 
     }
