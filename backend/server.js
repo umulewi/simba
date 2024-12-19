@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 
 // Static file serving
 app.use('/uploads/landing', express.static(path.join(__dirname, 'uploads/landing')));
+app.use('/uploads/about', express.static(path.join(__dirname, 'uploads/about')));
 
 // Database Connection
 const db = mysql.createConnection({
@@ -38,14 +39,25 @@ const baseUploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(baseUploadDir)) {
     fs.mkdirSync(baseUploadDir);
 }
-
-// Multer configuration
+//
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadDir = path.join(baseUploadDir, 'landing');
+        let uploadDir;
+
+        if (req.originalUrl.includes('/upload/landing')) {
+            uploadDir = path.join(baseUploadDir, 'landing');
+        } else if (req.originalUrl.includes('/upload/about')) {
+            uploadDir = path.join(baseUploadDir, 'about');
+        } else {
+            // Default directory if necessary
+            uploadDir = path.join(baseUploadDir, 'default');
+        }
+
+        // Ensure the directory exists
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
+
         cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
@@ -54,8 +66,11 @@ const storage = multer.diskStorage({
         cb(null, uniqueSuffix + '-' + cleanFileName);
     }
 });
-
 const upload = multer({ storage: storage });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//LANDING PAGE APIS
 
 // Add Landing Page Route
 app.post('/upload/landing', upload.single('image'), (req, res) => {
@@ -108,24 +123,71 @@ app.delete('/delete_landing/:id', (req, res) => {
 });
 
 
-
-app.put('/update/:id', (req, res) => {
+/// update landing page
+app.put('/update_landing/:id', upload.single('image'), (req, res) => {
     const { id } = req.params;
-    const { name, email, phone } = req.body;
-    const query = 'UPDATE  landing_page SET image = ?, title = ?, description = ? WHERE id = ?';
-    db.query(query, [name, email, phone, id], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ message: 'Database error' });
+    const { title, description } = req.body;
+    let imageName = req.file ? req.file.filename : null;
+
+    // Only update image if new image is uploaded, otherwise use current image.
+    const query = 'SELECT image FROM landing_page WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        
+        const currentImage = result[0]?.image;
+        if (!imageName) {
+            imageName = currentImage; // Keep the old image if no new one is uploaded
         }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.json({ message: 'User updated successfully' });
+
+        const updateQuery = 'UPDATE landing_page SET title = ?, description = ?, image = ? WHERE id = ?';
+        db.query(updateQuery, [title, description, imageName, id], (err) => {
+            if (err) return res.status(500).json({ message: 'Error updating data' });
+            res.json({ message: 'Landing page updated successfully', imagePath: `/uploads/landing/${imageName}` });
+        });
     });
 });
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//ABOUT US APIS
+// insert about us content
+app.post('/upload/about', upload.single('image'), (req, res) => {
+    const { title, description } = req.body;
+    const imageName = req.file ? req.file.filename : null;
+
+    if (!imageName || !description ) {
+        return res.status(400).json({ message: 'All fields are required, including the image' });
+    }
+
+    const query = 'INSERT INTO about_us (image, description) VALUES (?, ?)';
+    db.query(query, [imageName,description], (err) => {
+        
+        if (err) {
+            console.error('Error inserting into database:', err);
+            return res.status(500).json({ message: 'Error saving data', error: err.message });
+          }
+        res.json({ 
+            message: 'about page added successfully', 
+            imagePath: `/uploads/about/${imageName}` 
+        });
+    });
+});
+
+// select landing page
+app.get('/select_about', (req, res) => {
+    const query = 'SELECT * FROM about_us';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data from database:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Login Route (Existing Implementation)
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
