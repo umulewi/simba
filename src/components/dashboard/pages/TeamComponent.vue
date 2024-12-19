@@ -1,58 +1,292 @@
 <template>
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-      <!-- Sidebar Component -->
-      <IndexComponent />
-  
-      <!-- Main Wrapper -->
-      <div class="body-wrapper">
-    
-        <div class="container">
-          <!-- Add your page-specific content here -->
-          <div class="row">
-            <!-- Example row content -->
-          </div>
-  
-          
-        
-          <h5 class="card-title fw-semibold mb-4">Add Team content</h5>
+  <div
+    class="page-wrapper"
+    id="main-wrapper"
+    data-layout="vertical"
+    data-navbarbg="skin6"
+    data-sidebartype="full"
+    data-sidebar-position="fixed"
+    data-header-position="fixed"
+  >
+    <!-- Sidebar Component -->
+    <IndexComponent />
 
-            
-            <form method="post" enctype="multipart/form-data">
-            <div class="mb-4">
-             
-            </div>
-            <div class="form-group">
-              <label for="names" class="form-label">Title:</label>
-              <input type="text" name="names" class="form-control" id="names" required />
-            </div> 
-            <div class="form-group">
-              <label for="service" class="form-label">Upload image: (N.B: not greater than 10MB)</label>
-              <input type="file" name="image" class="form-control" id="service" required />
-            </div>
-            <div class="form-group">
-              <label for="description" class="form-label">Description:</label>
-              <input type="text" name="description" class="form-control" id="description" required />
-            </div>
-            <button type="submit" class="btn-primary">Add Landing</button>
-          </form> 
+    <!-- Main Wrapper -->
+    <div class="body-wrapper">
+      <h5 class="card-title fw-semibold mb-4">{{ editingTeam ? "Update Team Content" : "Add Team Content" }}</h5>
+      <form @submit.prevent="handleSubmit">
+        <div v-if="message" :class="['alert', messageType]" role="alert">
+          {{ message }}
+        </div>
+        <div class="form-group">
+          <label for="name" class="form-label">Name:</label>
+          <input
+            type="text"
+            v-model="name"
+            class="form-control"
+            id="name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="image" class="form-label">Upload Image: (N.B: not greater than 10MB)</label>
+          <input
+            type="file"
+            @change="handleFileUpload"
+            class="form-control"
+            id="image"
+            :required="!editingTeam"
+          />
+          <div v-if="editingTeam && editingTeam.image && !image">
+            <p>Current Image:</p>
+            <img
+              :src="`http://localhost:3000/uploads/team/${editingTeam.image}`"
+              alt="Current Image"
+              style="width: 100px; height: auto; border-radius: 5px;"
+            />
           </div>
         </div>
+        <div class="form-group">
+          <label for="position" class="form-label">Position:</label>
+          <input
+            type="text"
+            v-model="position"
+            class="form-control"
+            id="position"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">
+          {{ editingTeam ? "Update Team" : "Add Team" }}
+        </button>
+      </form>
+
+      <!-- Team Table -->
+      <div style="text-align:center; margin-top:4rem">
+        <h5 class="card-title fw-semibold mb-4"><u>View Team Page</u></h5>
       </div>
-    
-  </template>
-  
-  <script>
-  import IndexComponent from "./IndexComponent.vue";
-  
-  export default {
-    name: "MainWrapper",
-    components: {
-      IndexComponent,
+      <div class="table-responsive">
+        <table class="table mb-0 align-middle" id="TeamTable">
+          <thead class="text-dark fs-4">
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr v-for="(team, index) in TeamUs" :key="team.id">
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">
+                  <span class="badge rounded-3 fw-semibold" style="background-color:#003966;color:#ffe338;font-weight: bold;">
+                    {{ index + 1 }}
+                  </span>
+                </h6>
+              </td>
+              <td>{{ index + 1 }}</td>
+              <td>
+                <img
+                  v-if="team.image"
+                  :src="`http://localhost:3000/uploads/Team/${team.image}`"
+                  alt="Landing Image"
+                  style="width: 100px; height: auto; border-radius: 5px;"
+                />
+              </td>
+              <td>{{ team.name }}</td>
+              <td>{{ team.position }}</td>
+              <td>
+                <button
+                  class="btn btn-primary btn-sm"
+                  @click="editTeam(team)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-warning btn-sm"
+                  @click="confirmDelete(team.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div v-if="showModal" class="modal-overlay">
+      <div class="modal-content">
+        <h5>Are you sure you want to delete this team member?</h5>
+        <div>
+          <button
+            class="btn btn-danger"
+            @click="deleteAbout(selectedAboutId)"
+          >
+            Yes, Delete
+          </button>
+          <button class="btn btn-secondary" @click="closeModal">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import IndexComponent from "./IndexComponent.vue";
+
+export default {
+  name: "AboutComponent",
+  components: {
+    IndexComponent,
+  },
+  data() {
+    return {
+      name: "",
+      position: "",
+      image: null,
+      message: null,
+      messageType: null,
+      TeamUs: [],
+      editingTeam: null,
+      showModal: false,
+      selectedAboutId: null,
+    };
+  },
+  mounted() {
+    this.fetchTeams();
+  },
+  methods: {
+    async fetchTeams() {
+      try {
+        const response = await fetch("http://localhost:3000/select_team");
+        this.TeamUs = await response.json();
+      } catch (error) {
+        console.error("Error fetching team data:", error);
+      }
     },
-  };
-  </script>
+    handleFileUpload(event) {
+      this.image = event.target.files[0];
+    },
+    async handleSubmit() {
+      const formData = new FormData();
+      formData.append("name", this.name);
+      formData.append("position", this.position);
+      if (this.image) {
+        formData.append("image", this.image);
+      }
+
+      const url = this.editingTeam
+        ? `http://localhost:3000/update_team/${this.editingTeam.id}`
+        : "http://localhost:3000/upload/team";
+
+      const method = this.editingTeam ? "PUT" : "POST";
+
+      try {
+        const response = await fetch(url, {
+          method,
+          body: formData,
+        });
+
+        if (response.ok) {
+          this.message = this.editingTeam
+            ? "Team member updated successfully!"
+            : "Team member added successfully!";
+          this.messageType = "alert-success";
+          this.fetchTeams();
+          this.resetForm();
+        } else {
+          this.message = "Failed to save team member.";
+          this.messageType = "alert-danger";
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        this.message = "An error occurred.";
+        this.messageType = "alert-danger";
+      }
+    },
+    resetForm() {
+      this.name = "";
+      this.position = "";
+      this.image = null;
+      this.editingTeam = null;
+      document.getElementById("image").value = "";
+    },
+    confirmDelete(id) {
+      this.selectedAboutId = id;
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.selectedAboutId = null;
+    },
+    async deleteAbout(id) {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/delete_team/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (response.ok) {
+          this.message = "Team member deleted successfully!";
+          this.messageType = "alert-success";
+          this.fetchTeams();
+          this.closeModal();
+        } else {
+          this.message = "Failed to delete team member.";
+          this.messageType = "alert-danger";
+        }
+      } catch (error) {
+        console.error("Error deleting team member:", error);
+        this.message = "An error occurred.";
+        this.messageType = "alert-danger";
+        this.closeModal();
+      }
+    },
+    editTeam(team) {
+      this.name = team.name;
+      this.position = team.position;
+      this.image = null; // Clear any previously selected file
+      this.editingTeam = { ...team }; // Copy team data to avoid mutating original data
+
+      // Scroll to the top to access the form
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+  },
+};
+</script>
+
+
+<style scoped>
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
   
-  <style scoped>
+  /* Modal content styling */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+  }
+
   .container-fluid {
     max-width: 800px;
     margin: auto;

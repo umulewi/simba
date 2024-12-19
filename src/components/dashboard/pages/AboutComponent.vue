@@ -6,15 +6,14 @@
       <div class="body-wrapper">
         <div class="container">
           <!-- Add About Content Section -->
-          <h5 class="card-title fw-semibold mb-4">{{ editingAbout ? "Update about us Content" : "Add about us Content" }}</h5>
+          <h5 class="card-title fw-semibold mb-4">{{ editingAbout ? "Update About Us Content" : "Add About Us Content" }}</h5>
           <form @submit.prevent="submitForm" enctype="multipart/form-data">
             <div class="mb-4">
               <p v-if="message" :class="`alert ${messageType}`">{{ message }}</p>
             </div>
   
             <!-- Title Input -->
-           
-  
+            
             <!-- Image Input -->
             <div class="form-group">
               <label for="image" class="form-label">Upload Image:</label>
@@ -39,7 +38,7 @@
             <h5 class="card-title fw-semibold mb-4"><u>View About Page</u></h5>
           </div>
           <div class="table-responsive">
-            <table class="table mb-0 align-middle" id="trainingTable">
+            <table class="table mb-0 align-middle" id="aboutTable">
               <thead class="text-dark fs-4">
                 <tr>
                   <th class="border-bottom-0">
@@ -49,35 +48,27 @@
                     <h6 class="fw-semibold mb-0">IMAGES</h6>
                   </th>
                   <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">TITLE</h6>
-                  </th>
-                  <th class="border-bottom-0">
                     <h6 class="fw-semibold mb-0">DESCRIPTION</h6>
-                  </th>
-                  <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">ACTION</h6>
                   </th>
                 </tr>
               </thead>
               <tbody>
-              <tr v-for="landing in landing_page" :key="landing.id">
-                <td class="border px-4 py-2">{{ landing.id }}</td>
-                <td class="border px-4 py-2">
-                  <!-- Display Image -->
-                  <img v-if="landing.image" :src="`http://localhost:3000/uploads/landing/${landing.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
-                </td>
-                <td class="border px-4 py-2">{{ landing.title }}</td>
-                <td class="border px-4 py-2">{{ landing.description }}</td>
-                <td class="border px-4 py-2">
-                  <button class="btn btn-primary btn-sm" @click="editLanding(landing)">
-                    Edit
-                  </button>
-                  <button class="btn btn-primary btn-sm" style="background-color: yellow; color: blue;" @click="confirmDelete(landing.id)">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+                <tr v-for="about in aboutUs" :key="about.id">
+                  <td class="border px-4 py-2">{{ about.id }}</td>
+                  <td class="border px-4 py-2">
+                    <img v-if="about.image" :src="`http://localhost:3000/uploads/about/${about.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
+                  </td>
+                  <td class="border px-4 py-2">{{ about.description }}</td>
+                  <td class="border px-4 py-2">
+                    <button class="btn btn-primary btn-sm" @click="editAbout(about)">
+                      Edit
+                    </button>
+                    <button class="btn btn-primary btn-sm" style="background-color: yellow; color: blue;" @click="confirmDelete(about.id)">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -114,7 +105,7 @@
         image: null, // Holds a new uploaded file (if any)
         message: "",
         messageType: "",
-        About_page: [],
+        aboutUs: [], // Stores the fetched "About Us" data
         editingAbout: null,
         showModal: false,
         selectedAboutId: null,
@@ -163,18 +154,18 @@
           this.messageType = "alert-danger";
         }
       },
-      editAbout(About) {
-        this.form.title = About.title;
-        this.form.description = About.description;
-        this.form.image = About.image; 
+      editAbout(about) {
+        this.form.title = about.title;
+        this.form.description = about.description;
+        this.form.image = about.image; 
         this.image = null; 
-        this.editingAbout = About;
+        this.editingAbout = about;
         window.scrollTo({
           top: 0,
           behavior: "smooth", 
         });
       },
-      
+  
       resetForm() {
         this.form.title = "";
         this.form.description = "";
@@ -187,7 +178,7 @@
           const response = await fetch("http://localhost:3000/select_about");
           const data = await response.json();
           if (response.ok) {
-            this.About_page = data;
+            this.aboutUs = data;
           } else {
             console.error("Error fetching About page data");
           }
@@ -196,26 +187,26 @@
         }
       },
       confirmDelete(id) {
-        this.selectedAboutId = id; // Store the ID of the About content to be deleted
-        this.showModal = true; // Show the modal
+        this.selectedAboutId = id;
+        this.showModal = true;
       },
       closeModal() {
-        this.showModal = false; // Close the modal
-        this.selectedAboutId = null; // Clear the selected ID
+        this.showModal = false;
+        this.selectedAboutId = null;
       },
       async deleteAbout(id) {
         try {
           const response = await fetch(`http://localhost:3000/delete_about/${id}`, {
             method: "DELETE",
           });
-  
+
           const data = await response.json();
   
           if (response.ok) {
             this.message = "About content deleted successfully!";
             this.messageType = "alert-success";
-            this.fetchAboutPage(); // Refresh the About page data after deletion
-            this.closeModal(); // Close the modal
+            this.fetchAboutPage();
+            this.closeModal();
           } else {
             this.message = data.message || "Something went wrong!";
             this.messageType = "alert-danger";
@@ -223,7 +214,7 @@
         } catch (error) {
           this.message = "Error deleting About content. Please try again.";
           this.messageType = "alert-danger";
-          this.closeModal(); // Close the modal even if there is an error
+          this.closeModal();
         }
       },
     },
@@ -322,7 +313,7 @@
     .form-group {
       margin-bottom: 15px;
     }
-    
+
     
     </style>
     

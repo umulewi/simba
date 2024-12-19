@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 // Static file serving
 app.use('/uploads/landing', express.static(path.join(__dirname, 'uploads/landing')));
 app.use('/uploads/about', express.static(path.join(__dirname, 'uploads/about')));
+app.use('/uploads/team', express.static(path.join(__dirname, 'uploads/team')));
 
 // Database Connection
 const db = mysql.createConnection({
@@ -44,11 +45,31 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         let uploadDir;
 
-        if (req.originalUrl.includes('/upload/landing')) {
+            //add landing
+        if (req.originalUrl.includes('/upload/landing')) {   
+            uploadDir = path.join(baseUploadDir, 'landing');   
+        } 
+        //update landing
+        else if (req.originalUrl.includes('/update_landing')) {
             uploadDir = path.join(baseUploadDir, 'landing');
-        } else if (req.originalUrl.includes('/upload/about')) {
+        }
+        //add about us
+        else if (req.originalUrl.includes('/upload/about')) {
             uploadDir = path.join(baseUploadDir, 'about');
-        } else {
+        }    
+        //update about
+        else if (req.originalUrl.includes('/update_about')) {
+            uploadDir = path.join(baseUploadDir, 'about');
+        }
+        //add team
+        else if (req.originalUrl.includes('/upload/team')) {   
+            uploadDir = path.join(baseUploadDir, 'team');   
+        } 
+        //update team
+        else if (req.originalUrl.includes('/update_team')) {   
+            uploadDir = path.join(baseUploadDir, 'team');   
+        } 
+        else {
             // Default directory if necessary
             uploadDir = path.join(baseUploadDir, 'default');
         }
@@ -186,8 +207,128 @@ app.get('/select_about', (req, res) => {
     });
 });
 
+//delete about us page
+app.delete('/delete_about/:id', (req, res) => {
+    const { id } = req.params;
+    const query = 'DELETE FROM about_us WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json({ message: 'User deleted successfully' });
+    });
+});
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//update about_us page
+app.put('/update_about/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { title, description } = req.body;
+    let imageName = req.file ? req.file.filename : null;
+    // Only update image if new image is uploaded, otherwise use current image.
+    const query = 'SELECT image FROM about_us WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        
+        const currentImage = result[0]?.image;
+        if (!imageName) {
+            imageName = currentImage; // Keep the old image if no new one is uploaded
+        }
+        const updateQuery = 'UPDATE about_us SET image = ?, description = ? WHERE id = ?';
+        db.query(updateQuery, [imageName,description, id], (err) => {
+            if (err) return res.status(500).json({ message: 'Error updating data' });
+            res.json({ message: 'about us page updated successfully', imagePath: `/uploads/about/${imageName}` });
+        });
+    });
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//add team page
+app.post('/upload/team', upload.single('image'), (req, res) => {
+    const { name, position } = req.body;
+    const imageName = req.file ? req.file.filename : null;
+
+    // Validate input
+    if (!name || !position || !imageName) {
+        return res.status(400).json({ message: 'All fields are required, including the image' });
+    }
+
+    // Insert into the database
+    const query = 'INSERT INTO team (name, position, image) VALUES (?, ?, ?)';
+    db.query(query, [name, position, imageName], (err) => {
+        if (err) {
+            console.error('Error inserting into database:', err);
+            return res.status(500).json({ message: 'Error saving data' });
+        }
+        res.json({ 
+            message: 'Team member added successfully', 
+            imagePath: `/uploads/team/${imageName}` 
+        });
+    });
+});
+
+
+// Fetch team page Route
+app.get('/select_team', (req, res) => {
+    const query = 'SELECT * FROM team';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data from database:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
+
+//delete team
+app.delete("/delete_team/:id", (req, res) => {
+    const { id } = req.params;
+    const query = "DELETE FROM team WHERE id = ?";
+    db.query(query, [id], (err, result) => {
+      if (err) {
+        console.error("Error deleting data:", err);
+        return res.status(500).json({ message: "Database error" });
+      }
+      res.json({ message: "Team member deleted successfully!" });
+    });
+  });
+
+
+//update team
+
+app.put('/update_team/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, position } = req.body;
+    let imageName = req.file ? req.file.filename : null;
+    // Only update image if new image is uploaded, otherwise use current image.
+    const query = 'SELECT image FROM team WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        const currentImage = result[0]?.image;
+        if (!imageName) {
+            imageName = currentImage; // Keep the old image if no new one is uploaded
+        }
+        const updateQuery = 'UPDATE team SET name = ?, position = ?, image = ? WHERE id = ?';
+        db.query(updateQuery, [name, position, imageName, id], (err) => {
+            if (err) return res.status(500).json({ message: 'Error updating data' });
+            res.json({ message: 'team page updated successfully', imagePath: `/uploads/team/${imageName}` });
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Login Route (Existing Implementation)
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
