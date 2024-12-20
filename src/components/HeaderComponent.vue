@@ -2,7 +2,7 @@
   <div class="navbar navbar-expand-lg navbar-light sticky-top">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand" style="background-color: #e6e7e8;">
-        <img src="@/assets/img/logo.png" alt="Logo" class="logo" style="width: 7rem;height: 109rem;">
+        <img src="@/assets/img/logo11111.png" alt="Logo" class="logo" style="width: 7rem;height: 109rem;">
       </router-link>
 
       <button

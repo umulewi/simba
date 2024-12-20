@@ -102,6 +102,17 @@ const storage = multer.diskStorage({
       uploadDir = path.join(baseUploadDir, 'testimonial');   
       } 
 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////blogs 
+      else if (req.originalUrl.includes('/upload/blog')) {   
+        uploadDir = path.join(baseUploadDir, 'blog');   
+        } 
+     //update
+       else if (req.originalUrl.includes('/update_blog')) {   
+       uploadDir = path.join(baseUploadDir, 'blog');   
+       } 
+ 
+      
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
         else {
@@ -581,6 +592,91 @@ app.put('/update_testimonial/:id', upload.single('image'), (req, res) => {
         });
     });
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// BLOGS APIS
+
+//update
+app.post('/upload/blog', upload.fields([
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 }
+  ]), (req, res) => {
+    console.log('Request body:', req.body);
+    console.log('Uploaded files:', req.files);
+  
+    const { name, category, lead_paragraph, content_image1, content_image2, content_image3, closing_paragraph } = req.body;
+  
+    const image1 = req.files['image1'] ? req.files['image1'][0].filename : null;
+    const image2 = req.files['image2'] ? req.files['image2'][0].filename : null;
+    const image3 = req.files['image3'] ? req.files['image3'][0].filename : null;
+  
+    if (!name || !category || !lead_paragraph || !content_image1 || !content_image2 || !content_image3 || !closing_paragraph || !image1 || !image2 || !image3) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+    const query = `INSERT INTO blogs (name, category, lead_paragraph, content_image1, content_image2, content_image3, closing_paragraph, image1, image2, image3)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  
+    db.query(query, [name, category, lead_paragraph, content_image1, content_image2, content_image3, closing_paragraph, image1, image2, image3], (err, result) => {
+      if (err) {
+        // Log the database error and send a response to the client
+        console.error('Database error:', err);
+        return res.status(500).json({ message: 'Faileddddd to save blog content.', error: err.message });
+      }
+      // Success response
+      res.status(200).json({ message: 'Blog saved successfully!' });
+    });
+  });
+
+//////
+app.get('/select_blog', (req, res) => {
+    const query = 'SELECT * FROM blogs';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data from database:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
+
+
+ //delete
+ app.delete("/delete_blog/:id", (req, res) => {
+    const { id } = req.params;
+    const query = "DELETE FROM blogs WHERE id = ?";
+    db.query(query, [id], (err, result) => {
+      if (err) {
+        console.error("Error deleting data:", err);
+        return res.status(500).json({ message: "Database error" });
+      }
+      res.json({ message: "testimonial content deleted successfully!" });
+    });
+  });
+
+
+  //update
+  app.put('/update_blog/:id', upload.fields([
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 },
+  ]), (req, res) => {
+    const blogId = req.params.id;
+    const { name, category, lead_paragraph, content_image1, content_image2, content_image3, closing_paragraph } = req.body;
+  
+    const image1 = req.files['image1'] ? req.files['image1'][0].filename : content_image1;
+    const image2 = req.files['image2'] ? req.files['image2'][0].filename : content_image2;
+    const image3 = req.files['image3'] ? req.files['image3'][0].filename : content_image3;
+  
+    const query = `UPDATE blogs SET name = ?, category = ?, lead_paragraph = ?, content_image1 = ?, content_image2 = ?, content_image3 = ?, closing_paragraph = ? WHERE id = ?`;
+  
+    db.query(query, [name, category, lead_paragraph, image1, image2, image3, closing_paragraph, blogId], (err, result) => {
+      if (err) {
+        console.error('Error updating blog: ', err);
+        return res.status(500).json({ message: 'An error occurred while updating the blog.' });
+      }
+      res.status(200).json({ message: 'Blog updated successfully.' });
+    });
+  });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Login Route (Existing Implementation)

@@ -6,7 +6,7 @@
           <header class="mb-4">
             <address class="d-flex align-items-center mb-4">
               <div class="d-flex align-items-center">
-                <img class="me-3 rounded-circle" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos" style="width: 64px; height: 64px;">
+                
                 <div>
                   <a href="#" rel="author" class="text-dark fw-bold fs-4">Simba Stationery</a>
                   <p class="mb-0 text-muted">Your one-stop shop for all stationery needs</p>

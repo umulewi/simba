@@ -16,8 +16,9 @@ import LandingPage from './components/dashboard/pages/LandingPage.vue';
 import AboutComponent from './components/dashboard/pages/AboutComponent.vue';
 import TeamComponent from './components/dashboard/pages/TeamComponent.vue';
 import ProductComponent from './components/dashboard/pages/ProductComponent.vue';
-import OutletComponent from './components/dashboard/pages/OutletComponent.vue'
-import TestimonialsComponent from './components/dashboard/pages/TestimonialComponent.vue'
+import OutletComponent from './components/dashboard/pages/OutletComponent.vue';
+import TestimonialsComponent from './components/dashboard/pages/TestimonialComponent.vue';
+import BlogComponent from './components/dashboard/pages/BlogComponent.vue';
 
 // Components for login
 import LoginComponent from './components/dashboard/LoginComponent.vue';
@@ -92,6 +93,16 @@ const routes = [
   { 
     path: '/dashboard/testimonial', 
     component: TestimonialsComponent, 
+    meta: { 
+      title: 'Testimonials - Simba Stationery', 
+      noHeaderFooter: true,
+      requiresAuth: true 
+    }
+  },
+
+  { 
+    path: '/dashboard/Blog', 
+    component: BlogComponent, 
     meta: { 
       title: 'Testimonials - Simba Stationery', 
       noHeaderFooter: true,
