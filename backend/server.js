@@ -23,6 +23,7 @@ app.use('/uploads/about', express.static(path.join(__dirname, 'uploads/about')))
 app.use('/uploads/team', express.static(path.join(__dirname, 'uploads/team')));
 app.use('/uploads/product', express.static(path.join(__dirname, 'uploads/product')));
 app.use('/uploads/outlet', express.static(path.join(__dirname, 'uploads/outlet')));
+app.use('/uploads/testimonial', express.static(path.join(__dirname, 'uploads/testimonial')));
 
 // Database Connection
 const db = mysql.createConnection({
@@ -74,21 +75,33 @@ const storage = multer.diskStorage({
             uploadDir = path.join(baseUploadDir, 'team');   
         } 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      else if (req.originalUrl.includes('/upload/product')) {   
+        //add product
+        else if (req.originalUrl.includes('/upload/product')) {   
         uploadDir = path.join(baseUploadDir, 'product');   
-    } 
-    //update
-    else if (req.originalUrl.includes('/update_product')) {   
+        } 
+        //update product
+        else if (req.originalUrl.includes('/update_product')) {   
         uploadDir = path.join(baseUploadDir, 'product');   
-    } 
+        } 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    else if (req.originalUrl.includes('/upload/outlet')) {   
+        //add outlet
+        else if (req.originalUrl.includes('/upload/outlet')) {   
         uploadDir = path.join(baseUploadDir, 'outlet');   
-    } 
+        } 
+        //update
+        else if (req.originalUrl.includes('/update_outlet')) {   
+        uploadDir = path.join(baseUploadDir, 'outlet');   
+       } 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//testimonial
+      else if (req.originalUrl.includes('/upload/testimonial')) {   
+       uploadDir = path.join(baseUploadDir, 'testimonial');   
+       } 
     //update
-    else if (req.originalUrl.includes('/update_outlet')) {   
-        uploadDir = path.join(baseUploadDir, 'outlet');   
-    } 
+      else if (req.originalUrl.includes('/update_testimonial')) {   
+      uploadDir = path.join(baseUploadDir, 'testimonial');   
+      } 
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
         else {
@@ -503,6 +516,71 @@ app.put('/update_outlet/:id', upload.single('image'), (req, res) => {
     });
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// TESTIMONIAL APIS
+
+///insert  testimonial
+app.post('/upload/testimonial', upload.single('image'), (req, res) => {
+    const { name, position, description, topic } = req.body;
+    const image = req.file ? req.file.filename : null;
+    if (!name || !position || !topic || !description || !image) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+    const query = `INSERT INTO testimonials (name, position, topic, description, image) VALUES (?, ?, ?, ?, ?)`;
+    db.query(query, [name, position, description, topic, image], (err, result) => {
+      if (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ message: 'Failed to save testimonial.' });
+      }
+      res.status(200).json({ message: 'Testimonial saved successfully!' });
+    });
+  });
+
+    ///select
+    app.get('/select_testimonial', (req, res) => {
+        const query = 'SELECT * FROM testimonials';
+        db.query(query, (err, results) => {
+            if (err) {
+                console.error('Error fetching data from database:', err);
+                return res.status(500).json({ message: 'Database error' });
+            }
+            res.json(results);
+        });
+    });
+  
+
+    //delete
+    app.delete("/delete_testimonial/:id", (req, res) => {
+        const { id } = req.params;
+        const query = "DELETE FROM testimonials WHERE id = ?";
+        db.query(query, [id], (err, result) => {
+          if (err) {
+            console.error("Error deleting data:", err);
+            return res.status(500).json({ message: "Database error" });
+          }
+          res.json({ message: "testimonial content deleted successfully!" });
+        });
+      });
+
+//update
+app.put('/update_testimonial/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, position, description, topic } = req.body;
+    let imageName = req.file ? req.file.filename : null;
+    
+    const query = 'SELECT image FROM testimonials WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        const currentImage = result[0]?.image;
+        if (!imageName) {
+            imageName = currentImage; 
+        }
+        const updateQuery = 'UPDATE testimonials SET name = ?, position = ?, topic = ?, description = ?, image = ? WHERE id = ?';
+        db.query(updateQuery, [name, position, description, topic, imageName, id], (err) => {
+            if (err) return res.status(500).json({ message: 'Error updating data' });
+            res.json({ message: 'outlet content updated successfully', imagePath: `/uploads/testimonial/${imageName}` });
+        });
+    });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Login Route (Existing Implementation)

@@ -17,6 +17,7 @@ import AboutComponent from './components/dashboard/pages/AboutComponent.vue';
 import TeamComponent from './components/dashboard/pages/TeamComponent.vue';
 import ProductComponent from './components/dashboard/pages/ProductComponent.vue';
 import OutletComponent from './components/dashboard/pages/OutletComponent.vue'
+import TestimonialsComponent from './components/dashboard/pages/TestimonialComponent.vue'
 
 // Components for login
 import LoginComponent from './components/dashboard/LoginComponent.vue';
@@ -83,6 +84,16 @@ const routes = [
     component: OutletComponent, 
     meta: { 
       title: 'Outlets - Simba Stationery', 
+      noHeaderFooter: true,
+      requiresAuth: true 
+    }
+  },
+
+  { 
+    path: '/dashboard/testimonial', 
+    component: TestimonialsComponent, 
+    meta: { 
+      title: 'Testimonials - Simba Stationery', 
       noHeaderFooter: true,
       requiresAuth: true 
     }
