@@ -20,7 +20,7 @@
               <input type="file" @change="handleFileUpload" class="form-control" id="image" />
               <div v-if="editingAbout && form.image && !image">
                 <p>Current Image:</p>
-                <img :src="`http://localhost:3000/uploads/about/${form.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
+                <img :src="`${globalVariable}/uploads/about/${form.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
               </div>
             </div>
   
@@ -64,7 +64,7 @@
                     </td>
                   <td class="border px-4 py-2">{{ about.id }}</td>
                   <td class="border px-4 py-2">
-                    <img v-if="about.image" :src="`http://localhost:3000/uploads/about/${about.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
+                    <img v-if="about.image" :src="`${globalVariable}/uploads/about/${about.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
                   </td>
                   <td class="border px-4 py-2">{{ about.description }}</td>
                   <td class="border px-4 py-2">
@@ -96,10 +96,14 @@
   </template>
   
   <script>
+  import { globalVariable } from "@/global";
   import IndexComponent from "./IndexComponent.vue";
   
   export default {
     name: "AboutComponent",
+    setup() {
+    return { globalVariable };
+  },
     components: {
       IndexComponent,
     },
@@ -135,8 +139,8 @@
         }
   
         const url = this.editingAbout
-          ? `http://localhost:3000/update_about/${this.editingAbout.id}`
-          : "http://localhost:3000/upload/about";
+          ? `${globalVariable}/update_about/${this.editingAbout.id}`
+          : `${globalVariable}/upload/about`;
   
         try {
           const response = await fetch(url, {
@@ -183,7 +187,7 @@
       },
       async fetchAboutPage() {
         try {
-          const response = await fetch("http://localhost:3000/select_about");
+          const response = await fetch(`${globalVariable}/select_about`);
           const data = await response.json();
           if (response.ok) {
             this.aboutUs = data;
@@ -204,7 +208,7 @@
       },
       async deleteAbout(id) {
         try {
-          const response = await fetch(`http://localhost:3000/delete_about/${id}`, {
+          const response = await fetch(`${globalVariable}/delete_about/${id}`, {
             method: "DELETE",
           });
 

@@ -26,7 +26,7 @@
               <input type="file" @change="handleFileUpload" class="form-control" id="image" :required="!editingoutlet" />
               <div v-if="editingoutlet && editingoutlet.image && !image">
                 <p>Current Image:</p>
-                <img :src="`http://localhost:3000/uploads/outlet/${editingoutlet.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
+                <img :src="`${globalVariable}/uploads/outlet/${editingoutlet.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
               </div>
             </div>
             <div class="col-md-6">
@@ -77,7 +77,7 @@
                   </h6>
                 </td>
                 <td>
-                  <img v-if="outlet.image" :src="`http://localhost:3000/uploads/outlet/${outlet.image}`" alt="outlets image" style="width: 100px; height: auto; border-radius: 5px;" />
+                  <img v-if="outlet.image" :src="`${globalVariable}/uploads/outlet/${outlet.image}`" alt="outlets image" style="width: 100px; height: auto; border-radius: 5px;" />
                 </td>
                 <td>{{ outlet.name }}</td>
                 <td>{{ outlet.description }}</td>
@@ -108,10 +108,14 @@
   </template>
   
   <script>
+    import { globalVariable } from "@/global";
   import IndexComponent from "./IndexComponent.vue";
   
   export default {
     name: "AboutComponent",
+    setup() {
+    return { globalVariable };
+     },
     components: {
       IndexComponent,
     },
@@ -137,7 +141,7 @@
     methods: {
       async fetchoutlets() {
         try {
-          const response = await fetch("http://localhost:3000/select_outlet");
+          const response = await fetch(`${globalVariable}/select_outlet`);
           this.outletUs = await response.json();
         } catch (error) {
           console.error("Error fetching outlet data:", error);
@@ -159,8 +163,8 @@
         }
   
         const url = this.editingoutlet
-          ? `http://localhost:3000/update_outlet/${this.editingoutlet.id}`
-          : "http://localhost:3000/upload/outlet";
+          ? `${globalVariable}/update_outlet/${this.editingoutlet.id}`
+          : `${globalVariable}/upload/outlet`;
   
         const method = this.editingoutlet ? "PUT" : "POST";
   
@@ -208,7 +212,7 @@
       async deleteAbout(id) {
         try {
           const response = await fetch(
-            `http://localhost:3000/delete_outlet/${id}`,
+            `${globalVariable}/delete_outlet/${id}`,
             {
               method: "DELETE",
             }

@@ -6,6 +6,7 @@
         <p class="subtitle">
           Our team is composed of skilled professionals dedicated to driving innovation and delivering excellence in every project we undertake. Get to know the people who make it all happen.
         </p>
+        <p> {{ globalVariable }}</p>
       </div>
       <div class="row g-4">
         <div v-for="member in teamMembers" :key="member.id" class="col-md-6 col-lg-4">
@@ -36,8 +37,13 @@
 </template>
 
 <script>
+
+import { globalVariable } from '@/global';
 export default {
   name: "OurTeam",
+  setup() {
+    return { globalVariable };
+  },
   data() {
     return {
       teamMembers: [

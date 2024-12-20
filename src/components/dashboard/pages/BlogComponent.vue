@@ -33,7 +33,7 @@
               <input type="file" @change="handleFileChange1" class="form-control mt-2" id="image1" :required="!editingblog" />
               <div v-if="editingblog && editingblog.image1 && !image1">
                 <p>Current Image:</p>
-                <img :src="`http://localhost:3000/uploads/blog/${editingblog.image1}`" alt="Current Image 1" style="width: 100px; height: auto; border-radius: 5px;" />
+                <img :src="`${globalVariable}/uploads/blog/${editingblog.image1}`" alt="Current Image 1" style="width: 100px; height: auto; border-radius: 5px;" />
               </div>
             </div>
             <div class="col-md-6">
@@ -42,7 +42,7 @@
               <input type="file" @change="handleFileChange2" class="form-control mt-2" id="image2" :required="!editingblog" />
               <div v-if="editingblog && editingblog.image2 && !image2">
                 <p>Current Image:</p>
-                <img :src="`http://localhost:3000/uploads/blog/${editingblog.image2}`" alt="Current Image 2" style="width: 100px; height: auto; border-radius: 5px;" />
+                <img :src="`${globalVariable}/uploads/blog/${editingblog.image2}`" alt="Current Image 2" style="width: 100px; height: auto; border-radius: 5px;" />
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
               <input type="file" @change="handleFileChange3" class="form-control mt-2" id="image3" :required="!editingblog" />
               <div v-if="editingblog && editingblog.image3 && !image3">
                 <p>Current Image:</p>
-                <img :src="`http://localhost:3000/uploads/blog/${editingblog.image3}`" alt="Current Image 3" style="width: 100px; height: auto; border-radius: 5px;" />
+                <img :src="`${globalVariable}/uploads/blog/${editingblog.image3}`" alt="Current Image 3" style="width: 100px; height: auto; border-radius: 5px;" />
               </div>
             </div>
           </div>
@@ -105,15 +105,15 @@
                 <td>{{ blog.category }}</td>
                 <td>{{ blog.lead_paragraph }}</td>
                 <td>
-                  <img v-if="blog.image1" :src="`http://localhost:3000/uploads/blog/${blog.image1}`" alt="blogs image 1" style="width: 100px; height: auto; border-radius: 5px;" />
+                  <img v-if="blog.image1" :src="`${globalVariable}/uploads/blog/${blog.image1}`" alt="blogs image 1" style="width: 100px; height: auto; border-radius: 5px;" />
                 </td>
                 <td>{{ blog.content_image1 }}</td>
                 <td>
-                  <img v-if="blog.image1" :src="`http://localhost:3000/uploads/blog/${blog.image2}`" alt="blogs image 1" style="width: 100px; height: auto; border-radius: 5px;" />
+                  <img v-if="blog.image1" :src="`${globalVariable}/uploads/blog/${blog.image2}`" alt="blogs image 1" style="width: 100px; height: auto; border-radius: 5px;" />
                 </td>
                 <td>{{ blog.content_image2 }}</td>
                 <td>
-                  <img v-if="blog.image1" :src="`http://localhost:3000/uploads/blog/${blog.image3}`" alt="blogs image 1" style="width: 100px; height: auto; border-radius: 5px;" />
+                  <img v-if="blog.image1" :src="`${globalVariable}/uploads/blog/${blog.image3}`" alt="blogs image 1" style="width: 100px; height: auto; border-radius: 5px;" />
                 </td>
                 <td>{{ blog.content_image2 }}</td>
                 <td>{{ blog.closing_paragraph }}</td>
@@ -143,10 +143,14 @@
   </template>
   
   <script>
+   import { globalVariable } from "@/global";
   import IndexComponent from "./IndexComponent.vue";
   
   export default {
     name: "AboutComponent",
+    setup() {
+    return { globalVariable };
+     },
     components: {
       IndexComponent,
     },
@@ -176,7 +180,7 @@
     methods: {
       async fetchblogs() {
         try {
-          const response = await fetch("http://localhost:3000/select_blog");
+          const response = await fetch(`${globalVariable}/select_blog`);
           this.blogUs = await response.json();
         } catch (error) {
           console.error("Error fetching blog data:", error);
@@ -212,8 +216,8 @@
         }
   
         const url = this.editingblog
-          ? `http://localhost:3000/update_blog/${this.editingblog.id}`
-          : "http://localhost:3000/upload/blog";
+          ? `${globalVariable}/update_blog/${this.editingblog.id}`
+          : `${globalVariable}/upload/blog`;
   
         const method = this.editingblog ? "PUT" : "POST";
   
@@ -266,7 +270,7 @@
       },
       async deleteAbout(blogId) {
         try {
-          const response = await fetch(`http://localhost:3000/delete_blog/${blogId}`, {
+          const response = await fetch(`${globalVariable}/delete_blog/${blogId}`, {
             method: "DELETE",
           });
           if (response.ok) {

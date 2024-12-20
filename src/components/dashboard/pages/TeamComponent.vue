@@ -14,6 +14,7 @@
     <!-- Main Wrapper -->
     <div class="body-wrapper">
       <h5 class="card-title fw-semibold mb-4">{{ editingTeam ? "Update Team Content" : "Add Team Content" }}</h5>
+      <p>{{ globalVariable }}</p>
       <form @submit.prevent="handleSubmit">
         <div v-if="message" :class="['alert', messageType]" role="alert">
           {{ message }}
@@ -37,13 +38,14 @@
             id="image"
             :required="!editingTeam"
           />
-          <div v-if="editingTeam && editingTeam.imagwe && !image">
+          <div v-if="editingTeam && editingTeam.image && !image">
             <p>Current Image:</p>
             <img
-              :src="`http://localhost:3000/uploads/team/${editingTeam.image}`"
+              :src="`${globalVariable}/uploads/team/${editingTeam.image}`"
               alt="Current Image"
               style="width: 100px; height: auto; border-radius: 5px;"
             />
+            <!-- return `${globalVariable}/uploads/team/${this.editingTeam.image}`; -->
           </div>
         </div>
         <div class="form-group">
@@ -89,7 +91,7 @@
               <td>
                 <img
                   v-if="team.image"
-                  :src="`http://localhost:3000/uploads/team/${team.image}`"
+                  :src="`${globalVariable}/uploads/team/${team.image}`"
                   alt="Landing Image"
                   style="width: 100px; height: auto; border-radius: 5px;"
                 />
@@ -137,10 +139,15 @@
 </template>
 
 <script>
+import { globalVariable } from "@/global";
+// import { globalVariable } from '@/global';
 import IndexComponent from "./IndexComponent.vue";
 
 export default {
   name: "AboutComponent",
+  setup() {
+    return { globalVariable };
+  },
   components: {
     IndexComponent,
   },
@@ -163,7 +170,8 @@ export default {
   methods: {
     async fetchTeams() {
       try {
-        const response = await fetch("http://localhost:3000/select_team");
+        
+        const response = await fetch(`${globalVariable}/select_team`);
         this.TeamUs = await response.json();
       } catch (error) {
         console.error("Error fetching team data:", error);
@@ -181,8 +189,8 @@ export default {
       }
 
       const url = this.editingTeam
-        ? `http://localhost:3000/update_team/${this.editingTeam.id}`
-        : "http://localhost:3000/upload/team";
+        ? `${globalVariable}/update_team/${this.editingTeam.id}`
+        : `${globalVariable}/upload/team`;
 
       const method = this.editingTeam ? "PUT" : "POST";
 
@@ -227,7 +235,7 @@ export default {
     async deleteAbout(id) {
       try {
         const response = await fetch(
-          `http://localhost:3000/delete_team/${id}`,
+          `${globalVariable}/delete_team/${id}`,
           {
             method: "DELETE",
           }

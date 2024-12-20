@@ -65,7 +65,6 @@ export default {
         { name: "Our Outlets", link: "/dashboard/outlet", icon: "ti ti-users" },
         { name: "Testimonials", link: "/dashboard/testimonial", icon: "ti ti-users" },
         { name: "blog", link: "/dashboard/blog", icon: "ti ti-users" },
-        { name: "View Trainings", link: "/view_trainings", icon: "ti ti-device-desktop-analytics" },
         { name: "Register", link: "/register_user", icon: "ti ti-user-plus" },
       ],
     };

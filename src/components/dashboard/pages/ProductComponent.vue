@@ -40,7 +40,7 @@
             <div v-if="editingTeam && editingTeam.image && !image">
               <p>Current Image:</p>
               <img
-                :src="`http://localhost:3000/uploads/product/${editingTeam.image}`"
+                :src="`${globalVariable}/uploads/product/${editingTeam.image}`"
                 alt="Current Image"
                 style="width: 100px; height: auto; border-radius: 5px;"
               />
@@ -89,7 +89,7 @@
                 <td>
                   <img
                     v-if="team.image"
-                    :src="`http://localhost:3000/uploads/product/${team.image}`"
+                    :src="`${globalVariable}/uploads/product/${team.image}`"
                     alt="Landing Image"
                     style="width: 100px; height: auto; border-radius: 5px;"
                   />
@@ -137,10 +137,14 @@
   </template>
   
   <script>
+  import { globalVariable } from "@/global";
   import IndexComponent from "./IndexComponent.vue";
   
   export default {
     name: "AboutComponent",
+    setup() {
+    return { globalVariable };
+     },
     components: {
       IndexComponent,
     },
@@ -163,7 +167,7 @@
     methods: {
       async fetchTeams() {
         try {
-          const response = await fetch("http://localhost:3000/select_product");
+          const response = await fetch(`${globalVariable}/select_product`);
           this.TeamUs = await response.json();
         } catch (error) {
           console.error("Error fetching team data:", error);
@@ -181,8 +185,8 @@
         }
   
         const url = this.editingTeam
-          ? `http://localhost:3000/update_product/${this.editingTeam.id}`
-          : "http://localhost:3000/upload/product";
+          ? `${globalVariable}/update_product/${this.editingTeam.id}`
+          : `${globalVariable}/upload/product`;
   
         const method = this.editingTeam ? "PUT" : "POST";
   
@@ -227,7 +231,7 @@
       async deleteAbout(id) {
         try {
           const response = await fetch(
-            `http://localhost:3000/delete_product/${id}`,
+            `${globalVariable}/delete_product/${id}`,
             {
               method: "DELETE",
             }

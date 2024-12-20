@@ -25,7 +25,7 @@
             <input type="file" @change="handleFileUpload" class="form-control" id="image" />
             <div v-if="editingLanding && form.image && !image">
               <p>Current Image:</p>
-              <img :src="`http://localhost:3000/uploads/landing/${form.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
+              <img :src="`${globalVariable}/uploads/landing/${form.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
             </div>
           </div>
 
@@ -75,7 +75,7 @@
                 <td class="border px-4 py-2">{{ landing.id }}</td>
                 <td class="border px-4 py-2">
                   <!-- Display Image -->
-                  <img v-if="landing.image" :src="`http://localhost:3000/uploads/landing/${landing.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
+                  <img v-if="landing.image" :src="`${globalVariable}/uploads/landing/${landing.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
                 </td>
                 <td class="border px-4 py-2">{{ landing.title }}</td>
                 <td class="border px-4 py-2">{{ landing.description }}</td>
@@ -108,10 +108,14 @@
 </template>
 
 <script>
+import { globalVariable } from "@/global";
 import IndexComponent from "./IndexComponent.vue";
 
 export default {
   name: "LandingComponent",
+  setup() {
+    return { globalVariable };
+  },
   components: {
     IndexComponent,
   },
@@ -147,8 +151,8 @@ export default {
       }
 
       const url = this.editingLanding
-        ? `http://localhost:3000/update_landing/${this.editingLanding.id}`
-        : "http://localhost:3000/upload/landing";
+        ? `${globalVariable}/update_landing/${this.editingLanding.id}`
+        : `${globalVariable}/upload/landing`;
 
       try {
         const response = await fetch(url, {
@@ -195,7 +199,7 @@ export default {
     },
     async fetchLandingPage() {
       try {
-        const response = await fetch("http://localhost:3000/select_landing");
+        const response = await fetch(`${globalVariable}/select_landing`);
         const data = await response.json();
         if (response.ok) {
           this.landing_page = data;
@@ -216,7 +220,7 @@ export default {
     },
     async deleteLanding(id) {
       try {
-        const response = await fetch(`http://localhost:3000/delete_landing/${id}`, {
+        const response = await fetch(`${globalVariable}/delete_landing/${id}`, {
           method: "DELETE",
         });
 

@@ -20,7 +20,7 @@
               <input type="file" @change="handleFileUpload" class="form-control" id="image" :required="!editingtestimonial" />
               <div v-if="editingtestimonial && editingtestimonial.image && !image">
                 <p>Current Image:</p>
-                <img :src="`http://localhost:3000/uploads/testimonial/${editingtestimonial.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
+                <img :src="`${globalVariable}/uploads/testimonial/${editingtestimonial.image}`" alt="Current Image" style="width: 100px; height: auto; border-radius: 5px;" />
               </div>
             </div>
             <div class="col-md-6">
@@ -70,7 +70,7 @@
                   </h6>
                 </td>
                 <td>
-                  <img v-if="testimonial.image" :src="`http://localhost:3000/uploads/testimonial/${testimonial.image}`" alt="testimonials image" style="width: 100px; height: auto; border-radius: 5px;" />
+                  <img v-if="testimonial.image" :src="`${globalVariable}/uploads/testimonial/${testimonial.image}`" alt="testimonials image" style="width: 100px; height: auto; border-radius: 5px;" />
                 </td>
                 <td>{{ testimonial.name }}</td>
                 <td>{{ testimonial.position }}</td>
@@ -100,10 +100,14 @@
   </template>
   
   <script>
+  import { globalVariable } from "@/global";
   import IndexComponent from "./IndexComponent.vue";
   
   export default {
     name: "AboutComponent",
+    setup() {
+    return { globalVariable };
+     },
     components: {
       IndexComponent,
     },
@@ -128,7 +132,7 @@
     methods: {
       async fetchtestimonials() {
         try {
-          const response = await fetch("http://localhost:3000/select_testimonial");
+          const response = await fetch(`${globalVariable}/select_testimonial`);
           this.testimonialUs = await response.json();
         } catch (error) {
           console.error("Error fetching testimonial data:", error);
@@ -149,8 +153,8 @@
         }
   
         const url = this.editingtestimonial
-          ? `http://localhost:3000/update_testimonial/${this.editingtestimonial.id}`
-          : "http://localhost:3000/upload/testimonial";
+          ? `${globalVariable}/update_testimonial/${this.editingtestimonial.id}`
+          : `${globalVariable}/upload/testimonial`;
   
         const method = this.editingtestimonial ? "PUT" : "POST";
   
@@ -197,7 +201,7 @@
       async deleteAbout(id) {
         try {
           const response = await fetch(
-            `http://localhost:3000/delete_testimonial/${id}`,
+            `${globalVariable}/delete_testimonial/${id}`,
             {
               method: "DELETE",
             }
