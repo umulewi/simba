@@ -22,6 +22,7 @@ app.use('/uploads/landing', express.static(path.join(__dirname, 'uploads/landing
 app.use('/uploads/about', express.static(path.join(__dirname, 'uploads/about')));
 app.use('/uploads/team', express.static(path.join(__dirname, 'uploads/team')));
 app.use('/uploads/product', express.static(path.join(__dirname, 'uploads/product')));
+app.use('/uploads/outlet', express.static(path.join(__dirname, 'uploads/outlet')));
 
 // Database Connection
 const db = mysql.createConnection({
@@ -79,6 +80,14 @@ const storage = multer.diskStorage({
     //update
     else if (req.originalUrl.includes('/update_product')) {   
         uploadDir = path.join(baseUploadDir, 'product');   
+    } 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if (req.originalUrl.includes('/upload/outlet')) {   
+        uploadDir = path.join(baseUploadDir, 'outlet');   
+    } 
+    //update
+    else if (req.originalUrl.includes('/update_outlet')) {   
+        uploadDir = path.join(baseUploadDir, 'outlet');   
     } 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -332,7 +341,7 @@ app.put('/update_team/:id', upload.single('image'), (req, res) => {
     });
 });
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////PRODUCT ROUTES
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////PRODUCT ROUTES
 
 //add  new producr
 app.post('/upload/product', upload.single('image'), (req, res) => {
@@ -402,9 +411,97 @@ app.put('/update_product/:id', upload.single('image'), (req, res) => {
     });
 });
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////OUTLETS APIS
+
+/// add new outlets
+
+// app.post('/upload/outlet', upload.single('image'), (req, res) => {
+//     const { name, description,working_days,working_hours,telephone } = req.body;
+//     const imageName = req.file ? req.file.filename : null;
+//     if (!name || !description || !working_days || !working_hours || !telephone || !imageName) {
+//         return res.status(400).json({ message: 'All fields are required, including the image' });
+//     }
+//     const query = 'INSERT INTO outlets (name, description,working_days,working_hours,telephone, image) VALUES (?, ?, ?, ?, ?, ?)';
+//     db.query(query, [name,description,working_days,working_hours,telephone,imageName], (err) => {
+//         if (err) {
+//             console.error('Error inserting into database:', err);
+//             return res.status(500).json({ message: 'Error saving data' });
+//         }
+//         res.json({ 
+//             message: 'New product added successfully', 
+//             imagePath: `/uploads/outlet/${imageName}` 
+//         });
+//     });
+// });
+
+app.post('/upload/outlet', upload.single('image'), (req, res) => {
+    const { name, description, working_hours, working_days, telephone } = req.body;
+    const image = req.file ? req.file.filename : null;
+    if (!name || !description || !working_hours || !working_days || !telephone || !image) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+    const query = `INSERT INTO outlets (name, description, working_hours, working_days, telephone, image)
+                   VALUES (?, ?, ?, ?, ?, ?)`;
+    db.query(query, [name, description, working_hours, working_days, telephone, image], (err, result) => {
+      if (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ message: 'Failed to save outlet.' });
+      }
+      res.status(200).json({ message: 'Outlet saved successfully!' });
+    });
+  });
+  
+  // Serve static files (for images)
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
+  ///select
+  app.get('/select_outlet', (req, res) => {
+    const query = 'SELECT * FROM outlets';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data from database:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
 
+
+///delete 
+
+app.delete("/delete_outlet/:id", (req, res) => {
+    const { id } = req.params;
+    const query = "DELETE FROM outlets WHERE id = ?";
+    db.query(query, [id], (err, result) => {
+      if (err) {
+        console.error("Error deleting data:", err);
+        return res.status(500).json({ message: "Database error" });
+      }
+      res.json({ message: "Outlet content deleted successfully!" });
+    });
+  });
+
+//update
+app.put('/update_outlet/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, description,working_days,working_hours,telephone } = req.body;
+    let imageName = req.file ? req.file.filename : null;
+    
+    const query = 'SELECT image FROM outlets WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) return res.status(500).json({ message: 'Database error' });
+        const currentImage = result[0]?.image;
+        if (!imageName) {
+            imageName = currentImage; 
+        }
+        const updateQuery = 'UPDATE outlets SET name = ?, description = ?, working_days = ?,working_hours = ?,telephone = ?, image = ? WHERE id = ?';
+        db.query(updateQuery, [name, description,working_days,working_hours,telephone, imageName, id], (err) => {
+            if (err) return res.status(500).json({ message: 'Error updating data' });
+            res.json({ message: 'outlet content updated successfully', imagePath: `/uploads/outlet/${imageName}` });
+        });
+    });
+});
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

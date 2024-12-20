@@ -37,10 +37,10 @@
             id="image"
             :required="!editingTeam"
           />
-          <div v-if="editingTeam && editingTeam.image && !image">
+          <div v-if="editingTeam && editingTeam.imagwe && !image">
             <p>Current Image:</p>
             <img
-              :src="`http://localhost:3000/uploads/product/${editingTeam.image}`"
+              :src="`http://localhost:3000/uploads/team/${editingTeam.image}`"
               alt="Current Image"
               style="width: 100px; height: auto; border-radius: 5px;"
             />
@@ -89,7 +89,7 @@
               <td>
                 <img
                   v-if="team.image"
-                  :src="`http://localhost:3000/uploads/product/${team.image}`"
+                  :src="`http://localhost:3000/uploads/team/${team.image}`"
                   alt="Landing Image"
                   style="width: 100px; height: auto; border-radius: 5px;"
                 />

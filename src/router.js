@@ -16,6 +16,7 @@ import LandingPage from './components/dashboard/pages/LandingPage.vue';
 import AboutComponent from './components/dashboard/pages/AboutComponent.vue';
 import TeamComponent from './components/dashboard/pages/TeamComponent.vue';
 import ProductComponent from './components/dashboard/pages/ProductComponent.vue';
+import OutletComponent from './components/dashboard/pages/OutletComponent.vue'
 
 // Components for login
 import LoginComponent from './components/dashboard/LoginComponent.vue';
@@ -72,6 +73,16 @@ const routes = [
     component: ProductComponent, 
     meta: { 
       title: 'product - Simba Stationery', 
+      noHeaderFooter: true,
+      requiresAuth: true 
+    }
+  },
+
+  { 
+    path: '/dashboard/outlet', 
+    component: OutletComponent, 
+    meta: { 
+      title: 'Outlets - Simba Stationery', 
       noHeaderFooter: true,
       requiresAuth: true 
     }
