@@ -87,7 +87,7 @@ export default {
 
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <div class="form-check">
-                    <a class="text fw-bold" href="forgot-password" style="color:#003966">Forgot Password?</a>
+                    <a class="text fw-bold" href="forgot-password" style="color:#003966"><!--Forgot Password?--></a>
                 </div>
                 <a class="" href="./" style="color:#003966"><i class="ti ti-arrow-back"></i>Go back </a>
             </div>

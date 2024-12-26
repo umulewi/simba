@@ -13,7 +13,8 @@ import NotFoundPage from './components/NotFoundPage.vue';
 
 
 // Components for dashboard
-import IndexComponent from './components/dashboard/pages/IndexComponent.vue'; 
+import WelcomePage from './components/dashboard/pages/WelcomePage.vue';
+
 import LandingPage from './components/dashboard/pages/LandingPage.vue';
 import AboutComponent from './components/dashboard/pages/AboutComponent.vue';
 import TeamComponent from './components/dashboard/pages/TeamComponent.vue';
@@ -21,9 +22,11 @@ import ProductComponent from './components/dashboard/pages/ProductComponent.vue'
 import OutletComponent from './components/dashboard/pages/OutletComponent.vue';
 import TestimonialsComponent from './components/dashboard/pages/TestimonialComponent.vue';
 import BlogComponent from './components/dashboard/pages/BlogComponent.vue';
+import ChangePassword from './components/dashboard/pages/ChangePassword.vue';
 
 // Components for login
 import LoginComponent from './components/dashboard/LoginComponent.vue';
+import ForgotPassword from './components/dashboard/ForgotPassword.vue';
 
 const routes = [
   { path: '/', component: HomePage, meta: { title: 'Home - Simba Stationery' } },
@@ -43,15 +46,17 @@ const routes = [
 
 
   // Protected routes for dashboard
+  
   { 
     path: '/dashboard/', 
-    component: IndexComponent, 
+    component: WelcomePage, 
     meta: { 
       title: 'Dashboard - Simba Stationery', 
       noHeaderFooter: true,
-      requiresAuth: true // This route is protected
+      requiresAuth: true 
     }
   },
+
   { 
     path: '/dashboard/Landing', 
     component: LandingPage, 
@@ -119,6 +124,15 @@ const routes = [
       
     }
   },
+  { 
+    path: '/dashboard/change-password', 
+    component: ChangePassword, 
+    meta: { 
+      title: 'Change password - Simba Stationery', 
+      noHeaderFooter: true,
+      
+    }
+  },
 
   // Login page (accessible without authentication)
   { 
@@ -129,6 +143,16 @@ const routes = [
       noHeaderFooter: true 
     }
   },
+
+  { 
+    path: '/forgot-password', 
+    component: ForgotPassword, 
+    meta: { 
+      title: 'forgot password - Simba Stationery',
+      noHeaderFooter: true 
+    }
+  },
+
 
   { 
     path: '/:pathMatch(.*)*', 

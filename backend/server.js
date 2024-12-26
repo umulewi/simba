@@ -787,6 +787,105 @@ app.post('/send-email', (req, res) => {
     });
 });
 
+
+app.post("/change-password", (req, res) => {
+    const { current_password, new_password } = req.body;
+
+    // Validate input
+    if (!current_password || !new_password) {
+        return res.status(400).json({
+            success: false,
+            message: "Current and new passwords are required.",
+        });
+    }
+
+    const userId = 1; // Replace this with the actual user ID from your authentication mechanism
+
+    // Get the user's current password hash from the database
+    db.query("SELECT password FROM users WHERE id = ?", [userId], async (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({
+                success: false,
+                message: "An error occurred while accessing the database.",
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found.",
+            });
+        }
+
+        const hashedPassword = results[0].password;
+
+        // Verify the current password
+        const isMatch = await bcrypt.compare(current_password, hashedPassword);
+        if (!isMatch) {
+            return res.status(401).json({
+                success: false,
+                message: "Current password is incorrect.",
+            });
+        }
+
+        // Hash the new password
+        const newHashedPassword = await bcrypt.hash(new_password, 10);
+
+        // Update the password in the database
+        db.query("UPDATE users SET password = ? WHERE id = ?", [newHashedPassword, userId], (err) => {
+            if (err) {
+                console.error("Error updating password:", err);
+                return res.status(500).json({
+                    success: false,
+                    message: "Failed to update the password. Please try again later.",
+                });
+            }
+
+            res.status(200).json({
+                success: true,
+                message: "Password updated successfully.",
+            });
+        });
+    });
+});
+
+
+app.get("/products/count", (req, res) => {
+    const query = "SELECT COUNT(*) AS count FROM product";
+    db.query(query, (err, result) => {
+      if (err) {
+        console.error("Error executing query:", err);
+        return res.status(500).json({ error: "Failed to fetch product count" });
+      }
+      res.json({ count: result[0].count });
+    });
+  });
+
+
+  app.get("/blogs/count", (req, res) => {
+    const query = "SELECT COUNT(*) AS count FROM blogs";
+    db.query(query, (err, result) => {
+      if (err) {
+        console.error("Error executing query:", err);
+        return res.status(500).json({ error: "Failed to fetch blog count" });
+      }
+      res.json({ count: result[0].count });
+    });
+  });
+
+  app.get("/teams/count", (req, res) => {
+    const query = "SELECT COUNT(*) AS count FROM team";
+    db.query(query, (err, result) => {
+      if (err) {
+        console.error("Error executing query:", err);
+        return res.status(500).json({ error: "Failed to fetch team count" });
+      }
+      res.json({ count: result[0].count });
+    });
+  });
+
+
 // Start server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);

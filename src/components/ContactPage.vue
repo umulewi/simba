@@ -84,7 +84,11 @@
   </template>
 
 <script>
+import { globalVariable } from '@/global';
 export default {
+  setup() {
+    return { globalVariable };
+  },
   data() {
     return {
       name: '',
@@ -108,7 +112,7 @@ export default {
     async sendEmail() {
       this.isLoading = true; // Show loading spinner
       try {
-        const response = await fetch('http://localhost:3000/send-email', {
+        const response = await fetch(`${globalVariable}/send-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

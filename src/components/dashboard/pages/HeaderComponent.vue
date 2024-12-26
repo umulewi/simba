@@ -16,12 +16,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
               <div class="message-body">
-                <a href="my_profile" class="btn btn-outline-dark mx-3 mt-2 d-block">
+                <a href="" class="btn btn-outline-dark mx-3 mt-2 d-block">
                   <i class="ti ti-user fs-6"></i>
                   <p class="mb-0 fs-3">My Profile</p>
                 </a>
-                <a href="change-password" class="btn btn-outline-dark mx-3 mt-2 d-block">Credentials</a>
+                <a href="dashboard/change-password" class="btn btn-outline-dark mx-3 mt-2 d-block"><router-link to="/dashboard/change-password">Credentials</router-link></a>
                 <a href="javascript:void(0)" @click="logout" class="btn btn-outline-dark mx-3 mt-2 d-block">Logout</a>
+               
               </div>
             </div>
           </li>

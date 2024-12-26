@@ -77,17 +77,17 @@
           <table class="table mb-0 align-middle" id="blogTable">
             <thead class="text-dark fs-4">
               <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>CATEGORY</th>
-                <th>L PARAGRAPH</th>
-                <th>IMAGE1</th>
-                <th>CONTENT IMAGE1</th>
-                <th>IMAGE2</th>
-                <th>CONTENT IMAGE2</th>
-                <th>IMAGE3</th>
-                <th>CONTENT IMAGE3</th>
-                <th>CLOSING PARAGRAPH</th>
+                <th>id</th>
+                <th>title</th>
+                <th>category</th>
+                <th>L paragraph</th>
+                <th>Image1</th>
+                <th>Content image1</th>
+                <th>Image2</th>
+                <th>Content image2</th>
+                <th>Image3</th>
+                <th>Content image3</th>
+                <th>closing paragraph</th>
               
                 <th>Action</th>
               </tr>
@@ -297,13 +297,6 @@
   
   
   
-  
-
-  
-  
- 
-  
-
   
   
   

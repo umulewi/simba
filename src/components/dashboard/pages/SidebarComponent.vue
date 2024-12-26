@@ -11,7 +11,7 @@
     <aside :class="['left-sidebar', { 'sidebar-collapsed': !sidebarVisible }]">
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="./" class="text-nowrap logo-img">
             <img :src="require('@/assets/img/logo11111.png')" height="" alt="Logo" />
 
           </a>
@@ -30,18 +30,7 @@
               </router-link>
             </li>
             <!-- AUTH Section -->
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">AUTH</span>
-            </li>
-            <li v-if="sessionEmail === 'umulewi@gmail.com'" class="sidebar-item">
-              <router-link to="view_users" class="sidebar-link">
-                <span>
-                  <i class="ti ti-user-search"></i>
-                </span>
-                <span class="hide-menu">View Users</span>
-              </router-link>
-            </li>
+            
           
 
           </ul>
@@ -67,14 +56,14 @@ export default {
       sessionEmail: "", // Dynamic session email
       menuItems: [
         { name: "Dashboard", link: "/dashboard", icon: "ti ti-layout-dashboard" },
-        { name: "Landing Page", link: "/dashboard/landing", icon: "ti ti-layout-dashboard" },
-        { name: "About Us", link: "/dashboard/about", icon: "ti ti-layout-dashboard" },
+        { name: "Landing Page", link: "/dashboard/landing", icon: "ti ti-page-break" },
+        { name: "About Us", link: "/dashboard/about", icon: "ti ti-brand-pagekit" },
         { name: "Our Team", link: "/dashboard/team", icon: "ti ti-users" },
-        { name: "Our Products", link: "/dashboard/product", icon: "ti ti-users" },
+        { name: "Our Products", link: "/dashboard/product", icon: "ti ti-notebook" },
         { name: "Our Outlets", link: "/dashboard/outlet", icon: "ti ti-users" },
-        { name: "Testimonials", link: "/dashboard/testimonial", icon: "ti ti-users" },
-        { name: "blog", link: "/dashboard/blog", icon: "ti ti-users" },
-        { name: "Register", link: "/register_user", icon: "ti ti-user-plus" },
+        { name: "Testimonials", link: "/dashboard/testimonial", icon: "ti ti-user-circle" },
+        { name: "blog", link: "/dashboard/blog", icon: "ti ti-archive" },
+      
       ],
     };
   },
