@@ -7,8 +7,10 @@
       style="width: 100%; height: 100%; object-fit: cover;">
       <div class="overlay-text" style="">
         <p style="margin-top: 9px;">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>Testimonial.
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
+          <label style="color:#FFE338">Testimonial.</label>
         </p>
+        
       </div>
     </div>
 <div class="container">

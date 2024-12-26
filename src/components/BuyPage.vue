@@ -7,8 +7,8 @@
       style="width: 100%; height: 100%; object-fit: cover;">
     <div class="overlay-text">
       <p style="margin-top: 9px;">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        Outlets.
+        <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
+        <label style="color:#FFE338"> Outlets.</label>
       </p>
     </div>
   </div><br>

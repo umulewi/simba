@@ -80,10 +80,10 @@
                 <td class="border px-4 py-2">{{ landing.title }}</td>
                 <td class="border px-4 py-2">{{ landing.description }}</td>
                 <td class="border px-4 py-2">
-                  <button class="btn btn-primary btn-sm" @click="editLanding(landing)">
+                  <button class="btn btn-primary btn-sm" style="width:53px" @click="editLanding(landing)">
                     Edit
                   </button>
-                  <button class="btn btn-primary btn-sm" style="background-color: yellow; color: blue;" @click="confirmDelete(landing.id)">
+                  <button class="btn btn-warning btn-sm" @click="confirmDelete(landing.id)">
                     Delete
                   </button>
                 </td>
@@ -317,16 +317,8 @@ export default {
   }
   
   .btn-primary {
-    width: 50%;
-    padding: 5px;
     background-color: #003966;
-    color: #ffe338;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 17px;
+    color: white;
   }
   
   .btn-primary:hover {

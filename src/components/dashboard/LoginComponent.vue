@@ -1,5 +1,5 @@
 <script>
-  import { globalVariable } from "@/global";
+import { globalVariable } from "@/global";
 import axios from 'axios';
 
 export default {
@@ -13,12 +13,13 @@ export default {
       email: '',
       password: '',
       errorMessage: '',
+      showPassword: false,  // Add this to control password visibility
     };
   },
   methods: {
-    async login() { 
+    async login() {
       try {
-            const response = await axios.post(`${globalVariable}/login`, {
+        const response = await axios.post(`${globalVariable}/login`, {
           email: this.email,
           password: this.password,
         });
@@ -56,18 +57,15 @@ export default {
                 
             </div>
 
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" v-model="password" class="form-control" id="password" name="password" required>
-                 <!-- <input type="password" v-model="password" id="password" required /> -->
-            </div>
+            
 
             <div class="form-group">
-                <input
-                class="form-check-input primary"
-                type="checkbox"
-                id="showPassword"
-                style="
+                <input class="form-control" v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="" required/>
+            </div>
+            <div class="form-group">
+                <label>
+                    
+                    <input class="form-check-input primary" style="
                 width: 20px;
                 height: 20px;
                 border: 2px solid #003966;
@@ -78,10 +76,11 @@ export default {
                 "
                 onfocus="this.style.boxShadow='0 0 5px rgba(0, 123, 255, 0.5)'"
                 onblur="this.style.boxShadow='none'"
-                onchange="this.style.backgroundColor = this.checked ? '#003966' : 'white'; this.style.borderColor = this.checked ? '#003966' : '#003966';"
-                >
-                <label class="form-check-label" for="showPassword">Show Password</label>
+                onchange="this.style.backgroundColor = this.checked ? '#003966' : 'white'; this.style.borderColor = this.checked ? '#003966' : '#003966';" type="checkbox" v-model="showPassword" />
+                    Show Password
+                </label>
             </div>
+
             <button type="submit" class="btn-primary" name="submit">Sign In</button><br><br>
             
             

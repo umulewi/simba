@@ -29,9 +29,6 @@
           <img :src="`${globalVariable}/uploads/blog/${blog.image3}`" class="img-fluid" :alt="blog.name"/>
         </figure>
         <p>{{ blog.content_image1 }}</p>
-        <figure class="my-4">
-          <img :src="`${globalVariable}/uploads/blog/${blog.image4}`" class="img-fluid" :alt="blog.name"/>
-        </figure>
         <p>{{ blog.content_image1 }}</p>
       </article>
     </div>

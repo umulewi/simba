@@ -1,4 +1,11 @@
 <template>
+  <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" type="image/png" href="@/assets/img/logo11111.png" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+  </head>
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <aside :class="['left-sidebar', { 'sidebar-collapsed': !sidebarVisible }]">
@@ -35,6 +42,8 @@
                 <span class="hide-menu">View Users</span>
               </router-link>
             </li>
+          
+
           </ul>
         </nav>
       </div>

@@ -7,6 +7,7 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const nodemailer = require("nodemailer");
 
 
 
@@ -36,6 +37,16 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if (err) throw err;
     console.log('Connected to MySQL Database');
+});
+
+const transporter = nodemailer.createTransport({
+    host: 'mail.sansongrp.com', 
+    port: 465, 
+    secure: true, 
+    auth: {
+        user: 'admin@sansongrp.com', 
+        pass: 'Administrator-2023'       
+    }
 });
 
 // Create base upload directory
@@ -749,6 +760,30 @@ app.post('/login', (req, res) => {
 
             res.json({ message: 'Login successful', token });
         });
+    });
+});
+
+//send message 
+app.post('/send-email', (req, res) => {
+    const { name, email, subject, message } = req.body;
+
+    // Email content
+    const mailOptions = {
+        from: `"${name}" <${email}>`, 
+        to: 'admin@sansongrp.com', 
+        subject: subject || 'No Subject',
+        text: `Message from ${name} (${email}):\n\n${message}`,
+    };
+
+    // Send email
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            console.error('Error sending email:', err);
+            res.status(500).send({ message: 'Failed to send email.' });
+        } else {
+            console.log('Email sent successfully:', info.response);
+            res.status(200).send({ message: 'Email sent successfully!' });
+        }
     });
 });
 

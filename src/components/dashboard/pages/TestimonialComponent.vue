@@ -84,7 +84,7 @@
                 <td>{{ testimonial.topic }}</td>
                 <td>{{ testimonial.description }}</td>
                 <td>
-                  <button style="width: 3rem;" class="btn btn-primary btn-sm" @click="edittestimonial(testimonial)">Edit</button>
+                  <button class="btn btn-primary btn-sm" style="width:53px; margin-right:10px;" @click="edittestimonial(testimonial)">Edit</button>
                   <button class="btn btn-warning btn-sm" @click="confirmDelete(testimonial.id)">Delete</button>
                 </td>
               </tr>

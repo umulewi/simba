@@ -2,13 +2,10 @@
   <div class="image-container" style="position: relative; width: 100%; height: 250px;">
     <img src="@/assets/img/bg1.jpg"  alt="Logo" class="zoom-in" style="width: 100%; height: 100%; object-fit: cover;">
   <!-- Overlay text -->
-  <div class="overlay-text" style="
-      
-  ">
+  <div class="overlay-text" style="">
     <p style="margin-top: 9px;">
-      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      
-      About Us.
+        <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
+        <label style="color:#FFE338">  About Us..</label>
     </p>
   </div>
 </div>

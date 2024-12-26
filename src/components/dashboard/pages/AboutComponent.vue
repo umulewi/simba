@@ -68,10 +68,11 @@
                   </td>
                   <td class="border px-4 py-2">{{ about.description }}</td>
                   <td class="border px-4 py-2">
-                    <button class="btn btn-primary btn-sm" @click="editAbout(about)">
+                    <button class="btn btn-primary btn-sm" style="width:53px" @click="editAbout(about)">
                       Edit
                     </button>
-                    <button class="btn btn-primary btn-sm" style="background-color: yellow; color: blue;" @click="confirmDelete(about.id)">
+                    &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-warning btn-sm"  @click="confirmDelete(about.id)">
                       Delete
                     </button>
                   </td>
@@ -305,16 +306,8 @@
     }
     
     .btn-primary {
-      width: 50%;
-      padding: 5px;
       background-color: #003966;
-      color: #ffe338;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-size: 17px;
+      color: white;
     }
     
     .btn-primary:hover {

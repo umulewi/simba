@@ -7,10 +7,12 @@
       style="width: 100%; height: 100%; object-fit: cover;">
     <!-- Overlay text -->
     <div class="overlay-text zoom-in">
-      <p>
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        Our Products.
+      
+      <p style="margin-top: 9px;">
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
+          <label style="color:#FFE338">Our Products.</label>
       </p>
+      
     </div>
   </div>
 

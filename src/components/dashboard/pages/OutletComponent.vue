@@ -85,7 +85,7 @@
                 <td>{{ outlet.working_hours }}</td>
                 <td>{{ outlet.telephone }}</td>
                 <td>
-                  <button style="width: 3rem;" class="btn btn-primary btn-sm" @click="editoutlet(outlet)">Edit</button>
+                  <button class="btn btn-primary btn-sm" style="width:53px; margin-right:10px;" @click="editoutlet(outlet)">Edit</button>
                   <button class="btn btn-warning btn-sm" @click="confirmDelete(outlet.id)">Delete</button>
                 </td>
               </tr>

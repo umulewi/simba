@@ -9,6 +9,8 @@ import BuyPage from './components/BuyPage.vue';
 import BlogPage from './components/BlogPage.vue';
 import OpenBlog from './components/OpenBlog.vue';
 import TestimonialsPage from './components/TestimonialsPage.vue';
+import NotFoundPage from './components/NotFoundPage.vue';
+
 
 // Components for dashboard
 import IndexComponent from './components/dashboard/pages/IndexComponent.vue'; 
@@ -112,9 +114,9 @@ const routes = [
     path: '/dashboard/Blog', 
     component: BlogComponent, 
     meta: { 
-      title: 'Testimonials - Simba Stationery', 
+      title: 'Blog - Simba Stationery', 
       noHeaderFooter: true,
-      requiresAuth: true 
+      
     }
   },
 
@@ -126,6 +128,15 @@ const routes = [
       title: 'Login - Simba Stationery',
       noHeaderFooter: true 
     }
+  },
+
+  { 
+    path: '/:pathMatch(.*)*', 
+    component: NotFoundPage, 
+    meta: { 
+      title: '404 - Page Not Found - Simba Stationery',
+      noHeaderFooter: true,
+    } 
   },
 
   // Other public pages
@@ -156,7 +167,7 @@ router.beforeEach((to, from, next) => {
 
 // Set document title after each navigation
 router.afterEach((to) => {
-  document.title = to.meta.title || 'Default Title - Simba Stationery';
+  document.title = to.meta.title || 'not found';
 });
 
 export default router;

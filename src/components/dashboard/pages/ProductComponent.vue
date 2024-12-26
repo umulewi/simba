@@ -98,7 +98,7 @@
                 <td>{{ team.description }}</td>
                 <td>
                   <button
-                    class="btn btn-primary btn-sm"
+                   class="btn btn-primary btn-sm" style="width:53px; margin-right:10px;"
                     @click="editTeam(team)"
                   >
                     Edit
@@ -328,16 +328,9 @@
     }
     
     .btn-primary {
-      width: 50%;
-      padding: 5px;
       background-color: #003966;
-      color: #ffe338;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-size: 17px;
+      color: white;
+    
     }
     
     .btn-primary:hover {

@@ -7,9 +7,10 @@
       style="width: 100%; height: 100%; object-fit: cover;">
     <!-- Overlay text -->
     <div class="overlay-text zoom-in">
-      <p>
-        <i class="fa-solid fa-arrow-right-from-bracket" ></i>
-        Contact Us.
+      
+      <p style="margin-top: 9px;">
+        <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
+        <label style="color:#FFE338">Contact Us.</label>
       </p>
     </div>
   </div>
@@ -36,40 +37,44 @@
                     </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form action="message.php" id="contact_form" method="POST">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
-                                            <label for="name">Your Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                                            <label for="subject">Subject</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Leave a message here" name="message" id="message" style="height: 150px" required></textarea>
-                                            <label for="message">Message</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                      <button class="nav-button btn w-100 py-3" type="submit" name="submit" style="background-color: #243163; color: aliceblue; font-size: 1rem;" onmouseover="this.style.backgroundColor='yellow'; this.style.color='black';" onmouseout="this.style.backgroundColor='#243163'; this.style.color='aliceblue';">Send Message</button>
-
-                                    </div>
-                                    <div class="text-center wow fadeInUp mb-3" data-wow-delay="0.1s">
-
-                                    </div>
+                          <form @submit.prevent="sendEmail">
+                            <div class="row g-3">
+                              <div class="col-md-6">
+                                <div class="form-floating">
+                                  <input type="text" class="form-control" v-model="name" id="name" placeholder="Your Name" required>
+                                  <label for="name">Your Name</label>
                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-floating">
+                                  <input type="email" class="form-control" v-model="email" id="email" placeholder="Your Email" required>
+                                  <label for="email">Your Email</label>
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <div class="form-floating">
+                                  <input type="text" class="form-control" v-model="subject" id="subject" placeholder="Subject">
+                                  <label for="subject">Subject</label>
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <div class="form-floating">
+                                  <textarea class="form-control" v-model="message" id="message" placeholder="Leave a message here" style="height: 150px" required></textarea>
+                                  <label for="message">Message</label>
+                                </div>
+                              </div>
+                              <div v-if="responseMessage" :class="`alert mt-3 ${responseClass}`" role="alert">{{ responseMessage }}
+
+                              </div>
+                              <div class="col-12 text-center">
+                                
+                                <div v-if="isLoading" class="spinner-border text-primary" role="status">
+                                  <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <button v-else class="nav-button btn w-100 py-3" type="submit" style="background-color: #243163; color: aliceblue; font-size: 1rem;"
+                                 @mouseover="hoverButton" @mouseout="resetButton">Send Message</button>
+                                </div>
+                              </div>
                             </form>
                         </div>
                     </div>
@@ -77,12 +82,71 @@
             </div>
         </div>
   </template>
-  
-  <script>
-  export default {
-    name: 'ContactPage',
-  };
-  </script>
+
+<script>
+export default {
+  data() {
+    return {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      isLoading: false, 
+      responseMessage: '', 
+      responseClass: '' 
+    };
+  },
+  methods: {
+    hoverButton(event) {
+      event.target.style.backgroundColor = '#FFE338';
+      event.target.style.color = 'black';
+    },
+    resetButton(event) {
+      event.target.style.backgroundColor = '#243163';
+      event.target.style.color = 'aliceblue';
+    },
+    async sendEmail() {
+      this.isLoading = true; // Show loading spinner
+      try {
+        const response = await fetch('http://localhost:3000/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: this.name,
+            email: this.email,
+            subject: this.subject,
+            message: this.message
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          this.responseMessage = result.message;
+          this.responseClass = 'alert-success';
+          this.resetForm();
+        } else {
+          this.responseMessage = result.message;
+          this.responseClass = 'alert-danger';
+        }
+      } catch (error) {
+        this.responseMessage = 'An error occurred. Please try again later.';
+        this.responseClass = 'alert-danger';
+      } finally {
+        this.isLoading = false; // Hide loading spinner
+      }
+    },
+    resetForm() {
+      this.name = '';
+      this.email = '';
+      this.subject = '';
+      this.message = '';
+    }
+  }
+};
+</script>
 <style>
 .image-container {
   position: relative;
