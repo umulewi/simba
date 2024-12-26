@@ -19,113 +19,66 @@
           
     </div>
 </div>
-<div class="outerdiv">
+
+
+  <div class="outerdiv">
     <div class="innerdiv">
-      <!-- div1 -->
-      <div class="div1 eachdiv">
+      <!-- Loop through testimonials dynamically -->
+      <div v-for="(testimonial, index) in testimonials" :key="index" :class="'div' + (index + 1) + ' eachdiv'">
         <div class="userdetails">
           <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg" alt="">
+
+            <img :src="`${globalVariable}/uploads/testimonial/${testimonial.image}`" alt="Slide" class="animated-image" />
+
           </div>
           
           <div class="detbox">
-                    <p class="name">Emily Johnson</p>
-                    <p class="designation">Verified Customer</p>
-                </div>
-        </div>
-        <div class="review">
-          <h2>High-quality products and exceptional service!</h2>
-          
-          <p>"I’ve been purchasing supplies from Simba Stationery for my office, and I’m consistently impressed by the quality and reliability of their products. Their team is always friendly and helpful, making the entire process smooth and enjoyable. The attention to detail and commitment to customer satisfaction truly sets them apart from other suppliers I’ve worked with."</p>
-        </div>
-      </div>
-      <!-- div2 -->
-      <div class="div2 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jonathan.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Michael Brown</p>
-            <p class="designation">Business Owner</p>
+            <p class="name">{{ testimonial.name }}</p>
+            <p class="designation">{{ testimonial.position }}</p>
           </div>
         </div>
-        <div class="review">
-          <h5>Simba Stationery has everything I need for my business!</h5>
-          <p>"From pens to printers, Simba Stationery is my go-to supplier. Their prices are competitive, and their delivery is always on time. I highly recommend them to anyone looking for quality stationery products."</p>
-          
-
-        </div>
-      </div>
-      <!-- div3 -->
-      <div class="div3 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-kira.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Sophia Martinez</p>
-            <p>Educator</p>
-          </div>
-
-        </div>
-        <div class="review dark">
-          <h3>Reliable and budget-friendly solutions for schools</h3>
-         
-          <p>"Simba Stationery has truly been a game-changer for our school. Their bulk pricing options and consistent reliability make it effortless to keep our classrooms fully equipped with the supplies our students require. What stands out the most is their personalized customer service, which ensures every order is handled with precision and delivered promptly. Their dedication to understanding our needs and providing tailored solutions has been instrumental in creating a seamless experience for our school operations..
-
-"</p>
-
-
-        </div>
-      </div>
-      <!-- div4 -->
-      <div class="div4 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jeanette.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">David Williams</p>
-            <p>Freelancer</p>
-          </div>
-
-        </div>
-        <div class="review dark">
-          <h3>Exceptional variety and customer support</h3>
-                <p>"As a freelancer, I rely on Simba Stationery for my daily needs. They have everything I could possibly require, and their support team is always ready to help with any queries or special requests."</p>
-
-        </div>
-      </div>
-      <!-- div5 -->
-      <div class="div5 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-patrick.jpg" alt="">
-          </div>
-          <div class="detbox">
-                    <p class="name">Olivia Carter</p>
-                    <p class="designation">Verified Customer</p>
-                </div>
-
-        </div>
-        <div class="review">
-          <h2>
-            Simba Stationery exceeds expectations every time!
-          </h2>
-          <p>"Their wide selection of products and unbeatable customer service keep me coming back. I’ve recommended Simba Stationery to all my colleagues, and they’ve all been equally impressed. It’s refreshing to deal with a company that values its customers and goes above and beyond to ensure satisfaction."</p>
-
-
+        
+        <div class="review" :class="{ dark: testimonial.dark }">
+          <h5>{{ testimonial.topic }}</h5>
+          <p>{{ testimonial.description }}</p>
         </div>
       </div>
     </div>
   </div>
+
+
   
 </template>
 
 <script>
+import { ref, onMounted } from 'vue'; 
+import { globalVariable } from '@/global';
 
+export default {
+  name: "TestimonialsPage",
+  setup() {
+    const testimonials = ref([]); 
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch(`${globalVariable}/select_testimonial`); 
+        if (!response.ok) throw new Error("Failed to fetch testimonials");
+        const data = await response.json(); 
+        testimonials.value = data; 
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      }
+    };
+    onMounted(() => {
+      fetchTestimonials();
+    });
+
+    return { globalVariable, testimonials };
+  },
+};
 </script>
+
+
+
 
 <style>
 .subtitle {
@@ -190,14 +143,14 @@ a:link,a:active,a:visited,a:hover{
 }
 .div3
 {
-	background: white;
+	background: gray;
     grid-column: 4/5;
     grid-row: 1/3;
     color: black;
 }
 .div4
 {
-	background: white;
+	background: gray;
 	grid-column: 1/2;
     grid-row: 2/3;
     color: black;

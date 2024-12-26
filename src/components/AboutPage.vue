@@ -1,10 +1,6 @@
 <template>
   <div class="image-container" style="position: relative; width: 100%; height: 250px;">
-    <img 
-      src="@/assets/img/bg1.jpg" 
-      alt="Logo" 
-      class="zoom-in" 
-      style="width: 100%; height: 100%; object-fit: cover;">
+    <img src="@/assets/img/bg1.jpg"  alt="Logo" class="zoom-in" style="width: 100%; height: 100%; object-fit: cover;">
   <!-- Overlay text -->
   <div class="overlay-text" style="
       
@@ -16,47 +12,43 @@
     </p>
   </div>
 </div>
+<div>
+  <div class="container mt-5">
+    <div class="row slide-row">
+      <div class="col-lg-6 col-12">
 
-  <div>
-    <!-- Hero Section -->
-    
+      
+        
+        <img
+            v-if="about_us.length > 0 && about_us[0].image"
+            :src="`${globalVariable}/uploads/about/${about_us[0].image}`"
+            alt="Slide"
+            class="animated-image"
+           style="width: 100%; height: 100%; object-fit: cover;"/>
+          </div>
+          <div class="col-lg-6 col-12">
+            <h1 class="fw-bold" style="color:#243163;">HYDRO STATIONERY</h1> <p class="subtitle">
+        
+          </p>
+          <p style="display: justify;">
+            Welcome to Simba Stationery, your one-stop shop for all things paper, pens, and office supplies. Whether you are a student, a teacher, or a business professional, we have everything you need to stay organized, creative, and productive.
+          </p>
 
-    <!-- About Us Section -->
-    <div class="container mt-5">
+          <h5 style="color:#243163;" class="fw-bold">Our History</h5>
+          <p>
+            Simba Stationery was established in [Year of establishment], with a vision to bring quality stationery products to our local community. Over the years, we've expanded our product offerings, including a wide range of office supplies, school materials, and personalized stationery. As we continue to grow, we are committed to offering only the highest quality products and ensuring our customers receive the best service possible.
+          </p>
+          <br />
+          <h5 style="color:#243163;" class="fw-bold">Our Mission</h5>
+          <p>
+            Our mission is to be the go-to provider for all your stationery needs, offering high-quality products at affordable prices. We are dedicated to delivering excellent customer service and ensuring that every purchase meets the needs of our customers. Our goal is to empower individuals, schools, and businesses by providing the tools necessary to succeed in their daily tasks and creative endeavors.
+          </p>
+        </div>
+      </div>
+    </div>
 
-
-<div class="row slide-row">
-  <div class="col-lg-6 col-12">
-    <img 
-      src="@/assets/img/DSC09621.jpg" 
-      alt="Logo" 
-      class="zoom-in" 
-      style="width: 100%; height: 100%; object-fit: cover;">
-  </div>
-  <div class="col-lg-6 col-12 mt-3">
-    <h1 class="fw-bold" style="color:#243163;">hyrdo stationery</h1> 
-    <p style="display: justify;">
-      Welcome to Simba Stationery, your one-stop shop for all things paper, pens, and office supplies. Whether you are a student, a teacher, or a business professional, we have everything you need to stay organized, creative, and productive.
-    </p>
-    <br />
-    
-    <br />
-    <h5 style="color:#243163;" class="fw-bold">Our History</h5>
-    <p>
-      Simba Stationery was established in [Year of establishment], with a vision to bring quality stationery products to our local community. Over the years, we've expanded our product offerings, including a wide range of office supplies, school materials, and personalized stationery. As we continue to grow, we are committed to offering only the highest quality products and ensuring our customers receive the best service possible.
-    </p>
-    <br />
-    <h5 style="color:#243163;" class="fw-bold">Our Mission</h5>
-    <p>
-      Our mission is to be the go-to provider for all your stationery needs, offering high-quality products at affordable prices. We are dedicated to delivering excellent customer service and ensuring that every purchase meets the needs of our customers. Our goal is to empower individuals, schools, and businesses by providing the tools necessary to succeed in their daily tasks and creative endeavors.
-    </p>
-  </div>
-</div>
-
-</div>
-
-   <OurTeam></OurTeam>
-<OurBrands></OurBrands>
+<OurTeam></OurTeam>
+<!-- <OurBrands></OurBrands> -->
 
     <!-- What We Offer Section -->
     
@@ -118,56 +110,74 @@
 </template>
 
 <script>
-// Import the Team component
+import { ref, onMounted } from 'vue';
 import OurTeam from './OurTeam.vue';
-import OurBrands from './OurBrands.vue';
+// import OurBrands from './OurBrands.vue';
+import { globalVariable } from '@/global';
 
 export default {
   name: 'AboutPage',
-  components: {
-    OurTeam,OurBrands,  // Register the Team component
+
+  setup() {
+    const about_us = ref([]);
+    const textElements = ref([]);
+    const imageElement = ref(null);
+
+    const fetchAboutUs = async () => {
+      try {
+        const response = await fetch(`${globalVariable}/select_about`);
+
+        if (!response.ok) throw new Error("Failed to fetch data");
+        about_us.value = await response.json();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const initObserver = () => {
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      // Observe text and image elements
+      textElements.value.forEach((element) => observer.observe(element));
+      if (imageElement.value) observer.observe(imageElement.value);
+    };
+
+    onMounted(() => {
+      fetchAboutUs();
+      initObserver();
+    });
+
+    return { globalVariable, about_us, textElements, imageElement };
   },
+
+  components: {
+    OurTeam,
+    // OurBrands,
+  },
+
   mounted() {
     const revel = document.querySelectorAll('.revel');
     const dsply = document.querySelectorAll('.dsply');
     revel.forEach((e, i) => {
       e.addEventListener('click', () => {
-        dsply[i].classList.toggle('displayPara');
+        dsply[i]?.classList.toggle('displayPara');
       });
     });
   },
 };
-//
-
-document.addEventListener('DOMContentLoaded', () => {
-  const textElements = document.querySelectorAll('#textElement, #textContent, #history, #mission');
-  const imageElement = document.getElementById('imageElement');
-
-  // Create an intersection observer to trigger animation on scroll
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Stop observing after element comes into view
-      }
-    });
-  }, {
-    threshold: 0.5 // Trigger the animation when 50% of the element is visible
-  });
-
-  // Observe text elements if they exist
-  if (textElements.length) {
-    textElements.forEach(element => observer.observe(element));
-  }
-
-  // Observe the image element if it exists
-  if (imageElement) {
-    observer.observe(imageElement);
-  }
-});
-
-
 </script>
+
+
 
 <style scoped>
 .subtitle {

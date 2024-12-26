@@ -8,7 +8,7 @@
     <!-- Overlay text -->
     <div class="overlay-text zoom-in">
       <p>
-        <i class="fa-solid fa-arrow-right-from-bracket" ></i>
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
         Our Products.
       </p>
     </div>
@@ -60,7 +60,9 @@
       <div class="row">
         <div v-for="(product, index) in filteredProducts" :key="index" class="col-lg-4 col-md-6 col-sm-12 mb-4">
           <div class="product-card">
-            <img :src="product.image" class="product-image" :alt="product.name" />
+            
+            <img :src="`${globalVariable}/uploads/product/${product.image}`" class="product-image" :alt="product.name" />
+
             <div class="product-info">
               <h3 class="product-name">
                 {{ product.name }}
@@ -76,71 +78,54 @@
 </template>
 
 <script>
+import { globalVariable } from "@/global";
+import { ref, onMounted, computed } from "vue";
+
 export default {
   name: "OurProducts",
-  data() {
-    return {
-      title: "Our Products",
-      searchQuery: "", // Bind the input field to this data
-      selectedCategory: "", // For category selection
-      products: [
-        {
-          name: "Classic Notebook",
-          description: "The perfect companion for your thoughts and ideas. This premium notebook offers smooth pages and a durable cover, ideal for note-taking, journaling, or sketching.",
-          image: require('@/assets/img/DSC09527_1.jpg'),
-          category: "simba",
-          isNew: true, // Mark as new product
-        },
-        {
-          name: "High-Quality Paper",
-          description: "Crafted for a smooth writing experience, our high-quality paper ensures that your ink flows effortlessly. Perfect for students, professionals, and creatives alike.",
-          image: require('@/assets/img/simba_notebooks.jpeg'),
-          category: "simba",
-          isNew: false, // Not a new product
-        },
-        {
-          name: "Essential Stationery Kit",
-          description: "Everything you need in one kit. From notebooks to pens, our essential stationery kit is designed to meet all your organizational and creative needs.",
-          image: require('@/assets/img/papers.jpg'),
-          category: "dova",
-          isNew: true, // Mark as new product
-        },
-        {
-          name: "Affordable Pens",
-          description: "A set of reliable pens that write smoothly and last long. Whether you're writing notes, signing documents, or making lists, our pens offer great value without compromising on quality.",
-          image: require('@/assets/img/DSC09545.jpg'),
-          category: "dova",
-          isNew: false, // Not a new product
-        },
-        {
-          name: "Organizational Planners",
-          description: "Stay on top of your schedule with our stylish planners. Designed to help you plan, organize, and track your goals with ease, making every day productive.",
-          image: require('@/assets/img/papers.jpg'),
-          category: "keto",
-          isNew: true, // Mark as new product
-        },
-        {
-          name: "Colorful Markers",
-          description: "Add a splash of color to your projects with our vibrant markers. These markers are perfect for both professional presentations and creative artwork.",
-          image: require('@/assets/img/papers.jpg'),
-          category: "keto",
-          isNew: false, // Not a new product
-        },
-      ],
+  setup() {
+    const title = "Our Products";
+    const products = ref([]);
+    const searchQuery = ref("");
+    const selectedCategory = ref("");
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`${globalVariable}/select_product`);
+        if (!response.ok) throw new Error("Failed to fetch products");
+        const data = await response.json();
+        products.value = data.map(product => ({
+          ...product,
+          isNew: product.isNew || false,
+        }));
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-  },
-  computed: {
-    // Computed property for filtering products based on search query and selected category
-    filteredProducts() {
-      return this.products.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-        const matchesCategory = this.selectedCategory ? product.category === this.selectedCategory : true;
+
+    onMounted(() => {
+      fetchProducts();
+    });
+
+    const filteredProducts = computed(() => {
+      return products.value.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchQuery.value.toLowerCase());
+        const matchesCategory = selectedCategory.value ? product.category === selectedCategory.value : true;
         return matchesSearch && matchesCategory;
       });
-    }
-  }
+    });
+
+    return {
+      title,
+      globalVariable,
+      searchQuery,
+      selectedCategory,
+      filteredProducts,
+    };
+  },
 };
 </script>
+
 
 <style scoped>
 .app-OurProducts {

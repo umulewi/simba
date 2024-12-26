@@ -31,6 +31,14 @@ const routes = [
   { path: '/outlets', component: BuyPage, meta: { title: 'Our outlets - Simba Stationery' } },
   { path: '/blogs', component: BlogPage, meta: { title: 'Blogs - Simba Stationery' } },
   { path: '/open', component: OpenBlog, meta: { title: 'Open Blog - Simba Stationery' } },
+  { 
+    path: '/open/:id', 
+    component: OpenBlog, 
+    meta: { 
+      title: 'Open Blog - Simba Stationery' 
+    } 
+  },
+
 
   // Protected routes for dashboard
   { 

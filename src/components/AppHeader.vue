@@ -6,13 +6,18 @@
         class="slides"
         :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
       >
-        <div class="slide" v-for="(image, index) in images" :key="index">
-          <img :src="image.src" alt="Slide" class="animated-image" />
-          <div class="content-overlay">
-            <h1 class="animated-content">{{ image.content }}</h1>
-            <p>{{ image.description }}</p>
-          </div>
+      <div class="slide" v-for="slide in slides" :key="slide.id">
+        <img
+        :src="`${globalVariable}/uploads/landing/${slide.image}`"
+        alt="Slide"
+        class="animated-image"
+        />
+        <div class="content-overlay">
+          <h1 class="animated-content">{{ slide.title }}</h1>
+          <p>{{ slide.description }}</p>
         </div>
+      </div>
+
       </div>
 
       <!-- Navigation -->
@@ -22,40 +27,39 @@
   </div>
 </template>
 
-
 <script>
+import { globalVariable } from "@/global";
 export default {
   name: "AutoSlidingSlider",
+  setup() {
+    return { globalVariable };
+  },
   data() {
     return {
       currentSlide: 0,
-      images: [
-        {
-          src: require("@/assets/img/slide-1.jpg"),
-          content: "Explore Premium Notebooks",
-          description: "Top-quality notebooks for your office and school needs.",
-        },
-        {
-          src: require("@/assets/img/slide-2.jpg"),
-          content: "Best Writing Instruments",
-          description: "Pens, pencils, and markers that inspire creativity.",
-        },
-        {
-          src: require("@/assets/img/slide33.jpg"),
-          content: "Office Supplies Made Easy",
-          description: "Everything you need to organize your workspace.",
-        },
-      ],
+      slides: [], // Store dynamic slides
+
     };
   },
   methods: {
+    async fetchSlides() {
+      try {
+        const response = await fetch(`${globalVariable}/select_landing`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch slides data.");
+        }
+        this.slides = await response.json();
+      } catch (error) {
+        console.error("Error fetching slides:", error);
+      }
+    },
     nextSlide() {
       this.currentSlide =
-        (this.currentSlide + 1) % this.images.length; // Loop to the first slide
+        (this.currentSlide + 1) % this.slides.length; // Loop to the first slide
     },
     prevSlide() {
       this.currentSlide =
-        (this.currentSlide - 1 + this.images.length) % this.images.length; // Loop to the last slide
+        (this.currentSlide - 1 + this.slides.length) % this.slides.length; // Loop to the last slide
     },
     startAutoSlide() {
       this.slideInterval = setInterval(this.nextSlide, 3000); // Slide every 3 seconds
@@ -65,14 +69,14 @@ export default {
     },
   },
   mounted() {
-    this.startAutoSlide();
+    this.fetchSlides(); // Fetch dynamic data when component mounts
+    this.startAutoSlide(); // Start auto-sliding
   },
   beforeUnmount() {
-    this.stopAutoSlide();
+    this.stopAutoSlide(); // Stop auto-sliding when component unmounts
   },
 };
 </script>
-
 
 <style scoped>
 
@@ -130,6 +134,7 @@ export default {
 
 .animated-content {
   font-size: 1.6rem;
+  color: #FFE338;
   margin: 0 0 1rem;
   animation: zoomIn 1s ease-in-out;
 }

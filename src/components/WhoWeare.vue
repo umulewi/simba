@@ -1,64 +1,98 @@
 <template>
   <header class="app-who-we-are">
     <div class="text-center fade-in">
-      <h1 class="fw-bold" style="color: #243163;">Who we are </h1>
+      <h1 class="fw-bold" style="color: #243163;">Who we are</h1>
     </div>
     <div class="container d-flex justify-content-center align-items-center w-100">
       <div class="row align-items-center" style="height: 600px;">
-        <!-- Logo Section for Large Screens (First on large screens) -->
+        <!-- Image Section uploads/about -->
         <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block slide-in-left">
-          <img src="@/assets/img/DSC09621.jpg" class="logo img-fluid" alt="Logo">
+          <img
+            v-if="about_us.length > 0 && about_us[0].image"
+            :src="`${globalVariable}/uploads/about/${about_us[0].image}`"
+            alt="Slide"
+            class="animated-image"
+           style="width: 100%; height: 100%; object-fit: cover;"/>
         </div>
-        <!-- About Us Section -->
         <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start slide-in-right">
+          <!-- Overview Section -->
           <h1 class="display-5" style="color:#243163;">OVER VIEW</h1>
           <p class="subtitle">
-            At Simba Station, we bring the joy of creativity and productivity to life with our premium stationery. Discover the finest notebooks, high-quality paper, and essential tools to help you organize, create, and achieve your goals. From students to professionals, our products are designed to meet every need with affordability and style.
+            {{ about_us.length > 0 ? about_us[0].description : "Loading..." }}
           </p>
-
+          
           <!-- Features Section -->
           <div class="row mt-4 fade-in">
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 fs-0 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 fs-0 p-2 fa-solid fa-right-long feature-icon bounce" style="font-size: 10px;"></i>
                 <span>Quality notebooks</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce" style="font-size: 10px;"></i>
                 <span>Premium papers</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2  p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce" style="font-size: 10px;"></i>
                 <span>Essential stationery</span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
               <div class="d-flex align-items-center">
-                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce"></i>
+                <i class="mx-2 p-2 fa-solid fa-right-long feature-icon bounce" style="font-size: 10px;"></i>
                 <span>Affordable products</span>
               </div>
             </div>
-            <router-link to="/about" class="nav-button" style="margin-top: 3rem;">Discover More About Us</router-link>
-
           </div>
-        </div>
-        
 
-       
+          <!-- Link to Learn More -->
+          <router-link to="/about" class="nav-button" style="margin-top: 3rem;">
+            Discover More About Us
+          </router-link>
+        </div>
       </div>
-    </div><br><br>
+    </div>
+    <br /><br />
   </header>
 </template>
 
 <script>
+import { globalVariable } from "@/global";
+import { ref, onMounted } from "vue";
+
 export default {
   name: "WhoWeare",
+  setup() {
+    const about_us = ref([]);
+
+    const fetchAboutUs = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/select_about");
+        if (!response.ok) throw new Error("Failed to fetch data");
+        const data = await response.json();
+        about_us.value = data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    onMounted(() => {
+      fetchAboutUs();
+    });
+
+    return { globalVariable, about_us };
+  },
 };
 </script>
+
+<style scoped>
+/* Add any additional styles you may need */
+</style>
+
 
 <style scoped>
 

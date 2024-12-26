@@ -27,7 +27,7 @@
             <!-- Description Input -->
             <div class="form-group">
               <label for="description" class="form-label">Description:</label>
-              <textarea v-model="form.description" class="form-control" id="description" rows="3" required></textarea>
+              <textarea v-model="form.description" class="form-control" style="height: 10rem;" id="description" required></textarea>
             </div>
   
             <button type="submit" class="btn btn-primary">{{ editingAbout ? "Update About" : "Add About" }}</button>

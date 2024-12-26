@@ -6,25 +6,25 @@
         <p class="subtitle">
           Our team is composed of skilled professionals dedicated to driving innovation and delivering excellence in every project we undertake. Get to know the people who make it all happen.
         </p>
-        <p> {{ globalVariable }}</p>
       </div>
       <div class="row g-4">
         <div v-for="member in teamMembers" :key="member.id" class="col-md-6 col-lg-4">
           <div class="card shadow-sm d-flex flex-column artwork-background">
-            <img :src="member.image" :alt="`${member.name} Avatar`" class="card-img-top" />
+            <!-- Image source debugging -->
+            <img :src="`${globalVariable}/uploads/team/${member.image}`" class="team-image" :alt="member.name" />
+            
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <h5 class="card-title mb-1">{{ member.name }}</h5>
+               
                 <p class="text-muted">{{ member.position }}</p>
               </div>
               <div class="d-flex justify-content-center gap-3">
-                <a
-                  v-for="link in member.socialLinks"
+                <a v-for="link in member.socialLinks"
                   :key="link.icon"
                   :href="link.url"
                   class="text-secondary fs-5"
-                  target="_blank"
-                >
+                  target="_blank" >
                   <i :class="`fa-${link.icon} fab`"></i>
                 </a>
               </div>
@@ -37,8 +37,9 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 import { globalVariable } from '@/global';
+
 export default {
   name: "OurTeam",
   setup() {
@@ -46,46 +47,32 @@ export default {
   },
   data() {
     return {
-      teamMembers: [
-        {
-          id: 1,
-          name: "Bonnie Green",
-          position: "CEO & Web Developer",
-          image: require('@/assets/img/team1.png'),
-          socialLinks: [
-            { icon: "linkedin", url: "https://linkedin.com" },
-            { icon: "twitter", url: "https://twitter.com" },
-            { icon: "instagram", url: "https://instagram.com" },
-          ],
-        },
-        {
-          id: 2,
-          name: "Michael Johnson",
-          position: "Product Manager",
-          image: require('@/assets/img/team2.png'),
-          socialLinks: [
-            { icon: "linkedin", url: "https://linkedin.com" },
-            { icon: "twitter", url: "https://twitter.com" },
-            { icon: "instagram", url: "https://instagram.com" },
-          ],
-        },
-        {
-          id: 3,
-          name: "Sarah Lee",
-          position: "Lead Designer",
-          image: require('@/assets/img/team1.png'),
-          socialLinks: [
-            { icon: "linkedin", url: "https://linkedin.com" },
-            { icon: "twitter", url: "https://twitter.com" },
-            { icon: "instagram", url: "https://instagram.com" },
-          ],
-        },
-        // Add more team members as needed
-      ],
+      teamMembers: [], // Empty array to store team members fetched from API
     };
+  },
+  methods: {
+    // Method to fetch team members from the API
+    fetchTeamMembers() {
+      axios.get(`${globalVariable}/select_team`)
+        .then(response => {
+          // Assuming the API returns an array of team members
+          this.teamMembers = response.data;
+          this.teamMembers.forEach(member => {
+            console.log(`Image URL: ${globalVariable}/uploads/product/${member.image}`); // Log the full URL
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching team members:", error);
+        });
+    },
+  },
+  created() {
+    this.fetchTeamMembers(); // Fetch team members when the component is created
   },
 };
 </script>
+
+
 
 <style scoped>
 .card {
@@ -144,7 +131,7 @@ export default {
   max-width: 1200px;
   font-size: 16px;
   margin-left: auto;
-  margin-right: auto; /* Center-align the subtitle */
+  margin-right: auto; 
   line-height: 1.6;
 }
 .bg-light::before,
@@ -153,7 +140,7 @@ export default {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 150px; /* Adjust the width as needed */
+  width: 150px; 
   background-image: url('https://www.rahura.io/assets/img/logo/r-emblem.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -173,12 +160,9 @@ export default {
 }
 
 .bg-light {
-  position: relative; /* Needed for pseudo-elements */
-  z-index: 1; /* Ensure content appears above the background */
-  overflow: hidden; /* Prevent background overflow */
+  position: relative; 
+  z-index: 1; 
+  overflow: hidden; 
 }
-
-
-
 
 </style>

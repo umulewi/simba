@@ -72,7 +72,7 @@
                     </span>
                   </h6>
                 </td>
-                <td class="border px-4 py-2">{{ landing.id }}</td>
+                
                 <td class="border px-4 py-2">
                   <!-- Display Image -->
                   <img v-if="landing.image" :src="`${globalVariable}/uploads/landing/${landing.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />

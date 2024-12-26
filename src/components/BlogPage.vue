@@ -12,100 +12,64 @@
       </div>
     </div>
     <section>
-        <div class="container py-8">
-            <div class="text-center mb-8">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h1 class="mt-2" style="color: #243163;">Our Blog</h1>
-                </div>
-                <p class="subtitle">At Simba Stationery, we embrace an agile methodology to continuously refine our offerings. By testing assumptions and actively engaging with our audience, we ensure that we meet the evolving needs of our customers efficiently and effectively.</p>
 
-            </div>
-            <div class="row" style="background: #EDF2F8;">
-                <article class="col-md-6 mb-4">
-                    <div class="card shadow-sm fixed-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 text-muted">
-                                <span class="badge badge-success">Tutorial</span>
-                                <span class="small">14 days ago</span>
-                            </div>
-                            <h5>How to organize your office supplies efficiently</h5>
-                            <p class="card-text text-muted">At Simba Stationery, we believe in making your workspace both productive and organized. Here's how you can manage your office supplies with ease.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" width="30" height="30">
-                                    <span class="ml-2 font-weight-medium text-dark">Jese Leos</span>
-                                </div>
-                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
-                            </div>
-                        </div>
+        <div class="row" style="background: #EDF2F8;">
+            <article class="col-md-6 mb-4" v-for="blog in blogs" :key="blog.id">
+                <div class="card shadow-sm fixed-height">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3 text-muted">
+                    <span class="badge badge-success" >{{ blog.category }}</span>
+                    <span class="small">{{ blog.date }}</span>
+                </div>
+                <h5>{{ blog.name}}</h5>
+                <p class="card-text text-muted">{{ blog.lead_paragraph }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <!-- Additional content can go here -->
                     </div>
-                </article>
-                <article class="col-md-6 mb-4">
-                    <div class="card shadow-sm fixed-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 text-muted">
-                                <span class="badge badge-primary">Article</span>
-                                <span class="small">14 days ago</span>
-                            </div>
-                            <h5>The best pens for writing in 2024</h5>
-                            <p class="card-text text-muted">Choosing the right pen can make a huge difference in your writing experience. Here are some of the best pens you can find at Simba Stationery in 2024.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Green avatar" width="30" height="30">
-                                    <span class="ml-2 font-weight-medium text-dark">Bonnie Green</span>
-                                </div>
-                                
-                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-    
-                <!-- Third Blog Article -->
-                <article class="col-md-6 mb-4">
-                    <div class="card shadow-sm fixed-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 text-muted">
-                                <span class="badge badge-success">Guide</span>
-                                <span class="small">7 days ago</span>
-                            </div>
-                            <h5>How to set up an efficient work environment with the right tools</h5>
-                            <p class="card-text text-muted">At Simba Stationery, we provide the best office tools that can help you create a productive work environment. Learn how to set up your workspace for maximum efficiency.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" width="30" height="30">
-                                    <span class="ml-2 font-weight-medium text-dark">Jese Leos</span>
-                                </div>
-                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-    
-                <!-- Fourth Blog Article -->
-                <article class="col-md-6 mb-4">
-                    <div class="card shadow-sm fixed-height">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 text-muted">
-                                <span class="badge badge-primary">News</span>
-                                <span class="small">5 days ago</span>
-                            </div>
-                            <h5>New eco-friendly products at Simba Stationery</h5>
-                            <p class="card-text text-muted">Simba Stationery is excited to introduce a new range of eco-friendly office products, made to help reduce your environmental footprint while providing top-quality tools.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Green avatar" width="30" height="30">
-                                    <span class="ml-2 font-weight-medium text-dark">Bonnie Green</span>
-                                </div>
-                                <router-link to="/open" class="btn btn-link text-primary font-weight-bold" style="font-weight:bold;">Read more</router-link>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                    <router-link 
+                        :to="{ path: `/open/${blog.id}` }" 
+                        class="btn btn-link text-primary font-weight-bold" 
+                        style="font-weight:bold;"
+                    >
+                        Read more
+                    </router-link>
+                </div>
             </div>
         </div>
+    </article>
+</div>
     </section>
     </template>
+    <script>
+    import { ref, onMounted } from 'vue'; 
+    import { globalVariable } from '@/global';
+    
+    export default {
+      name: "BlogPage",
+      setup() {
+        const blogs = ref([]); 
+    
+        const fetchBlogs = async () => { // Renamed to fetchBlogs for consistency
+          try {
+            const response = await fetch(`${globalVariable}/select_blog`); 
+            if (!response.ok) throw new Error("Failed to fetch blogs");
+            const data = await response.json(); 
+            blogs.value = data; 
+          } catch (error) {
+            console.error("Error fetching blogs:", error);
+          }
+        };
+    
+        onMounted(() => {
+          fetchBlogs(); // Correctly call fetchBlogs
+        });
+    
+        return { globalVariable, blogs }; // Return blogs to use in the template
+      },
+    };
+    </script>
+    
     
     <style scoped>
     a{

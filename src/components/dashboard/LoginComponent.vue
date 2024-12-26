@@ -1,8 +1,13 @@
 <script>
+  import { globalVariable } from "@/global";
 import axios from 'axios';
 
 export default {
   name: 'LoginPage',
+  setup() {
+    return { globalVariable };
+  },
+
   data() {
     return {
       email: '',
@@ -11,9 +16,9 @@ export default {
     };
   },
   methods: {
-    async login() {
+    async login() { 
       try {
-        const response = await axios.post('http://localhost:3000/login', {
+            const response = await axios.post(`${globalVariable}/login`, {
           email: this.email,
           password: this.password,
         });
@@ -38,7 +43,7 @@ export default {
     <div class="container-fluid">
         <div class="logo-img">
           
-            <img :src="require('@/assets/img/logo.png')" width="50" height="35"/>
+            <img :src="require('@/assets/img/logo11111.png')"/>
         </div>
         <form @submit.prevent="login">
             <div class="mb-4">

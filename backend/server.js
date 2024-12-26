@@ -530,21 +530,26 @@ app.put('/update_outlet/:id', upload.single('image'), (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// TESTIMONIAL APIS
 
 ///insert  testimonial
-app.post('/upload/testimonial', upload.single('image'), (req, res) => {
+
+  app.post('/upload/testimonial', upload.single('image'), (req, res) => {
     const { name, position, description, topic } = req.body;
     const image = req.file ? req.file.filename : null;
+
     if (!name || !position || !topic || !description || !image) {
-      return res.status(400).json({ message: 'All fields are required.' });
+        return res.status(400).json({ message: 'All fields are required.' });
     }
+
     const query = `INSERT INTO testimonials (name, position, topic, description, image) VALUES (?, ?, ?, ?, ?)`;
-    db.query(query, [name, position, description, topic, image], (err, result) => {
-      if (err) {
-        console.error('Database error:', err);
-        return res.status(500).json({ message: 'Failed to save testimonial.' });
-      }
-      res.status(200).json({ message: 'Testimonial saved successfully!' });
+
+    db.query(query, [name, position, topic, description, image], (err, result) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed to save testimonial.' });
+        }
+        res.status(200).json({ message: 'Testimonial saved successfully!' });
     });
-  });
+});
+
 
     ///select
     app.get('/select_testimonial', (req, res) => {
@@ -577,18 +582,26 @@ app.put('/update_testimonial/:id', upload.single('image'), (req, res) => {
     const { id } = req.params;
     const { name, position, description, topic } = req.body;
     let imageName = req.file ? req.file.filename : null;
-    
+
+    // Get current image from the database
     const query = 'SELECT image FROM testimonials WHERE id = ?';
     db.query(query, [id], (err, result) => {
         if (err) return res.status(500).json({ message: 'Database error' });
+
         const currentImage = result[0]?.image;
         if (!imageName) {
-            imageName = currentImage; 
+            imageName = currentImage; // Retain current image if no new image uploaded
         }
+
+        // Update the testimonial
         const updateQuery = 'UPDATE testimonials SET name = ?, position = ?, topic = ?, description = ?, image = ? WHERE id = ?';
-        db.query(updateQuery, [name, position, description, topic, imageName, id], (err) => {
+        db.query(updateQuery, [name, position, topic, description, imageName, id], (err) => {
             if (err) return res.status(500).json({ message: 'Error updating data' });
-            res.json({ message: 'outlet content updated successfully', imagePath: `/uploads/testimonial/${imageName}` });
+
+            res.json({ 
+                message: 'Testimonial updated successfully', 
+                imagePath: `/uploads/testimonial/${imageName}` 
+            });
         });
     });
 });
@@ -639,6 +652,27 @@ app.get('/select_blog', (req, res) => {
     });
 });
 
+app.get('/select_blog/:id', (req, res) => {
+    const blogId = req.params.id;
+
+    if (isNaN(blogId)) {
+        return res.status(400).json({ message: 'Invalid blog ID' });
+    }
+
+    const query = 'SELECT * FROM blogs WHERE id = ?';
+    const queryParams = [blogId];
+
+    db.query(query, queryParams, (err, results) => {
+        if (err) {
+            console.error('Error fetching data from database:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Blog not found' });
+        }
+        res.json(results[0]); // Return the single blog
+    });
+});
 
  //delete
  app.delete("/delete_blog/:id", (req, res) => {

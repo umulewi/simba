@@ -14,7 +14,7 @@
     <!-- Main Wrapper -->
     <div class="body-wrapper">
       <h5 class="card-title fw-semibold mb-4">{{ editingTeam ? "Update Team Content" : "Add Team Content" }}</h5>
-      <p>{{ globalVariable }}</p>
+     
       <form @submit.prevent="handleSubmit">
         <div v-if="message" :class="['alert', messageType]" role="alert">
           {{ message }}

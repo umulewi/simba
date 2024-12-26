@@ -9,14 +9,16 @@
       <!-- Title -->
       <h1 class="title">{{ title }}</h1>
       <p class="subtitle">
-        Explore our carefully curated range of premium stationery,Explore our carefully curated range of premium stationeryExplore our carefully curated range of premium stationeryExplore our carefully curated range of premium stationery designed to elevate your creativity, productivity, and organizational skills. Whether you're a student, professional, or creative, we have something for you!
+        Explore our carefully curated range of premium stationery designed to elevate your creativity, productivity, and organizational skills. Whether you're a student, professional, or creative, we have something for you!
       </p>
 
       <!-- Products Section -->
       <div class="row">
+        
         <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-md-6 col-sm-12 mb-4">
           <div class="product-card">
-            <img :src="product.image" class="product-image" :alt="product.name" />
+
+            <img :src="`${globalVariable}/uploads/product/${product.image}`" class="product-image" :alt="product.name" />
             <div class="product-info">
               <h3 class="product-name">{{ product.name }}</h3>
               <p class="product-description">{{ product.description }}</p>
@@ -29,36 +31,43 @@
   </section>
 </template>
 
+
 <script>
+import axios from 'axios';
+import { globalVariable } from "@/global";
+
 export default {
   name: "OurProducts",
+  setup() {
+    return { globalVariable };
+  },
   data() {
     return {
       title: "Our Products",
-      products: [
-        {
-          name: "Classic Notebook",
-          description: "The perfect companion for your thoughts and ideas. This premium notebook offers smooth pages and a durable cover, ideal for note-taking, journaling, or sketching.",
-          image: require('@/assets/img/DSC09527_1.jpg'),
-        },
-        {
-          name: "High-Quality Paper",
-          description: "Crafted for a smooth writing experience, our high-quality paper ensures that your ink flows effortlessly. Perfect for students, professionals, and creatives alike.",
-          image: require('@/assets/img/DSC09560.jpg'),
-        },
-        {
-          name: "Affordable Pens",
-          description: "A set of reliable pens that write smoothly and last long. Whether you're writing notes, signing documents, or making lists, our pens offer great value without compromising on quality.",
-          image: require('@/assets/img/DSC09534.jpg'),
-        },
-        
-      ],
+      products: [], // Will be populated with API data
     };
+  },
+  methods: {
+    // Method to fetch products from the API
+    fetchProducts() {
+      axios.get(`${globalVariable}/select_product`)
+        .then(response => {
+          // Assuming the API returns an array of products, slice the first 3
+          this.products = response.data.slice(0, 3);
+        })
+        .catch(error => {
+          console.error("Error fetching products:", error);
+        });
+    },
+  },
+  created() {
+    this.fetchProducts(); // Fetch products when the component is created
   },
 };
 </script>
-Affordable Pens
-A set of reliable pens that write smoothly and last long. Whether you're writing notes, signing documents, or making lists, our pens offer great value without compromising on quality.
+
+
+
 <style scoped>
 .nav-button {
   display: block; 

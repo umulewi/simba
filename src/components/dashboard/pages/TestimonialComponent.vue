@@ -10,9 +10,15 @@
           <div v-if="message" :class="['alert', messageType]" role="alert">
             {{ message }}
           </div>
-          <div class="form-group">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" v-model="name" class="form-control" id="name" required />
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" v-model="name" class="form-control" id="name" required />
+            </div>
+            <div class="col-md-6">
+              <label for="topic" class="form-label">Description:</label>
+              <input type="text" v-model="topic" class="form-control" id="topic" required />
+            </div>
           </div>
           <div class="form-group row">
             <div class="col-md-6">
@@ -24,19 +30,20 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label for="topic" class="form-label">Topic:</label>
-              <input type="text" v-model="topic" class="form-control" id="topic" required />
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-6">
-              <label for="description" class="form-label">Description:</label>
-              <input type="text" v-model="description" class="form-control" id="description" required />
-            </div>
-            <div class="col-md-6">
               <label for="position" class="form-label">Position:</label>
               <input type="text" v-model="position" class="form-control" id="position" required />
             </div>
+          </div>
+          <div class="form-group row">
+           
+            <div class="col-md-12">
+              <label for="description" class="form-label">topic:</label>
+              <textarea v-model="description" class="form-control" id="description" style="height: 12rem;"></textarea>
+              
+            </div>
+
+
+            
           </div>
           <button type="submit" class="btn btn-primary">
             {{ editingtestimonial ? "Update testimonial" : "Add testimonial" }}
@@ -114,8 +121,8 @@
     data() {
       return {
         name: "",
-        description: "",
         topic: "",
+        description: "",
         position: "",
         image: null,
         message: null,
@@ -144,8 +151,8 @@
       async handleSubmit() {
         const formData = new FormData();
         formData.append('name', this.name);
-        formData.append('description', this.description);
         formData.append('topic', this.topic);
+        formData.append('description', this.description);
         formData.append('position', this.position);
   
         if (this.image) {
@@ -182,14 +189,14 @@
         }
       },
       resetForm() {
-        this.name = "";
-        this.description = "";
-        this.topic = "";
-        this.position = "";
-        this.image = null;
-        this.editingtestimonial = null;
-        document.getElementById("image").value = "";
-      },
+  this.name = "";
+  this.topic = "";
+  this.description = "";
+  this.position = "";
+  this.image = null;
+  this.editingtestimonial = null;
+  document.getElementById("image").value = "";
+},
       confirmDelete(id) {
         this.selectedAboutId = id;
         this.showModal = true;
@@ -225,8 +232,8 @@
       },
       edittestimonial(testimonial) {
         this.name = testimonial.name;
-        this.description = testimonial.description;
         this.topic = testimonial.topic;
+        this.description = testimonial.description;
         this.position = testimonial.position;
         this.image = null;
         this.editingtestimonial = { ...testimonial };

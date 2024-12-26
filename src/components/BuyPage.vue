@@ -20,48 +20,30 @@
     </div>
 
     <div class="container d-flex flex-column align-items-center w-100">
-      <!-- Kigali Special Economic Zone -->
-      <div class="row align-items-center mb-5">
-        <div class="col-lg-7 col-sm-12 text-center text-lg-start order-1 order-lg-2">
-          <h1 style="color:#243163;">Kigali Special Economic Zone</h1>
-          <p style="text-align: justify;">
-            Located opposite AFRI, our store at Kigali Special Economic Zone is your go-to spot for high-quality stationery and office supplies. Experience premium service and discover our wide range of products suited for every need.
-          </p>
-          <p style="text-align: justify;">
-            <strong>Opening Hours:</strong> Monday to Saturday, 8:00 AM - 7:00 PM. <br>
-            <strong>Contact:</strong> +250 784 824 410
-          </p>
+      <div>
+        <div v-if="error" class="error-message">
+          {{ error }}
         </div>
-        <div class="col-lg-5 col-sm-6 text-center order-2 order-lg-1">
-          <img 
-            src="@/assets/img/DSC09625.jpg" 
+        <div v-for="(outlet, index) in outlets" :key="outlet.id" class="row align-items-center mb-5">
+          <div :class="['col-lg-7', 'col-sm-12', 'text-center', 'text-lg-start', index % 2 === 0 ? 'order-1' : 'order-2']">
+            <h1 class="title">{{ outlet.name }}</h1>
+            <p style="text-align: justify;">{{ outlet.description }}</p>
+            <p style="text-align: justify;">
+              <strong>Opening Hours:</strong> {{ outlet.working_days }},{{ outlet.working_hours }} <br>
+              <strong>Contact:</strong> {{ outlet.telephone }}
+            </p>
+          </div>
+          <div :class="['col-lg-5', 'col-sm-6', 'text-center', index % 2 === 0 ? 'order-2' : 'order-1']">
+            <img 
+            :src="`${globalVariable}/uploads/outlet/${outlet.image}`" 
             class="logo img-fluid" 
-            alt="Kigali Special Economic Zone Store" 
+            :alt="`Image of ${outlet.name}`" 
             style="height: 25rem;">
-        </div>
-      </div>
-   
-      
-      <!-- Downtown Location -->
-      <div class="row align-items-center mb-5">
-        <div class="col-lg-5 col-sm-12 mt-5 text-center text-lg-start order-1 order-lg-1">
-          <h1 style="color:#243163;">Downtown</h1>
-          <p style="text-align: justify;">
-            Our downtown location near Nyarugenge Market is perfect for quick access to our wide range of products. Whether you’re shopping for home, school, or office needs, we’ve got you covered!
-          </p>
-          <p style="text-align: justify;">
-            <strong>Opening Hours:</strong> Monday to Sunday, 9:00 AM - 8:00 PM. <br>
-            <strong>Contact:</strong> +250 784 824 410
-          </p>
-        </div>
-        <div class="col-lg-7 col-sm-12 text-center order-2 order-lg-2">
-          <img 
-            src="@/assets/img/buy2.jpg" 
-            class="logo img-fluid" 
-            alt="Downtown Store" 
-            style="height:25rem;">
-        </div>
-      </div>
+
+          </div>
+        </div></div>
+
+
 
       <!-- Distributors Section -->
       <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -114,21 +96,44 @@
 
     
 
-
     </div>
   </header>
 </template>
 <script>
-import BecomeDistributor from './BecomeDistributor.vue';
+import axios from 'axios';
+import { globalVariable } from '@/global';
 
 export default {
   name: 'BuyPage',
-  components: {
-   BecomeDistributor,  
- },
+  setup() {
+    return { globalVariable };
+  },
+  data() {
+    return {
+      outlets: [], // Array to hold outlet data
+      error: null, // Error message
+    };
+  },
+  mounted() {
+    this.fetchOutlets(); // Fetch outlet data on component mount
+  },
+  methods: {
+    fetchOutlets() {
+      axios
+        .get(`${globalVariable}/select_outlet`)
+        .then(response => {
+          this.outlets = response.data; // Store the fetched data in `outlets`
+        })
+        .catch(error => {
+          console.error("Error fetching outlets:", error);
+          this.error = "Failed to load outlets. Please try again later.";
+        });
+    },
+  },
 };
-
 </script>
+
+
 
 <style scoped>
 /* New animation for distributors */
