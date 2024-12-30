@@ -782,7 +782,7 @@ app.post('/send-email', (req, res) => {
             res.status(500).send({ message: 'Failed to send email.' });
         } else {
             console.log('Email sent successfully:', info.response);
-            res.status(200).send({ message: 'Email sent successfully!' });
+            res.status(200).send({ message: 'Message sent successfully!' });
         }
     });
 });
