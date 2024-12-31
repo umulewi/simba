@@ -141,7 +141,7 @@ export default {
   top: 0;
   bottom: 0;
   width: 150px; 
-  background-image: url('https://www.rahura.io/assets/img/logo/r-emblem.png');
+  background-image: url('https://simba.iremborigali.com/img/logo11111.6ac04e2b.png');
   background-size: contain;
   background-repeat: no-repeat;
   filter: blur(10px);

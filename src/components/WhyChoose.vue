@@ -2,7 +2,7 @@
   <header class="app-Why">
     <div class="container text-center mt-4">
       <div class="row">
-        <h1 class="fw-bold" style="color: #243163;">WHY CHOOSE US</h1>
+        <h1 class="title">WHY CHOOSE US</h1>
         <p class="subtitle">We are committed to providing exceptional services and products that meet the needs of our customers. With a proven track record of success and a dedicated team of experts, we ensure that every interaction with us is seamless and rewarding. Our customers' satisfaction is our top priority, and we strive to exceed expectations by offering innovative solutions, unparalleled expertise, and a passion for excellence.</p>
       </div>
     </div>
@@ -77,7 +77,7 @@ export default {
 }
 
 .app-Why {
-  background-color:#1a2639;
+  background-color: #727dae; 
   color:white;
   
  
@@ -103,12 +103,12 @@ export default {
 .fa-calendar-alt {
   color: #ffc107;
 }
-.subtitle {
-  color: #666;
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto; /* Center-align the subtitle */
-  line-height: 1.6;
+
+.title {
+  color: #243163;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: 2.5rem; /* Larger font size for the title */
 }
 </style>
