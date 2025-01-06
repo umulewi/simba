@@ -83,12 +83,14 @@ export default {
 
 
 <style>
+
 .subtitle {
   color: #666;
   margin-bottom: 2rem;
-  max-width: 800px;
+  max-width: 1000px;
+  font-size: 16px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; 
   line-height: 1.6;
 }
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap');

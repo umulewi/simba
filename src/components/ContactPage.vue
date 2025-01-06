@@ -15,26 +15,22 @@
     </div>
   </div>
 <div class="container-xxl py-5">
-            <div class="container">
-              <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-    <h1 class="mb-5" style="color: #243163;">Contact For Any Query</h1>
-    <p class="subtitle" style="font-size: 18px; color: #555;">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h1 class="mb-5" style="color: #243163;">Contact For Any Query</h1>
+      <p class="subtitle" style="font-size: 16px; color: #555;">
         Have any questions or need assistance? Reach out to us, and our team will be happy to provide the information or support you need. We're here to help!
-    </p>
-</div>
+      </p>
+    </div>
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="row gy-4">
 
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="row gy-4">
-                            
-                            
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.542874436121!2d30.147405373961465!3d-1.9351514980472833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca71157394f89%3A0x706132a337192890!2sHYDRO%20STATIONERS%20LIMITED!5e0!3m2!1sen!2srw!4v1733735037762!5m2!1sen!2srw" width="100%" height="370" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
-                        
-                    </div>
+        </div>
+      </div>
+      <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.542874436121!2d30.147405373961465!3d-1.9351514980472833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca71157394f89%3A0x706132a337192890!2sHYDRO%20STATIONERS%20LIMITED!5e0!3m2!1sen!2srw!4v1733735037762!5m2!1sen!2srw" width="100%" height="370" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+      </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
                           <form @submit.prevent="sendEmail">
@@ -158,7 +154,6 @@ export default {
   height: 250px;
 }
 
-
 .overlay-text {
   position: absolute;
   top: 50%;
@@ -194,7 +189,7 @@ export default {
   }
 
   .image-container {
-    height: 10px; /* Optional: Adjust the height of the container */
+    height: 10px;
   }
 }
 

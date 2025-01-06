@@ -123,8 +123,6 @@ export default {
   margin-bottom: 1rem;
 }
 
-
-
 .subtitle {
   color: #666;
   margin-bottom: 2rem;

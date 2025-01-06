@@ -149,7 +149,7 @@ export default {
   color: #666;
   margin-bottom: 2rem;
   max-width: 1000px;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: auto;
   margin-right: auto; /* Center-align the subtitle */
   line-height: 1.6;
