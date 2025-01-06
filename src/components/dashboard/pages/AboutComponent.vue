@@ -50,6 +50,9 @@
                   <th class="border-bottom-0">
                     <h6 class="fw-semibold mb-0">DESCRIPTION</h6>
                   </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">ACTION</h6>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -62,7 +65,7 @@
                             </span>
                         </h6>
                     </td>
-                  <td class="border px-4 py-2">{{ about.id }}</td>
+                  
                   <td class="border px-4 py-2">
                     <img v-if="about.image" :src="`${globalVariable}/uploads/about/${about.image}`" alt="Landing Image" style="width: 100px; height: auto; border-radius: 5px;" />
                   </td>

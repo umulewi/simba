@@ -19,7 +19,7 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                 <i class="bi bi-question-circle question-icon"></i>
-                <p> What types of school supplies does Simba School Supplies offer?</p>
+                <p style="font-size: 16px;"> What types of school supplies does Simba School Supplies offer?</p>
                
               </button>
             </h3>
@@ -35,7 +35,7 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                 <i class="bi bi-question-circle question-icon"></i>
-                <p>Are the products at Simba School Supplies affordable?</p>
+                <p style="font-size: 16px;">Are the products at Simba School Supplies affordable?</p>
               </button>
             </h3>
             <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -50,7 +50,7 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                 <i class="bi bi-question-circle question-icon"></i>
-                <p> How does Simba School Supplies ensure product quality?</p>
+                <p style="font-size: 16px;"> How does Simba School Supplies ensure product quality?</p>
                
               </button>
             </h3>
@@ -66,7 +66,7 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                 <i class="bi bi-question-circle question-icon"></i>
-                <p>Does Simba School Supplies offer custom stationery options?</p>
+                 <p style="font-size: 16px;">Does Simba School Supplies offer custom stationery options?</p>
                 
               </button>
             </h3>
@@ -82,7 +82,7 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                 <i class="bi bi-question-circle question-icon"></i>
-                <p>How can Simba School Supplies contribute to the educational experience?</p>
+                <p style="font-size: 16px;">How can Simba School Supplies contribute to the educational experience?</p>
                 
               </button>
             </h3>
@@ -98,7 +98,7 @@
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-6">
                 <i class="bi bi-question-circle question-icon"></i>
-                <p>Does Simba School Supplies offer bulk purchasing options for schools?</p>
+                <p style="font-size: 16px;">Does Simba School Supplies offer bulk purchasing options for schools?</p>
                 
               </button>
             </h3>

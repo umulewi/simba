@@ -2,12 +2,12 @@
   <header class="app-Why">
     <div class="container text-center mt-4">
       <div class="row">
-        <h1 class="title">WHY CHOOSE US</h1>
+        <h1 class="title" style="margin-top: 30px;">WHY CHOOSE US</h1>
         <p class="subtitle">We are committed to providing exceptional services and products that meet the needs of our customers. With a proven track record of success and a dedicated team of experts, we ensure that every interaction with us is seamless and rewarding. Our customers' satisfaction is our top priority, and we strive to exceed expectations by offering innovative solutions, unparalleled expertise, and a passion for excellence.</p>
       </div>
     </div>
-    <div class="container-fluid mt-5">
-      <div class="row justify-content-around">
+    <div class="container-fluid">
+      <div class="row justify-content-around " style="margin-bottom: 7rem;">
         <!-- Happy Customers -->
         <div class="col-lg-4 col-sm-12 text-center">
           <i class="fas fa-users fa-4x text-primary"></i>

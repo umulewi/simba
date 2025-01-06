@@ -1,23 +1,23 @@
 <template>
   <div class="container-fluid">
-    <div class="slider-container">
+    <div class="slider-container" @mouseover="stopAutoSlide" @mouseleave="startAutoSlide">
       <!-- Slides -->
       <div
         class="slides"
-        :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+        :style="{ transform: `translateX(-${currentSlide * 100}%)`, transition: isAnimating ? 'transform 0.5s ease' : 'none' }"
       >
-      <div class="slide" v-for="slide in slides" :key="slide.id">
-        <img
-        :src="`${globalVariable}/uploads/landing/${slide.image}`"
-        alt="Slide"
-        class="animated-image"
-        />
-        <div class="content-overlay">
-          <h1 class="animated-content">{{ slide.title }}</h1>
-          <p>{{ slide.description }}</p>
+        <!-- Duplicate the slides for seamless transition -->
+        <div class="slide" v-for="(slide, index) in loopedSlides" :key="index">
+          <img
+            :src="`${globalVariable}/uploads/landing/${slide.image}`"
+            alt="Slide"
+            class="animated-image"
+          />
+          <div class="content-overlay">
+            <h1 class="animated-content">{{ slide.title }}</h1>
+            <p>{{ slide.description }}</p>
+          </div>
         </div>
-      </div>
-
       </div>
 
       <!-- Navigation -->
@@ -36,10 +36,21 @@ export default {
   },
   data() {
     return {
-      currentSlide: 0,
-      slides: [], // Store dynamic slides
-
+      currentSlide: 1, // Start from the first actual slide (not the clone)
+      slides: [],
+      isAnimating: true,
     };
+  },
+  computed: {
+    loopedSlides() {
+      if (this.slides.length === 0) return [];
+      // Create the loop by adding clones of the last and first slides
+      return [
+        this.slides[this.slides.length - 1],
+        ...this.slides,
+        this.slides[0],
+      ];
+    },
   },
   methods: {
     async fetchSlides() {
@@ -54,26 +65,40 @@ export default {
       }
     },
     nextSlide() {
-      this.currentSlide =
-        (this.currentSlide + 1) % this.slides.length; // Loop to the first slide
+      this.currentSlide++;
+      this.isAnimating = true;
+      if (this.currentSlide === this.slides.length + 1) {
+        // Transition back to the first slide without animation
+        setTimeout(() => {
+          this.isAnimating = false;
+          this.currentSlide = 1;
+        }, 500);
+      }
     },
     prevSlide() {
-      this.currentSlide =
-        (this.currentSlide - 1 + this.slides.length) % this.slides.length; // Loop to the last slide
+      this.currentSlide--;
+      this.isAnimating = true;
+      if (this.currentSlide === 0) {
+        // Transition back to the last slide without animation
+        setTimeout(() => {
+          this.isAnimating = false;
+          this.currentSlide = this.slides.length;
+        }, 500);
+      }
     },
     startAutoSlide() {
       this.slideInterval = setInterval(this.nextSlide, 3000); // Slide every 3 seconds
     },
     stopAutoSlide() {
-      clearInterval(this.slideInterval); // Stop sliding
+      clearInterval(this.slideInterval);
     },
   },
   mounted() {
-    this.fetchSlides(); // Fetch dynamic data when component mounts
-    this.startAutoSlide(); // Start auto-sliding
+    this.fetchSlides();
+    this.startAutoSlide();
   },
   beforeUnmount() {
-    this.stopAutoSlide(); // Stop auto-sliding when component unmounts
+    this.stopAutoSlide();
   },
 };
 </script>
@@ -98,15 +123,14 @@ export default {
 .animated-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensures the entire image is visible within the container */
-  background-color: #000; /* Optional: Set a background color to fill empty spaces */
+  object-fit: contain; 
+  background-color: #000; 
 }
-
-
 
 .slides {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .slide {

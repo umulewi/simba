@@ -49,9 +49,6 @@
             <p><a href="./" class="text-white">Home</a></p>
             <p><a href="about" class="text-white">About  Us</a></p>
             <p><a href="product" class="text-white">Our Products</a></p>
-            <p><a href="outlets" class="text-white">Outlets</a></p>
-            <p><a href="testimonials" class="text-white">Testimonials</a></p>
-            <p><a href="blogs" class="text-white">Blogs</a></p>
             <p><a href="contact" class="text-white">Contact</a></p>
             
           </div>
