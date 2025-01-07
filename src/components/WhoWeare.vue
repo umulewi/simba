@@ -6,14 +6,15 @@
     <div class="container d-flex justify-content-center align-items-center w-100">
       <div class="row align-items-center" style="height: 600px;">
         <!-- Image Section uploads/about -->
-        <div class="col-lg-6 col-sm-12 text-center order-lg-first d-none d-lg-block slide-in-left">
-          <img
-            v-if="about_us.length > 0 && about_us[0].image"
-            :src="`${globalVariable}/uploads/about/${about_us[0].image}`"
-            alt="Slide"
-            class="animated-image"
-           style="width: 100%; height: 100%; object-fit: cover;"/>
+        
+
+        <div class="col-lg-6 col-12 position-relative">
+          <div class="image-frame"></div>
+          <img v-if="about_us.length > 0 && about_us[0].image" :src="`${globalVariable}/uploads/about/${about_us[0].image}`" alt="Slide" class="image" style="width: 100%; height: 95%; object-fit: cover; border-radius: 1rem;"/>
+          <div class="background-overlay"></div> 
         </div>
+
+        
         <div class="col-lg-6 col-sm-12 mt-5 text-center text-lg-start slide-in-right">
           <!-- Overview Section -->
           <h1 class="display-5" style="color:#243163;">OVER VIEW</h1>
@@ -68,10 +69,9 @@ export default {
   name: "WhoWeare",
   setup() {
     const about_us = ref([]);
-
     const fetchAboutUs = async () => {
       try {
-        const response = await fetch("http://localhost:3000/select_about");
+        const response = await fetch(`${globalVariable}/select_about`);
         if (!response.ok) throw new Error("Failed to fetch data");
         const data = await response.json();
         about_us.value = data;
@@ -95,7 +95,69 @@ export default {
 
 
 <style scoped>
+.section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+.column {
+      flex: 1;
+    }
+    .text-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .text-column h1 {
+      margin: 0 0 15px 0;
+      font-size: 2rem;
+      color: #333;
+    }
+    .text-column p {
+      margin: 0;
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+    }
+    .image-column {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .image-frame {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      width: 20%;
+      height: 20%;
+      border-radius: 10px;
+      z-index: 1;
+    }
+    .image {
+      position: relative;
+      z-index: 2;
+      max-width: 100%;
+      border-radius: 12px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
 
+    .image-frame {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      width: 100%;
+      height: 100%;
+      background-color: #243163; 
+      border-radius: 15px; 
+      z-index: 1;
+    }
+/* for    background */
 .nav-button {
   display: block; 
   width: 20rem; 

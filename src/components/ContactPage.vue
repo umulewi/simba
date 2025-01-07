@@ -25,7 +25,6 @@
     <div class="row g-4">
       <div class="col-12">
         <div class="row gy-4">
-
         </div>
       </div>
       <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
