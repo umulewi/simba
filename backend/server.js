@@ -380,13 +380,15 @@ app.put('/update_team/:id', upload.single('image'), (req, res) => {
 
 //add  new producr
 app.post('/upload/product', upload.single('image'), (req, res) => {
-    const { name, description } = req.body;
+    const { name, description, category, isNew } = req.body; // Ensure these are extracted
     const imageName = req.file ? req.file.filename : null;
-    if (!name || !description || !imageName) {
+
+    if (!name || !description || !imageName || !category || !isNew) {
         return res.status(400).json({ message: 'All fields are required, including the image' });
     }
-    const query = 'INSERT INTO product (name, description, image) VALUES (?, ?, ?)';
-    db.query(query, [name, description, imageName], (err) => {
+
+    const query = 'INSERT INTO product (name, description, image, category, isNew) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [name, description, imageName, category, isNew], (err) => {
         if (err) {
             console.error('Error inserting into database:', err);
             return res.status(500).json({ message: 'Error saving data' });
@@ -397,6 +399,7 @@ app.post('/upload/product', upload.single('image'), (req, res) => {
         });
     });
 });
+
 
 //fetch product
 app.get('/select_product', (req, res) => {
@@ -428,23 +431,39 @@ app.delete("/delete_product/:id", (req, res) => {
 //update
 app.put('/update_product/:id', upload.single('image'), (req, res) => {
     const { id } = req.params;
-    const { name, description } = req.body;
-    let imageName = req.file ? req.file.filename : null;
-    // Only update image if new image is uploaded, otherwise use current image.
+    const { name, description, category, isNew } = req.body;
+    let imageName = req.file ? req.file.filename : null; // Image file name, if uploaded
+
+    // Fetch the current image from the database
     const query = 'SELECT image FROM product WHERE id = ?';
     db.query(query, [id], (err, result) => {
         if (err) return res.status(500).json({ message: 'Database error' });
-        const currentImage = result[0]?.image;
+
+        const currentImage = result[0]?.image; // Existing image in the database
+
+        // If no new image is uploaded, use the current image
         if (!imageName) {
-            imageName = currentImage; // Keep the old image if no new one is uploaded
+            imageName = currentImage;
         }
-        const updateQuery = 'UPDATE product SET name = ?, description = ?, image = ? WHERE id = ?';
-        db.query(updateQuery, [name, description, imageName, id], (err) => {
+
+        // Update query to modify product details
+        const updateQuery = `
+            UPDATE product 
+            SET name = ?, description = ?, image = ?, category = ?, isNew = ? 
+            WHERE id = ?;
+        `;
+        db.query(updateQuery, [name, description, imageName, category, isNew, id], (err) => {
             if (err) return res.status(500).json({ message: 'Error updating data' });
-            res.json({ message: 'product updated successfully', imagePath: `/uploads/product/${imageName}` });
+
+            // Return success response
+            res.json({
+                message: 'Product updated successfully',
+                imagePath: `/uploads/product/${imageName}` // Path to the updated image
+            });
         });
     });
 });
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////OUTLETS APIS
 
