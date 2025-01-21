@@ -17,11 +17,10 @@
         
         <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-md-6 col-sm-12 mb-4">
           <div class="product-card">
-
             <img :src="`${globalVariable}/uploads/product/${product.image}`" class="product-image" :alt="product.name" />
             <div class="product-info">
               <h3 class="product-name">{{ product.name }}</h3>
-              <p class="product-description">{{ product.description }}</p>
+              <p class="product-description" v-html="product.description"></p>
             </div>
           </div>
         </div>
@@ -147,7 +146,6 @@ export default {
 .title {
   color: #243163;
   font-weight: bold;
-  text-transform: uppercase;
   margin-bottom: 1rem;
   font-size: 2.5rem; /* Larger font size for the title */
 }
@@ -179,7 +177,7 @@ export default {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; 
+  height: 80%; 
 }
 
 .product-card:hover {
@@ -189,7 +187,7 @@ export default {
 
 .product-image {
   width: 100%; 
-  height: 250px; 
+  height: 200px; 
   object-fit: cover;
   margin-bottom: 1rem;
   border-radius: 8px;

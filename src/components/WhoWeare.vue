@@ -1,9 +1,9 @@
 <template>
   <header class="app-who-we-are">
     <div class="text-center fade-in">
-      <h1 class="fw-bold" style="color: #243163;">Who we are</h1>
+      <h1 class="title" style="color: #243163; margin-top: 2rem;">Who we are</h1>
     </div>
-    <div class="container d-flex justify-content-center align-items-center w-100">
+    <div class="container d-flex justify-content-center align-items-center w-100" style="margin-top: -12px;">
       <div class="row align-items-center" style="height: 600px;">
         <!-- Image Section uploads/about -->
         
@@ -95,6 +95,14 @@ export default {
 
 
 <style scoped>
+
+.title {
+  color: #243163;
+  font-weight: bold;
+
+  margin-bottom: -7px;
+  font-size: 2.5rem; /* Larger font size for the title */
+}
 .section {
       display: flex;
       align-items: center;

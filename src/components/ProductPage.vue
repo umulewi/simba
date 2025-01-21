@@ -7,12 +7,10 @@
       style="width: 100%; height: 100%; object-fit: cover;">
     <!-- Overlay text -->
     <div class="overlay-text zoom-in">
-      
       <p style="margin-top: 9px;">
-          <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
-          <label style="color:#FFE338">Our Products.</label>
+        <i class="fa-solid fa-arrow-right-from-bracket" style="color:#FFE338"></i>&nbsp;
+        <label style="color:#FFE338">Our Products.</label>
       </p>
-      
     </div>
   </div>
 
@@ -20,14 +18,14 @@
     <div class="container">
       <!-- Title -->
       <h1 class="fw-bold" style="color: #243163;">{{ title }}</h1>
-     
       <p class="subtitle">
         Explore our carefully curated range of premium stationery, designed to elevate your creativity, productivity, and organizational skills. Whether you're a student, professional, or creative, we have something for you!
       </p>
       
+      <!-- Search and Category Filters -->
       <div class="text-center mx-auto mb-5" style="max-width: 700px;">
         <!-- Search Input -->
-        <div class="mb-3" style="margin-bottom: 15px;">
+        <div class="mb-3">
           <input
             type="text"
             id="searchInput"
@@ -41,14 +39,13 @@
               border: 1px solid #ccc; 
               border-radius: 5px; 
               box-sizing: border-box; 
-              transition: border-color 0.3s, box-shadow 0.3s; 
               font-size: 16px;
             "
           />
         </div>
         
         <!-- Category Dropdown -->
-        <div class="mb-3" style="margin-bottom: 15px;">
+        <div class="mb-3">
           <select v-model="selectedCategory" class="form-control" style="width: 100%; padding: 15px; height: 50px; border: 1px solid #ccc; border-radius: 5px;">
             <option value="">All Categories</option>
             <option value="simba">Simba</option>
@@ -62,15 +59,14 @@
       <div class="row">
         <div v-for="(product, index) in filteredProducts" :key="index" class="col-lg-4 col-md-6 col-sm-12 mb-4">
           <div class="product-card">
-            
             <img :src="`${globalVariable}/uploads/product/${product.image}`" class="product-image" :alt="product.name" />
-
             <div class="product-info">
               <h3 class="product-name">
                 {{ product.name }}
                 <span v-if="product.isNew" class="new-label">NEW</span>
               </h3>
-              <p class="product-description">{{ product.description }}</p>
+              <!-- Render HTML within description -->
+              <p class="product-description" v-html="product.description"></p>
             </div>
           </div>
         </div>
@@ -128,40 +124,7 @@ export default {
 };
 </script>
 
-
 <style scoped>
-.app-OurProducts {
-  background-color: #f9f9f9; 
-
-  color: #333;
-  text-align: center;
-}
-
-.title {
-  color: #243163;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  font-size: 2.5rem; /* Larger font size for the title */
-}
-
-.subtitle {
-  color: #666;
-  margin-bottom: 2rem;
-  max-width: 1000px;
-  font-size: 16px;
-  margin-left: auto;
-  margin-right: auto; /* Center-align the subtitle */
-  line-height: 1.6;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Product Card Styles */
 .product-card {
   background-color: #fff;
   border-radius: 8px;
@@ -172,7 +135,7 @@ export default {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; 
+  height: 80%; 
 }
 
 .product-card:hover {
@@ -182,7 +145,65 @@ export default {
 
 .product-image {
   width: 100%; 
-  height: 250px; 
+  height: 200px; 
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+
+.app-OurProducts {
+  background-color: #f9f9f9;
+  color: #333;
+  text-align: center;
+}
+
+.title {
+  color: #243163;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+  font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 80%; 
+}
+
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  width: 100%; 
+  height: 200px; 
   object-fit: cover;
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -218,13 +239,13 @@ export default {
 
 @media (max-width: 768px) {
   .product-card {
-    margin-left: 0 !important; 
-    margin-right: 0 !important; 
-    width: 100%; 
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
   }
 
   .row {
-    display: block; 
+    display: block;
   }
 
   .product-name {
@@ -234,17 +255,12 @@ export default {
   .product-description {
     font-size: 0.9rem;
   }
-
-  .col-sm-12 {
-    padding-left: 0; 
-    padding-right: 0; 
-  }
 }
 
 .overlay-text {
   position: absolute;
   top: 50%;
-  left: 20%; /* Center horizontally */
+  left: 20%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
@@ -257,47 +273,12 @@ export default {
   animation: zoomEffect 0.6s ease-out;
 }
 
-/* Zoom effect */
 @keyframes zoomEffect {
   0% {
     transform: translate(-50%, -50%) scale(0.5);
   }
   100% {
     transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-/* Media query for small devices */
-@media screen and (max-width: 768px) {
-  .overlay-text {
-    font-size: 1rem; /* Reduce font size */
-    width: 40%;
-    left: 20%;
-  }
-
-  .image-container {
-    height: 10px; /* Optional: Adjust the height of the container */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 30%; 
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 15px;
-    text-align: center;
-    font-weight: bold;
-    width: 50%;
-  }
-
-  .image-container {
-    height: 20px; /* Optional: Adjust the height for very small screens */
   }
 }
 </style>

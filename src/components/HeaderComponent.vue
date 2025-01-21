@@ -76,10 +76,14 @@ export default {
 </script>
 
 <style scoped>
-/* Navbar styles */
+
 .navbar {
   background-color: #e6e7e8;
+  border-bottom-left-radius: 3rem; /* Apply border radius to the bottom-left corner */
+  border-bottom-right-radius: 3rem; /* Apply border radius to the bottom-right corner */
+  overflow: hidden; /* Ensures content inside respects the border radius */
 }
+/* Navbar styles */
 
 .navbar-brand img {
   max-height: 60px;
