@@ -28,10 +28,10 @@ app.use('/uploads/testimonial', express.static(path.join(__dirname, 'uploads/tes
 
 // Database Connection
 const db = mysql.createConnection({
-    host: 'bfbpr5sqxt9mvqdb1ktd-mysql.services.clever-cloud.com',
-    user: 'uwyrkldkayhvxgyc',
-    password: 'mEL7dHi3criVFSbTSA0S',
-    database: 'bfbpr5sqxt9mvqdb1ktd'  
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'simba'  
 });
 
 db.connect((err) => {
@@ -887,12 +887,12 @@ app.get("/products/count", (req, res) => {
 
 
 // Start server
-// app.listen(port, () => {
-//     console.log(`Server running on http://localhost:${port}`);
-// });
 app.listen(port, () => {
-    console.log(`https://simba-apis.onrender.com`);
+    console.log(`Server running on http://localhost:${port}`);
 });
+// app.listen(port, () => {
+//     console.log(`https://simba-apis.onrender.com`);
+// });
 
 // https://simba-apis.onrender.com
 

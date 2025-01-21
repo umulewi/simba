@@ -20,9 +20,19 @@
         </div>
       </div>
 
-      <!-- Navigation -->
-      <button class="prev" @click="prevSlide">❮</button>
-      <button class="next" @click="nextSlide">❯</button>
+      <!-- Radio buttons for navigation below the image -->
+      <div class="radio-controls">
+        <input
+          v-for="(slide, index) in loopedSlides"
+          :key="index"
+          type="radio"
+          :id="'slide-' + index"
+          name="slider"
+          :checked="currentSlide === index + 1"
+          @change="setSlide(index + 1)"
+          class="radio-button"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -64,27 +74,9 @@ export default {
         console.error("Error fetching slides:", error);
       }
     },
-    nextSlide() {
-      this.currentSlide++;
+    setSlide(index) {
+      this.currentSlide = index;
       this.isAnimating = true;
-      if (this.currentSlide === this.slides.length + 1) {
-        // Transition back to the first slide without animation
-        setTimeout(() => {
-          this.isAnimating = false;
-          this.currentSlide = 1;
-        }, 500);
-      }
-    },
-    prevSlide() {
-      this.currentSlide--;
-      this.isAnimating = true;
-      if (this.currentSlide === 0) {
-        // Transition back to the last slide without animation
-        setTimeout(() => {
-          this.isAnimating = false;
-          this.currentSlide = this.slides.length;
-        }, 500);
-      }
     },
     startAutoSlide() {
       this.slideInterval = setInterval(this.nextSlide, 3000); // Slide every 3 seconds
@@ -104,27 +96,24 @@ export default {
 </script>
 
 <style scoped>
-
 .container-fluid {
   width: 100%;
   padding: 0;
   margin: 0;
 }
 
-
 .slider-container {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 30rem;
-  
+  height: 35rem; /* Height of the slider */
 }
 
 .animated-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; 
-  background-color: #000; 
+  object-fit: cover;
+  background-color: #000;
 }
 
 .slides {
@@ -141,10 +130,8 @@ export default {
   align-items: center;
 }
 
-
 .content-overlay {
   position: absolute;
-
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -154,6 +141,7 @@ export default {
   padding: 20px;
   border-radius: 10px;
   animation: slideUp 1s ease-in-out;
+  z-index: 5; /* Ensure the content is behind the radio buttons */
 }
 
 .animated-content {
@@ -163,37 +151,36 @@ export default {
   animation: zoomIn 1s ease-in-out;
 }
 
-.prev,
-.next {
+/* Radio controls below the images */
+.radio-controls {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
+  bottom: 10px; /* Ensures the radio buttons are at the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Ensure the radio buttons are on top of the content */
+}
+
+.radio-controls input[type="radio"] {
+  margin: 0 5px;
   cursor: pointer;
-  font-size: 24px;
-  z-index: 10;
+  width: 25px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: background-color 0.3s ease;
 }
 
-.prev {
-  left: 10px;
+.radio-controls input[type="radio"]:checked {
+  background-color: #FFE338;
 }
 
-.next {
-  right: 10px;
-}
-
+/* Media queries for responsiveness */
 @media (max-width: 768px) {
-  .prev,
-  .next {
-    font-size: 10px;
-    padding: 8px;
-  }
-
   .slider-container {
-    height: 20vh;
+    height: 20vh; /* Adjust height on smaller screens */
   }
 
   .content-overlay {
@@ -205,6 +192,11 @@ export default {
 
   .animated-content {
     font-size: 1.2rem;
+  }
+
+  .radio-controls input[type="radio"] {
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -240,5 +232,3 @@ export default {
   }
 }
 </style>
-
-
